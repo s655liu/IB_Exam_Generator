@@ -49,15 +49,16 @@ IB_Exam_Generator/
 - Node.js 18+
 - A [Google Gemini API key](https://aistudio.google.com/)
 
+### Model Used
+Qwen-Turbo
+
 ### Backend
 
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
-
-### Model Used
-Qwen-Turbo
+ 
 
 Create a `backend/.env` file:
 ```
