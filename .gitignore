@@ -1,4 +1,9 @@
-# ── Python ──────────────────────────────────────────────
+# ── Environment / Secrets ────────────────────────────────
+.env
+.env.*
+!.env.example
+api/.env
+
 __pycache__/
 *.py[cod]
 *.pyo

@@ -1,21 +1,21 @@
 import os
 import json
 import requests
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from dotenv import load_dotenv
 from schemas import GenerateRequest, GenerateResponse
 
-load_dotenv()
+# Load .env for local development
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 QWEN_API_KEY = os.getenv("QWEN_API_KEY")
 QWEN_BASE_URL = os.getenv("QWEN_BASE_URL", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1")
 
-# Load exam specs from backend folder
-SPECS_PATH = os.path.join(os.path.dirname(__file__), "exam_specs.json")
+# Load exam specs — same directory as this file
+SPECS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "exam_specs.json")
 try:
     if not QWEN_API_KEY:
         print("WARNING: QWEN_API_KEY not found in environment variables!")
-    
     with open(SPECS_PATH, "r", encoding="utf-8", errors="replace") as f:
         EXAM_SPECS = json.load(f)
 except Exception as e:
@@ -23,7 +23,6 @@ except Exception as e:
     EXAM_SPECS = {}
 
 def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
-    # Default fallback specs
     specs = {
         "duration": 60,
         "total_marks": 40,
@@ -31,7 +30,6 @@ def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
         "command_terms": ["Explain", "Describe", "Analyze", "Evaluate"],
         "structure_desc": "Standard IB question format"
     }
-    
     try:
         if subject in EXAM_SPECS and level in EXAM_SPECS[subject] and paper in EXAM_SPECS[subject][level]:
             data = EXAM_SPECS[subject][level][paper]
@@ -45,13 +43,11 @@ def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
             })
     except Exception as e:
         print(f"Error parsing specs for {subject} {level} {paper}: {e}")
-    
     return specs
 
 def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str, Any]) -> str:
     instructions = ""
     calc_str = "CALCULATOR ALLOWED (GDC)" if specs.get("calculator") else "NO CALCULATORS ALLOWED"
-    
     if "Math" in subject:
         instructions = f"- **{calc_str}**.\n- Show all working clearly.\n- Use LaTeX for all mathematical notation (e.g., $x^{{2}}$, $\\frac{{a}}{{b}}$)."
     elif "History" in subject:
@@ -63,16 +59,12 @@ def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str,
         instructions = "- Provide a short unseen literary passage description followed by guiding questions."
     elif subject in ["Physics", "Chemistry", "Biology"]:
         instructions = f"- **{calc_str}**.\n- Reference relevant data from the IB {subject} Data Booklet.\n- Include sub-questions (a, b, c) for extended response questions."
-    
     return instructions
 
 def build_prompt(request: GenerateRequest) -> str:
     specs = get_ib_specs(request.subject, request.level, request.paper)
     subject_instr = get_subject_specific_instructions(request.subject, request.paper, specs)
-    
-    # Handle multiple topics/types
     focus_areas = ", ".join(request.topic_or_type)
-    
     prompt = f"""Generate an authentic International Baccalaureate (IB) {request.subject} {request.level} {request.paper} examination.
 
 EXAM SPECIFICATIONS:
@@ -116,25 +108,20 @@ async def call_qwen_api(prompt: str) -> str:
             {"role": "system", "content": "You are an expert IB Senior Examiner responsible for creating official examination papers. Your output is always complete and never truncated."},
             {"role": "user", "content": prompt}
         ],
-        "temperature": 0.5, # Lowered for more consistent mark/grade boundaries
+        "temperature": 0.5,
         "max_tokens": 4000
     }
-    
     response = requests.post(f"{QWEN_BASE_URL}/chat/completions", headers=headers, json=payload)
-    
     if response.status_code != 200:
         error_detail = response.json() if response.content else "No detail"
-        print(f"DEBUG: Qwen API Error {response.status_code}: {error_detail}")
         raise Exception(f"Qwen API Error {response.status_code}: {error_detail}")
-        
     return response.json()["choices"][0]["message"]["content"]
 
 def parse_response(content: str):
     exam_text = content
     answer_key = None
     grade_boundaries = None
-    
-    # 1. Extract Grade Boundaries first (usually at the end)
+
     boundary_seps = ["---GRADE BOUNDARIES---", "GRADE BOUNDARIES", "---OFFICIAL GRADE BOUNDARIES---"]
     for sep in boundary_seps:
         if sep in content:
@@ -143,7 +130,6 @@ def parse_response(content: str):
             grade_boundaries = parts[1].strip()
             break
 
-    # 2. Extract Answer Key from the remaining content
     key_seps = ["---ANSWER KEY---", "ANSWER KEY", "---MARK SCHEME---", "MARK SCHEME"]
     for sep in key_seps:
         if sep in content:
@@ -153,5 +139,5 @@ def parse_response(content: str):
             break
     else:
         exam_text = content.replace("---EXAM---", "").strip()
-        
+
     return exam_text, answer_key, grade_boundaries

@@ -8,7 +8,8 @@ import 'katex/dist/katex.min.css';
 import subjectData from './data/exam_subject_structure.json';
 import markSchemes from './data/mark_schemes.json';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = '/api';
+
 
 function App() {
   // State for selections

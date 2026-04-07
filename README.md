@@ -1,15 +1,15 @@
 # IB Exam Generator
 
-An AI-powered tool for generating official-style IB examination papers with mark schemes, grade boundaries, and assessment rubrics.
+An AI-powered tool for generating official-style IB examination papers with mark schemes, grade boundaries, and assessment rubrics — built with FastAPI + React (Vite), deployable on Vercel.
 
 ---
 
 ## Features
 
 - **AI-Generated Exam Papers** — produces realistic IB-style questions for Math AA, Physics, Chemistry, Biology, History, English A, Business, and more
-- **Official Mark Schemes** — displays subject-specific rubrics and marking criteria sourced from `data/mark_schemes.json`
-- **Grade Boundaries** — shows official percentage bands (Grades 1–7) for each subject and level
-- **Student / Teacher Views** — separate tabs for the question paper and the mark scheme
+- **Official Mark Schemes** — displays subject-specific rubrics and marking criteria
+- **Grade Boundaries** — shows official percentage bands (Grades 1–7) per subject and level
+- **Student / Teacher Views** — separate tabs for question paper and mark scheme
 - **PDF Export** — print-ready layout via browser print dialog
 - **HL & SL Support** — adapts topic lists, paper structure, and boundaries per level
 
@@ -19,59 +19,57 @@ An AI-powered tool for generating official-style IB examination papers with mark
 
 ```
 IB_Exam_Generator/
-├── backend/
-│   ├── main.py          # FastAPI app and /api/generate-exam endpoint
-│   ├── generator.py     # Prompt construction and Gemini API call
-│   ├── schemas.py       # Pydantic request/response models
-│   ├── requirements.txt
-│   └── .env             # GEMINI_API_KEY (not committed)
-├── frontend/
+├── api/                          # Backend — Vercel Python serverless functions
+│   ├── index.py                  # FastAPI app (Vercel entry point)
+│   ├── generator.py              # Prompt building & Qwen API call
+│   ├── schemas.py                # Pydantic models
+│   ├── exam_specs.json           # Exam structure data (used by backend)
+│   └── .env                      # Local dev secrets (not committed)
+├── frontend/                     # React (Vite) frontend
 │   ├── src/
-│   │   ├── App.jsx      # Main React component
-│   │   ├── index.css    # Global styles
+│   │   ├── App.jsx
+│   │   ├── index.css
 │   │   └── data/
 │   │       ├── exam_subject_structure.json   # Topics per subject/level/paper
 │   │       └── mark_schemes.json             # Grade boundaries + rubrics
-│   ├── index.html
-│   ├── vite.config.js
-│   └── package.json
-├── data/                # Source copies of JSON data files
+│   ├── package.json
+│   └── vite.config.js            # Dev proxy: /api → localhost:8000
+├── requirements.txt              # Python deps (at root for Vercel)
+├── vercel.json                   # Vercel deployment config
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## Setup
+## Model Used
+
+**Qwen-Turbo** via Alibaba Cloud DashScope API (international endpoint).
+
+---
+
+## Local Development
 
 ### Prerequisites
 - Python 3.10+
 - Node.js 18+
-- A [Google Gemini API key](https://aistudio.google.com/)
+- A [Qwen API key](https://dashscope.aliyuncs.com/)
 
-### Model Used
-Qwen-Turbo
-
-### Backend
+### Backend (runs on port 8000)
 
 ```bash
-cd backend
-pip install -r requirements.txt
+cd api
+pip install -r ../requirements.txt
+uvicorn index:app --reload --port 8000
 ```
- 
 
-Create a `backend/.env` file:
+Create `api/.env`:
 ```
 QWEN_API_KEY=your_key_here
-QWEN_BASE_URL=your_url_here
+QWEN_BASE_URL=https://dashscope-intl.aliyuncs.com/compatible-mode/v1
 ```
 
-Start the server:
-```bash
-python -m uvicorn main:app --reload --port 8000
-```
-
-### Frontend
+### Frontend (runs on port 5173)
 
 ```bash
 cd frontend
@@ -79,7 +77,31 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173)
+Open [http://localhost:5173](http://localhost:5173) — the Vite dev proxy automatically forwards `/api` requests to port 8000.
+
+---
+
+## Deploying to Vercel
+
+### 1. Push to GitHub
+Make sure your repo is on GitHub.
+
+### 2. Import project on Vercel
+Go to [vercel.com](https://vercel.com) → **Add New Project** → import your repo.
+
+### 3. Set environment variables
+In Vercel project settings → **Environment Variables**, add:
+```
+QWEN_API_KEY=your_key_here
+QWEN_BASE_URL=https://dashscope-intl.aliyuncs.com/compatible-mode/v1
+```
+
+### 4. Deploy
+Vercel will automatically detect `vercel.json` and:
+- Build the React frontend from `frontend/`
+- Deploy the FastAPI backend as a Python serverless function at `/api`
+
+No additional configuration needed.
 
 ---
 
@@ -97,5 +119,6 @@ Open [http://localhost:5173](http://localhost:5173)
 ## Notes
 
 - Generating a new exam **replaces** the current one (no history is saved)
-- Diagram-based questions are intentionally excluded from generation
-- Grade boundaries are approximate and based on recent IB May sessions
+- Diagram-based questions are excluded from generation by design
+- Grade boundaries are approximate, based on recent IB May sessions
+- The `api/.env` file is gitignored — never commit your API key
