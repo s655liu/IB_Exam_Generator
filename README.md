@@ -56,9 +56,13 @@ cd backend
 pip install -r requirements.txt
 ```
 
+### Model Used
+Qwen-Turbo
+
 Create a `backend/.env` file:
 ```
-GEMINI_API_KEY=your_key_here
+QWEN_API_KEY=your_key_here
+QWEN_BASE_URL=your_url_here
 ```
 
 Start the server:
