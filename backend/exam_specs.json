@@ -1,0 +1,1146 @@
+{
+  "English A": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 75,
+        "total_marks": 20,
+        "question_structure": {
+          "type": "single_question_with_parts",
+          "description": "One guided textual analysis or comparative commentary",
+          "parts": [
+            {
+              "part": "A",
+              "marks": 10,
+              "description": "Guided analysis of text"
+            },
+            {
+              "part": "B", 
+              "marks": 10,
+              "description": "Comparative or extended commentary"
+            }
+          ]
+        },
+        "typical_question_count": 1,
+        "command_terms": ["Analyse", "Compare", "Contrast", "Comment on", "Examine"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 105,
+        "total_marks": 25,
+        "question_structure": {
+          "type": "essay_choice",
+          "description": "Choose 1 of 3 essay prompts",
+          "parts": [
+            {
+              "part": "essay",
+              "marks": 25,
+              "description": "Literary essay"
+            }
+          ]
+        },
+        "typical_question_count": 3,
+        "command_terms": ["Discuss", "Evaluate", "To what extent", "Compare and contrast"],
+        "calculator": false
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 135,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "two_independent_questions",
+          "description": "Two guided textual analyses or comparative commentaries",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 20,
+              "description": "Analysis of first text"
+            },
+            {
+              "part": "Question 2",
+              "marks": 20,
+              "description": "Analysis of second text"
+            }
+          ]
+        },
+        "typical_question_count": 2,
+        "command_terms": ["Analyse", "Compare", "Contrast", "Comment on", "Examine"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 105,
+        "total_marks": 25,
+        "question_structure": {
+          "type": "essay_choice",
+          "description": "Choose 1 of 3 essay prompts",
+          "parts": [
+            {
+              "part": "essay",
+              "marks": 25,
+              "description": "Literary essay"
+            }
+          ]
+        },
+        "typical_question_count": 3,
+        "command_terms": ["Discuss", "Evaluate", "To what extent", "Compare and contrast"],
+        "calculator": false
+      }
+    }
+  },
+  "History": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 60,
+        "total_marks": 24,
+        "question_structure": {
+          "type": "source_based",
+          "description": "4 source-based questions on prescribed subject",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 4,
+              "sub_parts": ["a) 2 marks", "b) 2 marks"],
+              "description": "Source comprehension and analysis"
+            },
+            {
+              "part": "Question 2",
+              "marks": 6,
+              "sub_parts": ["a) 3 marks", "b) 3 marks"],
+              "description": "Source evaluation and OPVL"
+            },
+            {
+              "part": "Question 3",
+              "marks": 6,
+              "sub_parts": ["single response"],
+              "description": "Comparative source analysis"
+            },
+            {
+              "part": "Question 4",
+              "marks": 8,
+              "sub_parts": ["single essay response"],
+              "description": "Mini-essay using all sources"
+            }
+          ]
+        },
+        "typical_question_count": 4,
+        "command_terms": ["What", "Why", "Compare", "Contrast", "Evaluate", "Examine", "To what extent"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 90,
+        "total_marks": 30,
+        "question_structure": {
+          "type": "essay_choice",
+          "description": "Choose 2 of 6 essay questions from 12 world history topics",
+          "parts": [
+            {
+              "part": "Essay 1",
+              "marks": 15,
+              "description": "Essay on chosen topic"
+            },
+            {
+              "part": "Essay 2",
+              "marks": 15,
+              "description": "Essay on second chosen topic"
+            }
+          ]
+        },
+        "typical_question_count": 6,
+        "command_terms": ["Compare and contrast", "Discuss", "Evaluate", "Examine", "Analyse", "To what extent"],
+        "calculator": false
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 60,
+        "total_marks": 24,
+        "question_structure": {
+          "type": "source_based",
+          "description": "4 source-based questions on prescribed subject",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 4,
+              "sub_parts": ["a) 2 marks", "b) 2 marks"],
+              "description": "Source comprehension and analysis"
+            },
+            {
+              "part": "Question 2",
+              "marks": 6,
+              "sub_parts": ["a) 3 marks", "b) 3 marks"],
+              "description": "Source evaluation and OPVL"
+            },
+            {
+              "part": "Question 3",
+              "marks": 6,
+              "sub_parts": ["single response"],
+              "description": "Comparative source analysis"
+            },
+            {
+              "part": "Question 4",
+              "marks": 8,
+              "sub_parts": ["single essay response"],
+              "description": "Mini-essay using all sources"
+            }
+          ]
+        },
+        "typical_question_count": 4,
+        "command_terms": ["What", "Why", "Compare", "Contrast", "Evaluate", "Examine", "To what extent"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 90,
+        "total_marks": 30,
+        "question_structure": {
+          "type": "essay_choice",
+          "description": "Choose 2 of 6 essay questions from 12 world history topics",
+          "parts": [
+            {
+              "part": "Essay 1",
+              "marks": 15,
+              "description": "Essay on chosen topic"
+            },
+            {
+              "part": "Essay 2",
+              "marks": 15,
+              "description": "Essay on second chosen topic"
+            }
+          ]
+        },
+        "typical_question_count": 6,
+        "command_terms": ["Compare and contrast", "Discuss", "Evaluate", "Examine", "Analyse", "To what extent"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 150,
+        "total_marks": 45,
+        "question_structure": {
+          "type": "essay_choice",
+          "description": "Choose 3 of 6 essay questions from HL regional option",
+          "parts": [
+            {
+              "part": "Essay 1",
+              "marks": 15,
+              "description": "Essay on HL topic"
+            },
+            {
+              "part": "Essay 2",
+              "marks": 15,
+              "description": "Essay on HL topic"
+            },
+            {
+              "part": "Essay 3",
+              "marks": 15,
+              "description": "Essay on HL topic"
+            }
+          ]
+        },
+        "typical_question_count": 6,
+        "command_terms": ["Compare and contrast", "Discuss", "Evaluate", "Examine", "Analyse", "To what extent"],
+        "calculator": false
+      }
+    }
+  },
+  "Biology": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 45,
+        "total_marks": 30,
+        "question_structure": {
+          "type": "multiple_choice",
+          "description": "30 multiple choice questions",
+          "parts": [
+            {
+              "part": "Questions 1-30",
+              "marks": 30,
+              "sub_parts": ["1 mark each"],
+              "description": "Core and SL content"
+            }
+          ]
+        },
+        "typical_question_count": 30,
+        "command_terms": ["State", "Identify", "What", "Which", "True/False"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 75,
+        "total_marks": 50,
+        "question_structure": {
+          "type": "data_and_extended_response",
+          "description": "Data-based question + short answer + extended response",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 20,
+              "sub_parts": ["Data-based question (5-8 sub-questions)", "Short answer questions (5-10 sub-questions total)"],
+              "description": "Compulsory data-based and short answer"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": ["Choose 2 of 3 extended response questions (15 marks each)"],
+              "description": "Extended response questions"
+            }
+          ]
+        },
+        "typical_question_count": 8,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Discuss", "Evaluate", "Compare", "Analyse", "Draw", "Label", "Calculate"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 60,
+        "total_marks": 35,
+        "question_structure": {
+          "type": "practical_and_option",
+          "description": "Practical skills + option topic",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 15,
+              "sub_parts": ["Practical-based questions (4-6 sub-questions)"],
+              "description": "Skills and experimental techniques"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["Option topic questions (3-5 sub-questions per option)"],
+              "description": "Choice of 1 of 4 options"
+            }
+          ]
+        },
+        "typical_question_count": 6,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Discuss", "Calculate", "Suggest", "Deduce"],
+        "calculator": false
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "multiple_choice",
+          "description": "40 multiple choice questions",
+          "parts": [
+            {
+              "part": "Questions 1-40",
+              "marks": 40,
+              "sub_parts": ["1 mark each"],
+              "description": "Core + HL content"
+            }
+          ]
+        },
+        "typical_question_count": 40,
+        "command_terms": ["State", "Identify", "What", "Which", "True/False"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 135,
+        "total_marks": 72,
+        "question_structure": {
+          "type": "data_and_extended_response",
+          "description": "Data-based question + short answer + extended response",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": ["Data-based question (6-10 sub-questions)", "Short answer questions (8-12 sub-questions total)"],
+              "description": "Compulsory data-based and short answer (core + HL)"
+            },
+            {
+              "part": "Section B",
+              "marks": 42,
+              "sub_parts": ["Choose 3 of 4 extended response questions (14 marks each)"],
+              "description": "Extended response questions (core + HL)"
+            }
+          ]
+        },
+        "typical_question_count": 10,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Discuss", "Evaluate", "Compare", "Analyse", "Draw", "Label", "Calculate", "Predict"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 75,
+        "total_marks": 45,
+        "question_structure": {
+          "type": "practical_and_option",
+          "description": "Practical skills + option topic",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 20,
+              "sub_parts": ["Practical-based questions (5-8 sub-questions)"],
+              "description": "Skills and experimental techniques (HL focus)"
+            },
+            {
+              "part": "Section B",
+              "marks": 25,
+              "sub_parts": ["Option topic questions (4-6 sub-questions per option)"],
+              "description": "Choice of 1 of 4 options"
+            }
+          ]
+        },
+        "typical_question_count": 8,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Discuss", "Calculate", "Suggest", "Deduce", "Evaluate", "Design"],
+        "calculator": false
+      }
+    }
+  },
+  "Chemistry": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 45,
+        "total_marks": 30,
+        "question_structure": {
+          "type": "multiple_choice",
+          "description": "30 multiple choice questions",
+          "parts": [
+            {
+              "part": "Questions 1-30",
+              "marks": 30,
+              "sub_parts": ["1 mark each"],
+              "description": "Core and SL content"
+            }
+          ]
+        },
+        "typical_question_count": 30,
+        "command_terms": ["State", "Identify", "What", "Which", "True/False", "Calculate"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 75,
+        "total_marks": 50,
+        "question_structure": {
+          "type": "short_and_extended",
+          "description": "Short answer and extended response questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": ["Short answer questions (8-12 questions, 2-4 marks each)"],
+              "description": "Compulsory short answer on core topics"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["Extended response questions (choose 2 of 3, 10 marks each)"],
+              "description": "Longer questions requiring deeper understanding"
+            }
+          ]
+        },
+        "typical_question_count": 10,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Determine", "Predict", "Deduce", "Compare", "Sketch"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 60,
+        "total_marks": 35,
+        "question_structure": {
+          "type": "practical_and_option",
+          "description": "Practical skills + option topic",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 15,
+              "sub_parts": ["Practical-based questions (4-6 sub-questions)"],
+              "description": "Skills, data analysis, and experimental design"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["Option topic questions (3-5 sub-questions per option)"],
+              "description": "Choice of 1 of 4 options"
+            }
+          ]
+        },
+        "typical_question_count": 7,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Suggest", "Deduce", "Analyse", "Evaluate"],
+        "calculator": false
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "multiple_choice",
+          "description": "40 multiple choice questions",
+          "parts": [
+            {
+              "part": "Questions 1-40",
+              "marks": 40,
+              "sub_parts": ["1 mark each"],
+              "description": "Core + HL content"
+            }
+          ]
+        },
+        "typical_question_count": 40,
+        "command_terms": ["State", "Identify", "What", "Which", "True/False", "Calculate"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 135,
+        "total_marks": 95,
+        "question_structure": {
+          "type": "short_and_extended",
+          "description": "Short answer and extended response questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 55,
+              "sub_parts": ["Short answer questions (12-18 questions, 2-5 marks each)"],
+              "description": "Compulsory short answer on core + HL topics"
+            },
+            {
+              "part": "Section B",
+              "marks": 40,
+              "sub_parts": ["Extended response questions (choose 3 of 4, 13-14 marks each)"],
+              "description": "Longer questions requiring synthesis and evaluation"
+            }
+          ]
+        },
+        "typical_question_count": 14,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Determine", "Predict", "Deduce", "Compare", "Sketch", "Discuss", "Evaluate"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 75,
+        "total_marks": 45,
+        "question_structure": {
+          "type": "practical_and_option",
+          "description": "Practical skills + option topic",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 20,
+              "sub_parts": ["Practical-based questions (5-8 sub-questions)"],
+              "description": "Skills, data analysis, and experimental design (HL focus)"
+            },
+            {
+              "part": "Section B",
+              "marks": 25,
+              "sub_parts": ["Option topic questions (4-6 sub-questions per option)"],
+              "description": "Choice of 1 of 4 options"
+            }
+          ]
+        },
+        "typical_question_count": 8,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Suggest", "Deduce", "Analyse", "Evaluate", "Design", "Justify"],
+        "calculator": false
+      }
+    }
+  },
+  "Physics": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 45,
+        "total_marks": 30,
+        "question_structure": {
+          "type": "multiple_choice",
+          "description": "30 multiple choice questions",
+          "parts": [
+            {
+              "part": "Questions 1-30",
+              "marks": 30,
+              "sub_parts": ["1 mark each"],
+              "description": "Core and SL content"
+            }
+          ]
+        },
+        "typical_question_count": 30,
+        "command_terms": ["State", "Identify", "What", "Which", "True/False", "Calculate"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 75,
+        "total_marks": 50,
+        "question_structure": {
+          "type": "short_and_extended",
+          "description": "Short answer and extended response questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": ["Short answer questions (8-12 questions, 2-4 marks each)"],
+              "description": "Compulsory short answer on core topics"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["Extended response questions (choose 2 of 3, 10 marks each)"],
+              "description": "Longer questions requiring problem-solving"
+            }
+          ]
+        },
+        "typical_question_count": 10,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Determine", "Predict", "Deduce", "Compare", "Sketch", "Estimate"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 60,
+        "total_marks": 35,
+        "question_structure": {
+          "type": "practical_and_option",
+          "description": "Practical skills + option topic",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 15,
+              "sub_parts": ["Practical-based questions (4-6 sub-questions)"],
+              "description": "Skills, data analysis, and experimental design"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["Option topic questions (3-5 sub-questions per option)"],
+              "description": "Choice of 1 of 4 options"
+            }
+          ]
+        },
+        "typical_question_count": 7,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Suggest", "Deduce", "Analyse", "Evaluate", "Determine"],
+        "calculator": false
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "multiple_choice",
+          "description": "40 multiple choice questions",
+          "parts": [
+            {
+              "part": "Questions 1-40",
+              "marks": 40,
+              "sub_parts": ["1 mark each"],
+              "description": "Core + HL content"
+            }
+          ]
+        },
+        "typical_question_count": 40,
+        "command_terms": ["State", "Identify", "What", "Which", "True/False", "Calculate"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 135,
+        "total_marks": 95,
+        "question_structure": {
+          "type": "short_and_extended",
+          "description": "Short answer and extended response questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 55,
+              "sub_parts": ["Short answer questions (12-18 questions, 2-5 marks each)"],
+              "description": "Compulsory short answer on core + HL topics"
+            },
+            {
+              "part": "Section B",
+              "marks": 40,
+              "sub_parts": ["Extended response questions (choose 3 of 4, 13-14 marks each)"],
+              "description": "Longer questions requiring synthesis and problem-solving"
+            }
+          ]
+        },
+        "typical_question_count": 14,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Determine", "Predict", "Deduce", "Compare", "Sketch", "Discuss", "Evaluate", "Derive", "Prove"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 75,
+        "total_marks": 45,
+        "question_structure": {
+          "type": "practical_and_option",
+          "description": "Practical skills + option topic",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 20,
+              "sub_parts": ["Practical-based questions (5-8 sub-questions)"],
+              "description": "Skills, data analysis, and experimental design (HL focus)"
+            },
+            {
+              "part": "Section B",
+              "marks": 25,
+              "sub_parts": ["Option topic questions (4-6 sub-questions per option)"],
+              "description": "Choice of 1 of 4 options"
+            }
+          ]
+        },
+        "typical_question_count": 8,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Calculate", "Suggest", "Deduce", "Analyse", "Evaluate", "Design", "Justify", "Determine"],
+        "calculator": false
+      }
+    }
+  },
+  "Math AA": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 90,
+        "total_marks": 80,
+        "question_structure": {
+          "type": "short_and_extended_no_calculator",
+          "description": "Short and extended response without calculator",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 50,
+              "sub_parts": ["Short response questions (8-10 questions, 4-6 marks each)", "Each question has 2-4 sub-parts (a, b, c)"],
+              "description": "Compulsory short response questions"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": ["Extended response questions (2-3 questions, 10-15 marks each)", "Each question has 3-5 sub-parts (a, b, c, d, e)"],
+              "description": "Longer questions requiring multi-step reasoning"
+            }
+          ]
+        },
+        "typical_question_count": 11,
+        "command_terms": ["Find", "Calculate", "Show that", "Solve", "Determine", "Prove", "Hence", "Hence or otherwise", "State", "Write down", "Sketch", "Find the exact value"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 90,
+        "total_marks": 80,
+        "question_structure": {
+          "type": "short_and_extended_with_calculator",
+          "description": "Short and extended response with GDC allowed",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 50,
+              "sub_parts": ["Short response questions (8-10 questions, 4-6 marks each)", "Each question has 2-4 sub-parts (a, b, c)"],
+              "description": "Compulsory short response questions"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": ["Extended response questions (2-3 questions, 10-15 marks each)", "Each question has 3-5 sub-parts (a, b, c, d, e)"],
+              "description": "Longer questions requiring multi-step reasoning"
+            }
+          ]
+        },
+        "typical_question_count": 11,
+        "command_terms": ["Find", "Calculate", "Show that", "Solve", "Determine", "Prove", "Hence", "Hence or otherwise", "State", "Write down", "Sketch", "Plot", "Find the exact value", "Use your GDC to"],
+        "calculator": true
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 120,
+        "total_marks": 110,
+        "question_structure": {
+          "type": "short_and_extended_no_calculator",
+          "description": "Short and extended response without calculator",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 60,
+              "sub_parts": ["Short response questions (8-10 questions, 5-8 marks each)", "Each question has 2-4 sub-parts (a, b, c, d)"],
+              "description": "Compulsory short response questions (core + HL)"
+            },
+            {
+              "part": "Section B",
+              "marks": 50,
+              "sub_parts": ["Extended response questions (3-4 questions, 12-18 marks each)", "Each question has 4-6 sub-parts (a, b, c, d, e, f)"],
+              "description": "Longer questions requiring complex reasoning and proof"
+            }
+          ]
+        },
+        "typical_question_count": 12,
+        "command_terms": ["Find", "Calculate", "Show that", "Solve", "Determine", "Prove", "Hence", "Hence or otherwise", "State", "Write down", "Sketch", "Deduce", "Justify", "Find the exact value", "Hence prove that"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 120,
+        "total_marks": 110,
+        "question_structure": {
+          "type": "short_and_extended_with_calculator",
+          "description": "Short and extended response with GDC allowed",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 60,
+              "sub_parts": ["Short response questions (8-10 questions, 5-8 marks each)", "Each question has 2-4 sub-parts (a, b, c, d)"],
+              "description": "Compulsory short response questions (core + HL)"
+            },
+            {
+              "part": "Section B",
+              "marks": 50,
+              "sub_parts": ["Extended response questions (3-4 questions, 12-18 marks each)", "Each question has 4-6 sub-parts (a, b, c, d, e, f)"],
+              "description": "Longer questions requiring complex reasoning and problem-solving"
+            }
+          ]
+        },
+        "typical_question_count": 12,
+        "command_terms": ["Find", "Calculate", "Show that", "Solve", "Determine", "Prove", "Hence", "Hence or otherwise", "State", "Write down", "Sketch", "Plot", "Deduce", "Justify", "Find the exact value", "Use your GDC to"],
+        "calculator": true
+      },
+      "Paper 3": {
+        "duration_minutes": 60,
+        "total_marks": 55,
+        "question_structure": {
+          "type": "extended_problem_solving",
+          "description": "Two extended problem-solving questions",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 27,
+              "sub_parts": ["5-7 sub-parts (a, b, c, d, e, f, g)", "Sub-parts increase in difficulty (2 → 4 → 5 → 6 → 5 → 3 → 2 marks)"],
+              "description": "In-depth exploration of a mathematical topic"
+            },
+            {
+              "part": "Question 2",
+              "marks": 28,
+              "sub_parts": ["5-7 sub-parts (a, b, c, d, e, f, g)", "Sub-parts increase in difficulty (2 → 4 → 5 → 6 → 5 → 4 → 2 marks)"],
+              "description": "In-depth exploration of a second mathematical topic"
+            }
+          ]
+        },
+        "typical_question_count": 2,
+        "command_terms": ["Find", "Calculate", "Show that", "Solve", "Determine", "Prove", "Hence", "Hence or otherwise", "Deduce", "Justify", "State", "Write down", "Find the exact value", "Hence prove that", "Interpret", "Suggest"],
+        "calculator": true
+      }
+    }
+  },
+  "Business": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 75,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 40,
+              "sub_parts": ["4-6 questions", "Each question has 2-4 sub-parts (a, b, c, d)", "Mix of short answer and extended response"],
+              "description": "All questions based on a single case study"
+            }
+          ]
+        },
+        "typical_question_count": 5,
+        "command_terms": ["Define", "State", "Outline", "Describe", "Explain", "Calculate", "Analyse", "Recommend", "Evaluate", "Discuss", "Compare", "Contrast"],
+        "calculator": true
+      },
+      "Paper 2": {
+        "duration_minutes": 105,
+        "total_marks": 60,
+        "question_structure": {
+          "type": "structured_and_extended",
+          "description": "Structured and extended response questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 40,
+              "sub_parts": ["3-4 structured questions", "Each has 3-5 sub-parts (a, b, c, d, e)"],
+              "description": "Quantitative and qualitative skills"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["2 extended response questions (choose 1 of 2, 20 marks each)", "Each has 2-3 sub-parts (a, b, c)"],
+              "description": "Essay-style questions"
+            }
+          ]
+        },
+        "typical_question_count": 6,
+        "command_terms": ["Define", "State", "Outline", "Describe", "Explain", "Calculate", "Analyse", "Recommend", "Evaluate", "Discuss", "Compare", "Contrast", "Examine", "To what extent"],
+        "calculator": true
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 105,
+        "total_marks": 60,
+        "question_structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 60,
+              "sub_parts": ["5-7 questions", "Each question has 2-4 sub-parts (a, b, c, d)", "Mix of short answer and extended response"],
+              "description": "All questions based on a single case study (HL depth)"
+            }
+          ]
+        },
+        "typical_question_count": 6,
+        "command_terms": ["Define", "State", "Outline", "Describe", "Explain", "Calculate", "Analyse", "Recommend", "Evaluate", "Discuss", "Compare", "Contrast", "Examine", "To what extent", "Justify"],
+        "calculator": true
+      },
+      "Paper 2": {
+        "duration_minutes": 105,
+        "total_marks": 60,
+        "question_structure": {
+          "type": "structured_and_extended",
+          "description": "Structured and extended response questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 40,
+              "sub_parts": ["3-4 structured questions", "Each has 3-5 sub-parts (a, b, c, d, e)"],
+              "description": "Quantitative and qualitative skills (HL focus)"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["2 extended response questions (choose 1 of 2, 20 marks each)", "Each has 2-3 sub-parts (a, b, c)"],
+              "description": "Essay-style questions with HL concepts"
+            }
+          ]
+        },
+        "typical_question_count": 6,
+        "command_terms": ["Define", "State", "Outline", "Describe", "Explain", "Calculate", "Analyse", "Recommend", "Evaluate", "Discuss", "Compare", "Contrast", "Examine", "To what extent", "Justify", "Synthesize"],
+        "calculator": true
+      },
+      "Paper 3": {
+        "duration_minutes": 75,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "decision_making",
+          "description": "Quantitative and qualitative decision-making",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": ["2-3 questions", "Each has 4-6 sub-parts (a, b, c, d, e, f)", "Cumulative case study"],
+              "description": "Strategic decision-making using quantitative methods"
+            }
+          ]
+        },
+        "typical_question_count": 3,
+        "command_terms": ["Calculate", "Analyse", "Recommend", "Evaluate", "Justify", "Compare", "Contrast", "Discuss", "Examine", "To what extent", "Synthesize", "Propose"],
+        "calculator": true
+      }
+    }
+  },
+  "ITGS": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 60,
+        "total_marks": 60,
+        "question_structure": {
+          "type": "multiple_choice_and_short_answer",
+          "description": "Multiple choice and short answer questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": ["30 multiple choice questions (1 mark each)"],
+              "description": "Core ITGS concepts"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": ["5-6 short answer questions (5-6 marks each)"],
+              "description": "Social and ethical impacts"
+            }
+          ]
+        },
+        "typical_question_count": 36,
+        "command_terms": ["Define", "State", "Identify", "Outline", "Describe", "Explain", "Analyse", "Evaluate"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 90,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": ["4-5 questions", "Each has 3-5 sub-parts (a, b, c, d, e)"],
+              "description": "All questions based on pre-released case study"
+            }
+          ]
+        },
+        "typical_question_count": 5,
+        "command_terms": ["Identify", "Outline", "Describe", "Explain", "Analyse", "Evaluate", "Recommend", "Discuss", "Compare", "Contrast"],
+        "calculator": false
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 60,
+        "total_marks": 60,
+        "question_structure": {
+          "type": "multiple_choice_and_short_answer",
+          "description": "Multiple choice and short answer questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": ["30 multiple choice questions (1 mark each)"],
+              "description": "Core + HL ITGS concepts"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": ["5-6 short answer questions (5-6 marks each)"],
+              "description": "Social and ethical impacts (HL depth)"
+            }
+          ]
+        },
+        "typical_question_count": 36,
+        "command_terms": ["Define", "State", "Identify", "Outline", "Describe", "Explain", "Analyse", "Evaluate", "Synthesize"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 90,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": ["4-5 questions", "Each has 3-5 sub-parts (a, b, c, d, e)"],
+              "description": "All questions based on pre-released case study (HL focus)"
+            }
+          ]
+        },
+        "typical_question_count": 5,
+        "command_terms": ["Identify", "Outline", "Describe", "Explain", "Analyse", "Evaluate", "Recommend", "Discuss", "Compare", "Contrast", "Justify"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 60,
+        "total_marks": 30,
+        "question_structure": {
+          "type": "extended_response",
+          "description": "Extended response questions on social and ethical issues",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 30,
+              "sub_parts": ["2-3 extended response questions (10-15 marks each)", "Each has 2-3 sub-parts"],
+              "description": "In-depth analysis of complex ITGS scenarios"
+            }
+          ]
+        },
+        "typical_question_count": 3,
+        "command_terms": ["Analyse", "Evaluate", "Discuss", "To what extent", "Justify", "Synthesize", "Critically evaluate"],
+        "calculator": false
+      }
+    }
+  },
+  "Geography": {
+    "SL": {
+      "Paper 1": {
+        "duration_minutes": 90,
+        "total_marks": 50,
+        "question_structure": {
+          "type": "short_answer_and_essay",
+          "description": "Short answer and essay questions on core topics",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": ["3-4 structured questions (8-10 marks each)", "Each has 3-5 sub-parts (a, b, c, d)"],
+              "description": "Short answer and data response on core themes"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": ["2 essay questions (choose 1 of 2, 20 marks each)", "Each has 2-3 sub-parts (a, b, c)"],
+              "description": "Extended writing on core topics"
+            }
+          ]
+        },
+        "typical_question_count": 5,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Analyse", "Evaluate", "Discuss", "Compare", "Contrast", "Examine", "To what extent"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "structured_questions",
+          "description": "Structured questions on optional themes",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": ["2 optional themes (20 marks each)", "Each theme has 4-6 sub-parts (a, b, c, d, e, f)"],
+              "description": "Choose 2 of 7 optional themes"
+            }
+          ]
+        },
+        "typical_question_count": 2,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Analyse", "Evaluate", "Discuss", "Compare", "Contrast"],
+        "calculator": false
+      }
+    },
+    "HL": {
+      "Paper 1": {
+        "duration_minutes": 135,
+        "total_marks": 80,
+        "question_structure": {
+          "type": "short_answer_and_essay",
+          "description": "Short answer and essay questions on core topics (HL depth)",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 45,
+              "sub_parts": ["4-5 structured questions (9-12 marks each)", "Each has 3-5 sub-parts (a, b, c, d, e)"],
+              "description": "Short answer and data response on core themes"
+            },
+            {
+              "part": "Section B",
+              "marks": 35,
+              "sub_parts": ["2-3 essay questions (choose 2 of 3, 17-18 marks each)", "Each has 2-3 sub-parts (a, b, c)"],
+              "description": "Extended writing on core topics (HL depth)"
+            }
+          ]
+        },
+        "typical_question_count": 7,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Analyse", "Evaluate", "Discuss", "Compare", "Contrast", "Examine", "To what extent", "Critically evaluate"],
+        "calculator": false
+      },
+      "Paper 2": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "question_structure": {
+          "type": "structured_questions",
+          "description": "Structured questions on optional themes",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": ["2 optional themes (20 marks each)", "Each theme has 4-6 sub-parts (a, b, c, d, e, f)"],
+              "description": "Choose 2 of 7 optional themes"
+            }
+          ]
+        },
+        "typical_question_count": 2,
+        "command_terms": ["State", "Outline", "Describe", "Explain", "Analyse", "Evaluate", "Discuss", "Compare", "Contrast"],
+        "calculator": false
+      },
+      "Paper 3": {
+        "duration_minutes": 60,
+        "total_marks": 30,
+        "question_structure": {
+          "type": "essay_based",
+          "description": "Essay questions on HL extension topics",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 30,
+              "sub_parts": ["3 essay questions (choose 2 of 3, 15 marks each)", "Each has 2-3 sub-parts (a, b, c)"],
+              "description": "HL extension: Global interactions"
+            }
+          ]
+        },
+        "typical_question_count": 3,
+        "command_terms": ["Analyse", "Evaluate", "Discuss", "Examine", "To what extent", "Critically evaluate", "Synthesize"],
+        "calculator": false
+      }
+    }
+  }
+}

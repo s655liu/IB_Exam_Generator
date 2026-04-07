@@ -1,0 +1,305 @@
+{
+  "English A": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2"]
+    },
+    "topics": {
+      "core_topics": ["Literary genres", "Close reading", "Textual analysis", "Comparative commentary", "Authorial choices", "Audience and purpose", "Literary works: Poetry, Prose fiction, Drama, Non-fiction, Graphic novels, Translated works", "Conceptual frameworks: Identity, Culture, Creativity, Communication, Perspective, Transformation, Representation"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Guided textual analysis", "Comparative commentary"],
+      "Paper 2": ["Essay on literary works"]
+    },
+    "question_numbers": {
+      "Paper 1": 2,
+      "Paper 2": 1
+    },
+    "has_answer_key": false
+  },
+  "French B": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2"]
+    },
+    "topics": {
+      "core_topics": ["Identities", "Experiences", "Human ingenuity", "Social organization", "Sharing the planet"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice", "Text handling exercises"],
+      "Paper 2": ["Writing (choice of 3 prompts)"]
+    },
+    "question_numbers": {
+      "Paper 1": 45,
+      "Paper 2": 1
+    },
+    "has_answer_key": true
+  },
+  "Mandarin B": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2"]
+    },
+    "topics": {
+      "core_topics": ["Identities", "Experiences", "Human ingenuity", "Social organization", "Sharing the planet"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice", "Text handling exercises"],
+      "Paper 2": ["Writing (choice of 3 prompts)"]
+    },
+    "question_numbers": {
+      "Paper 1": 45,
+      "Paper 2": 1
+    },
+    "has_answer_key": true
+  },
+  "Spanish B": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2"]
+    },
+    "topics": {
+      "core_topics": ["Identities", "Experiences", "Human ingenuity", "Social organization", "Sharing the planet"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice", "Text handling exercises"],
+      "Paper 2": ["Writing (choice of 3 prompts)"]
+    },
+    "question_numbers": {
+      "Paper 1": 45,
+      "Paper 2": 1
+    },
+    "has_answer_key": true
+  },
+  "Japanese B": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2"]
+    },
+    "topics": {
+      "core_topics": ["Identities", "Experiences", "Human ingenuity", "Social organization", "Sharing the planet"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice", "Text handling exercises"],
+      "Paper 2": ["Writing (choice of 3 prompts)"]
+    },
+    "question_numbers": {
+      "Paper 1": 45,
+      "Paper 2": 1
+    },
+    "has_answer_key": true
+  },
+  "ITGS": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": ["Social and ethical significance", "Application to specified scenarios", "IT systems", "Hardware", "Software", "Networks", "Databases", "Web design", "Multimedia"],
+      "hl_topics": ["Advanced social and ethical issues", "Complex IT systems integration", "Project management", "Crisis response systems"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice", "Short answer"],
+      "Paper 2": ["Structured questions based on a case study"],
+      "Paper 3": ["Extended response questions (HL only)"]
+    },
+    "question_numbers": {
+      "Paper 1": 45,
+      "Paper 2": 5,
+      "Paper 3": 3
+    },
+    "has_answer_key": true
+  },
+  "History": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": {
+        "Paper 1 Prescribed Subjects": ["Military leaders", "Conquest and its impact", "The move to global war", "Rights and protest", "Conflict and intervention"],
+        "Paper 2 World History Topics": ["Society and economy (750-1400)", "Causes and effects of medieval wars (750-1500)", "Dynasties and rulers (750-1500)", "Societies in transition (1400-1700)", "Early modern states (1450-1789)", "Causes and effects of early modern wars (1500-1750)", "Origins, development, and impact of industrialization (1750-2005)", "Independence movements (1800-2000)", "Evolution and development of democratic states (1848-2000)", "Authoritarian states (20th century)", "Causes and effects of 20th-century wars", "The Cold War: Superpower tensions and rivalries (20th century)"]
+      },
+      "hl_topics": {
+        "Paper 3 HL Options": ["History of Africa and the Middle East", "History of the Americas", "History of Asia and Oceania", "History of Europe"]
+      }
+    },
+    "types_by_paper": {
+      "Paper 1": ["Source-based questions"],
+      "Paper 2": ["Essay questions"],
+      "Paper 3": ["Essay questions (HL only)"]
+    },
+    "question_numbers": {
+      "Paper 1": 4,
+      "Paper 2": 6,
+      "Paper 3": 6
+    },
+    "has_answer_key": false
+  },
+  "Business": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": ["Business organization and environment", "Human resource management", "Finance and accounts", "Marketing", "Operations management"],
+      "hl_topics": ["Business strategy", "Organizational culture", "Industrial relations", "Investment appraisal", "Research and development", "Crisis management"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Case study-based questions"],
+      "Paper 2": ["Structured and extended response questions"],
+      "Paper 3": ["Quantitative and qualitative decision-making (HL only)"]
+    },
+    "question_numbers": {
+      "Paper 1": 4,
+      "Paper 2": 6,
+      "Paper 3": 3
+    },
+    "has_answer_key": true
+  },
+  "Geography": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": ["Population distribution and change", "Climate change and global warming", "Resource consumption and security", "Global development and inequality", "Freshwater drainage basins", "Oceans and coastal margins", "Extreme environments", "Geophysical hazards", "Leisure, tourism and sport", "Food and health", "Urban environments"],
+      "hl_topics": ["Power, places and networks", "Human development and diversity", "Global risks and resilience"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Short answer and essay"],
+      "Paper 2": ["Structured questions"],
+      "Paper 3": ["Essay questions (HL only)"]
+    },
+    "question_numbers": {
+      "Paper 1": 3,
+      "Paper 2": 4,
+      "Paper 3": 3
+    },
+    "has_answer_key": true
+  },
+  "Biology": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2", "Paper 3"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": ["Cell biology", "Molecular biology", "Genetics", "Ecology", "Evolution and biodiversity", "Human physiology"],
+      "hl_topics": ["Nucleic acids", "Metabolism, cell respiration and photosynthesis", "Plant biology", "Genetics and evolution", "Animal physiology"],
+      "options": ["Neurobiology and behavior", "Biotechnology and bioinformatics", "Ecology and conservation", "Human physiology"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice"],
+      "Paper 2": ["Data-based, short answer, and extended response"],
+      "Paper 3": ["Option topic and practical skills"]
+    },
+    "question_numbers": {
+      "Paper 1": 40,
+      "Paper 2": {
+        "min_questions": 8,
+        "max_questions": 12
+      },
+      "Paper 3": {
+        "min_questions": 6,
+        "max_questions": 9
+      }
+    },
+    "has_answer_key": true
+  },
+  "Chemistry": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2", "Paper 3"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": ["Stoichiometric relationships", "Atomic structure", "Periodicity", "Chemical bonding and structure", "Energetics/thermochemistry", "Chemical kinetics", "Equilibrium", "Acids and bases", "Redox processes", "Organic chemistry", "Measurement and data processing"],
+      "hl_topics": ["Atomic structure (HL)", "Periodicity (HL)", "Chemical bonding (HL)", "Energetics (HL)", "Kinetics (HL)", "Equilibrium (HL)", "Acids and bases (HL)", "Redox processes (HL)", "Organic chemistry (HL)", "Measurement and analysis (HL)"],
+      "options": ["Materials", "Biochemistry", "Energy", "Medicinal chemistry"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice"],
+      "Paper 2": ["Short answer and extended response"],
+      "Paper 3": ["Option topic and practical skills"]
+    },
+    "question_numbers": {
+      "Paper 1": 40,
+      "Paper 2": {
+        "min_questions": 6,
+        "max_questions": 10
+      },
+      "Paper 3": {
+        "min_questions": 5,
+        "max_questions": 8
+      }
+    },
+    "has_answer_key": true
+  },
+  "Physics": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2", "Paper 3"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": ["Measurements and uncertainties", "Mechanics", "Thermal physics", "Waves", "Electricity and magnetism", "Circular motion and gravitation", "Atomic, nuclear and particle physics", "Energy production"],
+      "hl_topics": ["Wave phenomena", "Fields", "Electromagnetic induction", "Quantum and nuclear physics"],
+      "options": ["Relativity", "Engineering physics", "Imaging", "Astrophysics"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Multiple choice"],
+      "Paper 2": ["Short answer and extended response"],
+      "Paper 3": ["Option topic and practical skills"]
+    },
+    "question_numbers": {
+      "Paper 1": 40,
+      "Paper 2": {
+        "min_questions": 6,
+        "max_questions": 11
+      },
+      "Paper 3": {
+        "min_questions": 5,
+        "max_questions": 9
+      }
+    },
+    "has_answer_key": true
+  },
+  "Math AA": {
+    "levels": ["SL", "HL"],
+    "papers_by_level": {
+      "SL": ["Paper 1", "Paper 2"],
+      "HL": ["Paper 1", "Paper 2", "Paper 3"]
+    },
+    "topics": {
+      "core_topics": ["Number and algebra", "Functions", "Geometry and trigonometry", "Statistics and probability", "Calculus"],
+      "hl_topics": ["Complex numbers", "Matrices and linear algebra", "Further functions", "Further geometry", "Further statistics", "Further calculus"]
+    },
+    "types_by_paper": {
+      "Paper 1": ["Non-calculator short and extended response"],
+      "Paper 2": ["Calculator short and extended response"],
+      "Paper 3": ["Extended problem-solving (HL only)"]
+    },
+    "question_numbers": {
+      "Paper 1": {
+        "min_questions": 9,
+        "max_questions": 12
+      },
+      "Paper 2": {
+        "min_questions": 9,
+        "max_questions": 12
+      },
+      "Paper 3": 3
+    },
+    "has_answer_key": true
+  }
+}

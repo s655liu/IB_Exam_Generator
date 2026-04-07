@@ -1,0 +1,1201 @@
+{
+  "grade_boundaries": {
+    "explanation": "Grade boundaries vary slightly each session based on exam difficulty. These are May 2025 official boundaries or typical ranges based on recent trends. Boundaries are for the final scaled total out of 100 (combining all papers + IA).",
+    "notes": {
+      "ia_weighting": "Internal Assessment typically worth 20% of final grade",
+      "paper_3": "HL only subjects have Paper 3",
+      "variation": "±2-3 marks possible between sessions"
+    },
+    "Mathematics_AA": {
+      "HL": {
+        "grade_7": {
+          "min": 79,
+          "max": 100,
+          "description": "Excellent performance"
+        },
+        "grade_6": {
+          "min": 65,
+          "max": 78,
+          "description": "Very good performance"
+        },
+        "grade_5": {
+          "min": 52,
+          "max": 64,
+          "description": "Good performance"
+        },
+        "grade_4": {
+          "min": 37,
+          "max": 51,
+          "description": "Satisfactory performance"
+        },
+        "grade_3": {
+          "min": 26,
+          "max": 36,
+          "description": "Mediocre performance"
+        },
+        "grade_2": {
+          "min": 14,
+          "max": 25,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 13,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 30,
+          "paper_2_weighting": 30,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      },
+      "SL": {
+        "grade_7": {
+          "min": 80,
+          "max": 100,
+          "description": "Excellent performance"
+        },
+        "grade_6": {
+          "min": 67,
+          "max": 79,
+          "description": "Very good performance"
+        },
+        "grade_5": {
+          "min": 53,
+          "max": 66,
+          "description": "Good performance"
+        },
+        "grade_4": {
+          "min": 37,
+          "max": 52,
+          "description": "Satisfactory performance"
+        },
+        "grade_3": {
+          "min": 26,
+          "max": 36,
+          "description": "Mediocre performance"
+        },
+        "grade_2": {
+          "min": 13,
+          "max": 25,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 12,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 40,
+          "paper_2_weighting": 40,
+          "ia_weighting": 20
+        }
+      }
+    },
+    "Physics": {
+      "HL": {
+        "grade_7": {
+          "min": 68,
+          "max": 100,
+          "description": "~68-72% typically needed"
+        },
+        "grade_6": {
+          "min": 55,
+          "max": 67,
+          "description": "~55-60% typically needed"
+        },
+        "grade_5": {
+          "min": 42,
+          "max": 54,
+          "description": "~42-48% typically needed"
+        },
+        "grade_4": {
+          "min": 30,
+          "max": 41,
+          "description": "~30-36% typically needed"
+        },
+        "grade_3": {
+          "min": 20,
+          "max": 29,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 10,
+          "max": 19,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 9,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 20,
+          "paper_2_weighting": 40,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      },
+      "SL": {
+        "grade_7": {
+          "min": 70,
+          "max": 100,
+          "description": "~70-75% typically needed"
+        },
+        "grade_6": {
+          "min": 58,
+          "max": 69,
+          "description": "~58-63% typically needed"
+        },
+        "grade_5": {
+          "min": 45,
+          "max": 57,
+          "description": "~45-50% typically needed"
+        },
+        "grade_4": {
+          "min": 32,
+          "max": 44,
+          "description": "~32-38% typically needed"
+        },
+        "grade_3": {
+          "min": 20,
+          "max": 31,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 10,
+          "max": 19,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 9,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 20,
+          "paper_2_weighting": 40,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      }
+    },
+    "Chemistry": {
+      "HL": {
+        "grade_7": {
+          "min": 70,
+          "max": 100,
+          "description": "~70-75% typically needed"
+        },
+        "grade_6": {
+          "min": 56,
+          "max": 69,
+          "description": "~56-62% typically needed"
+        },
+        "grade_5": {
+          "min": 43,
+          "max": 55,
+          "description": "~43-49% typically needed"
+        },
+        "grade_4": {
+          "min": 30,
+          "max": 42,
+          "description": "~30-36% typically needed"
+        },
+        "grade_3": {
+          "min": 19,
+          "max": 29,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 9,
+          "max": 18,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 8,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 20,
+          "paper_2_weighting": 40,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      },
+      "SL": {
+        "grade_7": {
+          "min": 72,
+          "max": 100,
+          "description": "~72-78% typically needed"
+        },
+        "grade_6": {
+          "min": 58,
+          "max": 71,
+          "description": "~58-64% typically needed"
+        },
+        "grade_5": {
+          "min": 44,
+          "max": 57,
+          "description": "~44-50% typically needed"
+        },
+        "grade_4": {
+          "min": 31,
+          "max": 43,
+          "description": "~31-37% typically needed"
+        },
+        "grade_3": {
+          "min": 19,
+          "max": 30,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 9,
+          "max": 18,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 8,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 20,
+          "paper_2_weighting": 40,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      }
+    },
+    "Biology": {
+      "HL": {
+        "grade_7": {
+          "min": 76,
+          "max": 100,
+          "description": "~76-79% typically needed"
+        },
+        "grade_6": {
+          "min": 62,
+          "max": 75,
+          "description": "~62-68% typically needed"
+        },
+        "grade_5": {
+          "min": 48,
+          "max": 61,
+          "description": "~48-54% typically needed"
+        },
+        "grade_4": {
+          "min": 34,
+          "max": 47,
+          "description": "~34-40% typically needed"
+        },
+        "grade_3": {
+          "min": 22,
+          "max": 33,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 11,
+          "max": 21,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 10,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 20,
+          "paper_2_weighting": 40,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      },
+      "SL": {
+        "grade_7": {
+          "min": 74,
+          "max": 100,
+          "description": "~74-80% typically needed"
+        },
+        "grade_6": {
+          "min": 60,
+          "max": 73,
+          "description": "~60-66% typically needed"
+        },
+        "grade_5": {
+          "min": 46,
+          "max": 59,
+          "description": "~46-52% typically needed"
+        },
+        "grade_4": {
+          "min": 32,
+          "max": 45,
+          "description": "~32-38% typically needed"
+        },
+        "grade_3": {
+          "min": 20,
+          "max": 31,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 10,
+          "max": 19,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 9,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 20,
+          "paper_2_weighting": 40,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      }
+    },
+    "English_A": {
+      "HL": {
+        "grade_7": {
+          "min": 82,
+          "max": 100,
+          "description": "~82-85% typically needed"
+        },
+        "grade_6": {
+          "min": 69,
+          "max": 81,
+          "description": "~69-75% typically needed"
+        },
+        "grade_5": {
+          "min": 55,
+          "max": 68,
+          "description": "~55-62% typically needed"
+        },
+        "grade_4": {
+          "min": 42,
+          "max": 54,
+          "description": "~42-48% typically needed"
+        },
+        "grade_3": {
+          "min": 30,
+          "max": 41,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 18,
+          "max": 29,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 17,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 35,
+          "paper_2_weighting": 35,
+          "hl_essay_weighting": 20,
+          "individual_oral_weighting": 10
+        }
+      },
+      "SL": {
+        "grade_7": {
+          "min": 76,
+          "max": 100,
+          "description": "~76-80% typically needed"
+        },
+        "grade_6": {
+          "min": 65,
+          "max": 75,
+          "description": "~65-70% typically needed"
+        },
+        "grade_5": {
+          "min": 53,
+          "max": 64,
+          "description": "~53-58% typically needed"
+        },
+        "grade_4": {
+          "min": 42,
+          "max": 52,
+          "description": "~42-47% typically needed"
+        },
+        "grade_3": {
+          "min": 30,
+          "max": 41,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 18,
+          "max": 29,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 17,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 35,
+          "paper_2_weighting": 35,
+          "individual_oral_weighting": 30
+        }
+      }
+    },
+    "History": {
+      "HL": {
+        "grade_7": {
+          "min": 75,
+          "max": 100,
+          "description": "~75-80% typically needed"
+        },
+        "grade_6": {
+          "min": 62,
+          "max": 74,
+          "description": "~62-68% typically needed"
+        },
+        "grade_5": {
+          "min": 48,
+          "max": 61,
+          "description": "~48-54% typically needed"
+        },
+        "grade_4": {
+          "min": 35,
+          "max": 47,
+          "description": "~35-41% typically needed"
+        },
+        "grade_3": {
+          "min": 24,
+          "max": 34,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 13,
+          "max": 23,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 12,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 20,
+          "paper_2_weighting": 25,
+          "paper_3_weighting": 35,
+          "ia_weighting": 20
+        }
+      },
+      "SL": {
+        "grade_7": {
+          "min": 72,
+          "max": 100,
+          "description": "~72-78% typically needed"
+        },
+        "grade_6": {
+          "min": 60,
+          "max": 71,
+          "description": "~60-66% typically needed"
+        },
+        "grade_5": {
+          "min": 47,
+          "max": 59,
+          "description": "~47-53% typically needed"
+        },
+        "grade_4": {
+          "min": 34,
+          "max": 46,
+          "description": "~34-40% typically needed"
+        },
+        "grade_3": {
+          "min": 23,
+          "max": 33,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 12,
+          "max": 22,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 11,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 30,
+          "paper_2_weighting": 40,
+          "ia_weighting": 30
+        }
+      }
+    },
+    "Business": {
+      "HL": {
+        "grade_7": {
+          "min": 70,
+          "max": 100,
+          "description": "~70-75% typically needed"
+        },
+        "grade_6": {
+          "min": 57,
+          "max": 69,
+          "description": "~57-63% typically needed"
+        },
+        "grade_5": {
+          "min": 44,
+          "max": 56,
+          "description": "~44-50% typically needed"
+        },
+        "grade_4": {
+          "min": 31,
+          "max": 43,
+          "description": "~31-37% typically needed"
+        },
+        "grade_3": {
+          "min": 20,
+          "max": 30,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 10,
+          "max": 19,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 9,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 25,
+          "paper_2_weighting": 35,
+          "paper_3_weighting": 20,
+          "ia_weighting": 20
+        }
+      },
+      "SL": {
+        "grade_7": {
+          "min": 68,
+          "max": 100,
+          "description": "~68-74% typically needed"
+        },
+        "grade_6": {
+          "min": 55,
+          "max": 67,
+          "description": "~55-61% typically needed"
+        },
+        "grade_5": {
+          "min": 42,
+          "max": 54,
+          "description": "~42-48% typically needed"
+        },
+        "grade_4": {
+          "min": 30,
+          "max": 41,
+          "description": "~30-36% typically needed"
+        },
+        "grade_3": {
+          "min": 19,
+          "max": 29,
+          "description": "Minimum for a pass"
+        },
+        "grade_2": {
+          "min": 9,
+          "max": 18,
+          "description": "Poor performance"
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 8,
+          "description": "Very poor performance"
+        },
+        "component_breakdown": {
+          "paper_1_weighting": 30,
+          "paper_2_weighting": 40,
+          "ia_weighting": 30
+        }
+      }
+    }
+  },
+  "rubrics": {
+    "English_A": {
+      "paper_1": {
+        "title": "Paper 1: Guided Textual Analysis",
+        "total_marks": 20,
+        "criteria": [
+          {
+            "criterion": "A: Understanding and interpretation",
+            "max_marks": 5,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1": "Little understanding of surface meaning; seldom supports claims with evidence",
+              "2": "Some understanding of surface meaning; evidence sometimes appropriate",
+              "3": "Understanding of surface meaning and some inferential understanding; evidence mainly relevant",
+              "4": "Detailed understanding of surface meaning and convincing inferential understanding; evidence relevant",
+              "5": "Detailed and insightful understanding; convincing and nuanced inferential understanding; well-selected evidence"
+            },
+            "what_is_assessed": "An understanding of the text – what is revealed and inferred – using supporting references."
+          },
+          {
+            "criterion": "B: Analysis and evaluation",
+            "max_marks": 5,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1": "Little analysis of language/style; commentary is descriptive",
+              "2": "Some analysis of language/style; commentary mainly descriptive",
+              "3": "Mainly appropriate analysis of how language/style constructs meaning; some insight",
+              "4": "Appropriate analysis; some evaluation of how meaning is shaped by writer's choices",
+              "5": "Insightful and convincing analysis; very good evaluation of how meaning is shaped by writer's choices"
+            },
+            "what_is_assessed": "An understanding of language, style, and structure, and an ability to critically evaluate writer's choices to construct meaning."
+          },
+          {
+            "criterion": "C: Focus and organization",
+            "max_marks": 5,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1": "Little organization and no obvious focus",
+              "2": "Some organization and a degree of focus",
+              "3": "Adequate organization, some coherence, and some focus",
+              "4": "Good organization, good degree of coherence, adequate focus",
+              "5": "Effective organization and coherence; good degree of focus"
+            },
+            "what_is_assessed": "An ability to organize ideas in a coherent and focused way."
+          },
+          {
+            "criterion": "D: Language",
+            "max_marks": 5,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1": "Little clarity or accuracy; little sense of appropriate register",
+              "2": "Some clarity and accuracy; some sense of appropriate register; errors apparent",
+              "3": "Adequate clarity and accuracy; register mainly appropriate; some lapses",
+              "4": "Good clarity and accuracy; register consistently appropriate",
+              "5": "Very good clarity and accuracy; strong sense of precision; register consistently appropriate and effective"
+            },
+            "what_is_assessed": "An ability to write with clarity, accuracy, and variety. An ability to write in an appropriate academic register. An ability to include relevant terminology where appropriate."
+          }
+        ]
+      },
+      "paper_2": {
+        "title": "Paper 2: Comparative Essay",
+        "total_marks": 30,
+        "criteria": [
+          {
+            "criterion": "A: Knowledge, understanding and interpretation",
+            "max_marks": 10,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1-2": "Little knowledge and understanding of works; little comparison in relation to question",
+              "3-4": "Limited knowledge and understanding; limited comparison in relation to question",
+              "5-6": "Satisfactory knowledge and understanding; satisfactory comparison in relation to question",
+              "7-8": "Good knowledge and understanding; relevant comparison; discussion somewhat sustained",
+              "9-10": "Very good knowledge and understanding; insightful comparison; discussion sustained and insightful"
+            },
+            "what_is_assessed": "A knowledge and understanding of literary works. A response to the question that is relevant, showing similarities and differences in the works studied."
+          },
+          {
+            "criterion": "B: Analysis and evaluation",
+            "max_marks": 10,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1-2": "Descriptive; little relevant analysis",
+              "3-4": "Somewhat analytical but mainly descriptive; limited comparison of writer's choices",
+              "5-6": "Generally analytical; some understanding of language/style/technique; some comparison of writer's choices",
+              "7-8": "Analytical and evaluative; good understanding; good comparison of writer's choices",
+              "9-10": "Analytical and evaluative; insightful and convincing understanding; very good comparison of writer's choices"
+            },
+            "what_is_assessed": "An analysis and evaluation of language, technique, and style to establish meaning and effect. Through analysis and evaluation, appropriate similarities and differences are shown in response to the question."
+          },
+          {
+            "criterion": "C: Focus and organization",
+            "max_marks": 5,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1": "Limited focus; ideas mainly unconnected",
+              "2": "Some focus and connection between ideas; coherence may be inconsistent",
+              "3": "Mainly good focus despite lapses; reasonable balance; general sense of cohesion",
+              "4": "Good focus largely maintained; good balance; ideas develop consistently and logically",
+              "5": "Clear and consistent focus; very good balance; ideas develop in logical and compelling way"
+            },
+            "what_is_assessed": "Structure, focus, and balance."
+          },
+          {
+            "criterion": "D: Language",
+            "max_marks": 5,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1": "Little clarity or accuracy; little sense of appropriate register",
+              "2": "Some clarity and accuracy; some sense of appropriate register; errors apparent",
+              "3": "Adequate clarity and accuracy; register mainly appropriate; some lapses",
+              "4": "Good clarity and accuracy; register consistently appropriate",
+              "5": "Very good clarity and accuracy; strong sense of precision; register consistently appropriate and effective"
+            },
+            "what_is_assessed": "An ability to write with clarity, accuracy, and variety. An ability to write in an appropriate academic register. An ability to include relevant terminology where appropriate."
+          }
+        ]
+      },
+      "individual_oral": {
+        "title": "Individual Oral",
+        "total_marks": 40,
+        "criteria": [
+          {
+            "criterion": "A: Knowledge, understanding and interpretation",
+            "max_marks": 10,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1-2": "Little knowledge of extracts/texts/works in context of global issue; limited/inappropriate evidence",
+              "3-4": "Limited knowledge; evidence sometimes appropriate",
+              "5-6": "Satisfactory knowledge; interpretation in context of global issue; evidence mainly appropriate",
+              "7-8": "Good knowledge; constant interpretation in context of global issue; evidence appropriate",
+              "9-10": "Excellent knowledge; compelling interpretation in context of global issue; evidence carefully selected"
+            },
+            "what_is_assessed": "A knowledge and understanding of the extracts, and the wider works and texts from which they are taken. An application of this knowledge to the global issue chosen, drawing conclusions that are underpinned by reference to works and texts."
+          },
+          {
+            "criterion": "B: Analysis and evaluation",
+            "max_marks": 10,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1-2": "Descriptive or irrelevant analysis; little discussion of language/structure/style",
+              "3-4": "Some relevant analysis but largely descriptive; aspects highlighted but partially understood",
+              "5-6": "Analysis revealing appropriate and evaluative commentary; reasonable understanding",
+              "7-8": "Analysis revealing appropriate/evaluative commentary, sometimes insightful; good understanding",
+              "9-10": "Analysis revealing appropriate/evaluative/insightful commentary; excellent and nuanced understanding"
+            },
+            "what_is_assessed": "A knowledge and understanding of the extracts, and the wider works and texts from which they are taken, showing how writers' choices of language, structure, and style construct and establish a perspective on the global issue chosen."
+          },
+          {
+            "criterion": "C: Focus and organization",
+            "max_marks": 10,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1-2": "Little focus; ideas rarely connected",
+              "3-4": "Some focus but may lack balance",
+              "5-6": "Focus but may lapse; connections established but not always coherent",
+              "7-8": "Mainly clear and sustained; balance; ideas develop consistently and coherently",
+              "9-10": "Clear and sustained; good balance; ideas develop compellingly"
+            },
+            "what_is_assessed": "Structure, focus, and balance. The ability to connect ideas coherently."
+          },
+          {
+            "criterion": "D: Language",
+            "max_marks": 10,
+            "descriptors": {
+              "0": "Does not meet standards described below",
+              "1-2": "Little clarity/accuracy; limited register",
+              "3-4": "Some clarity/accuracy; register sometimes appropriate",
+              "5-6": "Adequate clarity/accuracy; register mainly appropriate",
+              "7-8": "Good clarity/accuracy; register appropriate",
+              "9-10": "Very good clarity/accuracy and precision; register appropriate and effective"
+            },
+            "what_is_assessed": "An ability to use spoken language with clarity, accuracy, and variety. An ability to use an appropriate register and relevant terminology."
+          }
+        ]
+      }
+    },
+    "History": {
+      "paper_1": {
+        "title": "Paper 1: Source-Based Paper",
+        "total_marks": 24,
+        "structure": {
+          "question_1": {
+            "marks": 4,
+            "type": "Source comprehension",
+            "description": "Short answer questions based on a single source"
+          },
+          "question_2": {
+            "marks": 6,
+            "type": "Source evaluation (OPVL)",
+            "description": "Analysis of origin, purpose, value, and limitation"
+          },
+          "question_3": {
+            "marks": 6,
+            "type": "Comparative source analysis",
+            "description": "Comparing two sources for similarities and differences"
+          },
+          "question_4": {
+            "marks": 8,
+            "type": "Mini-essay using all sources",
+            "description": "Extended response synthesizing all sources and own knowledge"
+          }
+        },
+        "marking_notes": {
+          "question_1": "Award 2 marks for each sub-part. Look for accurate identification of key points from source.",
+          "question_2": "Award marks for OPVL analysis (Origin, Purpose, Value, Limitation). Higher marks require evaluation of source usefulness for a specific historical inquiry.",
+          "question_3": "Award marks for comparing perspectives across sources. Look for explicit comparison language and analysis of differing viewpoints.",
+          "question_4": "Award marks for essay structure, use of all sources, integration of own knowledge, and argument development. 8-mark response requires balanced argument and conclusion."
+        },
+        "command_terms": [
+          "What",
+          "Why",
+          "Compare",
+          "Contrast",
+          "Evaluate",
+          "Examine",
+          "To what extent"
+        ]
+      },
+      "paper_2": {
+        "title": "Paper 2: World History Topics",
+        "total_marks": 30,
+        "marking_bands": {
+          "0-2": "Little understanding of question; lacks relevant knowledge; weak structure",
+          "3-5": "Some understanding but limited; some relevant knowledge; basic structure",
+          "6-9": "Adequate understanding; relevant knowledge; clear structure",
+          "10-12": "Good understanding; detailed knowledge; good structure and analysis",
+          "13-15": "Excellent understanding; precise knowledge; sophisticated analysis and evaluation"
+        },
+        "marking_notes": "Essays are marked holistically. Look for: clear thesis statement, detailed evidence from works studied, analysis of historical concepts (causation, change, continuity, significance, perspectives), and evaluation of different interpretations. Each essay worth 15 marks.",
+        "command_terms": [
+          "Compare and contrast",
+          "Discuss",
+          "Evaluate",
+          "Examine",
+          "Analyse",
+          "To what extent"
+        ]
+      },
+      "paper_3": {
+        "title": "Paper 3: HL Regional Options",
+        "total_marks": 45,
+        "marking_bands": {
+          "0-2": "Little understanding of question; lacks relevant knowledge",
+          "3-6": "Some understanding; limited knowledge; basic structure",
+          "7-11": "Adequate understanding; relevant knowledge; clear structure",
+          "12-15": "Good understanding; detailed knowledge; good analysis and evaluation"
+        },
+        "marking_notes": "HL essays require deeper analysis and evaluation than Paper 2. Look for: sophisticated argument, integration of historiography, evaluation of different historical interpretations, detailed evidence, and critical thinking. Each essay worth 15 marks.",
+        "command_terms": [
+          "Compare and contrast",
+          "Discuss",
+          "Evaluate",
+          "Examine",
+          "Analyse",
+          "To what extent",
+          "Critically evaluate"
+        ]
+      }
+    },
+    "Sciences": {
+      "paper_1": {
+        "title": "Paper 1: Multiple Choice",
+        "total_marks_SL": 30,
+        "total_marks_HL": 40,
+        "marking": "1 mark per correct answer. No penalty for incorrect answers.",
+        "notes": "Questions test knowledge, understanding, and application of concepts across the syllabus. SL: 30 questions, HL: 40 questions.",
+        "command_terms": [
+          "State",
+          "Identify",
+          "What",
+          "Which",
+          "True/False",
+          "Calculate"
+        ]
+      },
+      "paper_2": {
+        "title": "Paper 2: Data-Based, Short Answer, and Extended Response",
+        "total_marks_SL": 50,
+        "total_marks_HL": 72,
+        "marking_approach": "Award marks for: accurate data interpretation, correct application of concepts, clear explanations, and appropriate use of scientific terminology.",
+        "section_a": {
+          "description": "Data-based and short answer questions (2-5 marks each)",
+          "marking": "Award marks for specific correct points. Data-based questions typically have 5-8 sub-questions. Short answer questions typically have 8-12 sub-questions total."
+        },
+        "section_b": {
+          "description": "Extended response questions (10-15 marks each)",
+          "marking": "Award marks for: depth of explanation, use of evidence, quality of reasoning, and structured argument. SL: choose 2 of 3, HL: choose 3 of 4."
+        },
+        "command_term_marks": {
+          "State/Outline/Describe": "1-2 marks for factual recall",
+          "Explain": "2-4 marks for cause-effect relationships",
+          "Discuss/Evaluate": "4-6 marks for balanced argument with evidence",
+          "Compare/Contrast": "3-5 marks for similarities/differences with examples",
+          "Calculate": "1-3 marks for correct formula, substitution, and answer"
+        },
+        "command_terms_SL": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Discuss",
+          "Evaluate",
+          "Compare",
+          "Analyse",
+          "Draw",
+          "Label",
+          "Calculate"
+        ],
+        "command_terms_HL": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Discuss",
+          "Evaluate",
+          "Compare",
+          "Analyse",
+          "Draw",
+          "Label",
+          "Calculate",
+          "Predict",
+          "Deduce"
+        ]
+      },
+      "paper_3": {
+        "title": "Paper 3: Practical Skills and Option Topic",
+        "total_marks_SL": 35,
+        "total_marks_HL": 45,
+        "marking_approach": "Award marks for experimental design, data analysis, evaluation of methods, and understanding of option topic content.",
+        "section_a": {
+          "description": "Practical-based questions",
+          "marking": "Assesses skills in: designing experiments (variables, controls, method), data collection and processing (tables, graphs, uncertainties), conclusion and evaluation (patterns, errors, improvements). SL: 4-6 sub-questions (15 marks), HL: 5-8 sub-questions (20 marks)."
+        },
+        "section_b": {
+          "description": "Option topic questions",
+          "marking": "Choice of 1 of 4 options. Questions require knowledge and understanding of the chosen option topic. SL: 3-5 sub-questions (20 marks), HL: 4-6 sub-questions (25 marks)."
+        },
+        "options": [
+          "Neurobiology and behaviour",
+          "Biotechnology and bioinformatics",
+          "Ecology and conservation",
+          "Human physiology"
+        ],
+        "command_terms_SL": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Discuss",
+          "Calculate",
+          "Suggest",
+          "Deduce"
+        ],
+        "command_terms_HL": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Discuss",
+          "Calculate",
+          "Suggest",
+          "Deduce",
+          "Evaluate",
+          "Design",
+          "Justify"
+        ]
+      }
+    },
+    "Mathematics_AA": {
+      "paper_1_and_2": {
+        "title": "Papers 1 & 2: Short and Extended Response",
+        "marking_approach": "Method marks awarded for correct working even if final answer is incorrect. Answer marks awarded for correct final answer.",
+        "question_types": {
+          "section_a": {
+            "description": "Short response (4-6 marks per question)",
+            "marking": "Award marks for correct method and final answer. Each question typically has 2-4 sub-parts."
+          },
+          "section_b": {
+            "description": "Extended response (10-15 marks per question)",
+            "marking": "Award marks for: method, reasoning, accuracy, and communication. Each question typically has 3-5 sub-parts."
+          }
+        },
+        "marking_notes": "Always award follow-through marks (FT) if an error in part (a) is carried forward to (b). Show all working clearly in mark scheme. Award marks for correct use of mathematical notation and logical flow.",
+        "command_terms": [
+          "Find",
+          "Calculate",
+          "Show that",
+          "Solve",
+          "Determine",
+          "Prove",
+          "Hence",
+          "Hence or otherwise",
+          "State",
+          "Write down",
+          "Sketch",
+          "Plot",
+          "Find the exact value"
+        ]
+      },
+      "paper_3_hl": {
+        "title": "Paper 3: Extended Problem Solving (HL only)",
+        "total_marks": 55,
+        "question_count": 2,
+        "marking_approach": "Each question has 5-7 sub-parts increasing in difficulty. Award marks for mathematical reasoning, proof construction, and problem-solving strategies.",
+        "marking_notes": "Look for: logical flow, justification of steps, appropriate use of mathematical notation, complete reasoning even if final answer is partially incorrect. Questions require deeper mathematical thinking and often connect multiple syllabus areas.",
+        "command_terms": [
+          "Find",
+          "Calculate",
+          "Show that",
+          "Solve",
+          "Determine",
+          "Prove",
+          "Hence",
+          "Hence or otherwise",
+          "Deduce",
+          "Justify",
+          "State",
+          "Write down",
+          "Find the exact value",
+          "Hence prove that",
+          "Interpret",
+          "Suggest"
+        ]
+      }
+    }
+  },
+  "ia_rubrics": {
+    "Sciences": {
+      "title": "Internal Assessment: Scientific Investigation",
+      "total_marks": 24,
+      "weighting": 20,
+      "criteria": [
+        {
+          "criterion": "Personal engagement",
+          "marks": 2,
+          "description": "Evidence of independent thinking, creativity, or initiative. Justification of topic choice showing personal significance.",
+          "descriptors": {
+            "0": "No evidence of personal engagement",
+            "1": "Some evidence but limited",
+            "2": "Clear evidence of personal engagement, independent thinking, and initiative"
+          }
+        },
+        {
+          "criterion": "Exploration",
+          "marks": 6,
+          "description": "Background knowledge, research question, methodology, safety/environmental considerations.",
+          "descriptors": {
+            "0": "None",
+            "1-2": "Limited background, unclear question, inappropriate method",
+            "3-4": "Adequate background, clear question, appropriate method",
+            "5-6": "Well-developed background, focused question, well-designed method"
+          }
+        },
+        {
+          "criterion": "Analysis",
+          "marks": 6,
+          "description": "Data processing, appropriate presentation, uncertainty/error analysis.",
+          "descriptors": {
+            "0": "None",
+            "1-2": "Limited processing, basic presentation, no error analysis",
+            "3-4": "Appropriate processing, clear presentation, some error analysis",
+            "5-6": "Thorough processing, effective presentation, detailed error analysis"
+          }
+        },
+        {
+          "criterion": "Evaluation",
+          "marks": 6,
+          "description": "Conclusion with justification, evaluation of method, suggestions for improvement.",
+          "descriptors": {
+            "0": "None",
+            "1-2": "Basic conclusion, limited evaluation",
+            "3-4": "Clear conclusion with justification, reasonable evaluation",
+            "5-6": "Well-justified conclusion, thorough evaluation, realistic improvements"
+          }
+        },
+        {
+          "criterion": "Communication",
+          "marks": 4,
+          "description": "Clear presentation, appropriate terminology, logical structure.",
+          "descriptors": {
+            "0": "Unclear, poor terminology",
+            "1-2": "Acceptable clarity, some errors",
+            "3-4": "Clear, focused, well-structured, precise terminology"
+          }
+        }
+      ]
+    },
+    "Mathematics": {
+      "title": "Internal Assessment: Mathematical Exploration",
+      "total_marks": 20,
+      "weighting": 20,
+      "criteria": [
+        {
+          "criterion": "Presentation",
+          "marks": 4,
+          "description": "Organization, coherence, conciseness, and use of appropriate mathematical conventions."
+        },
+        {
+          "criterion": "Mathematical communication",
+          "marks": 5,
+          "description": "Use of notation, terminology, logical reasoning, and clarity of explanations."
+        },
+        {
+          "criterion": "Personal engagement",
+          "marks": 3,
+          "description": "Independent thinking, creativity, curiosity, and personal connection to the topic."
+        },
+        {
+          "criterion": "Reflection",
+          "marks": 3,
+          "description": "Review of findings, limitations, implications, and evaluation of the exploration process."
+        },
+        {
+          "criterion": "Use of mathematics",
+          "marks": 5,
+          "description": "Accuracy, depth of understanding, sophistication of mathematics used, and appropriate level for the course."
+        }
+      ],
+      "grade_boundaries": {
+        "grade_7": {
+          "min": 17,
+          "max": 20
+        },
+        "grade_6": {
+          "min": 15,
+          "max": 16
+        },
+        "grade_5": {
+          "min": 12,
+          "max": 14
+        },
+        "grade_4": {
+          "min": 9,
+          "max": 11
+        },
+        "grade_3": {
+          "min": 6,
+          "max": 8
+        },
+        "grade_2": {
+          "min": 3,
+          "max": 5
+        },
+        "grade_1": {
+          "min": 0,
+          "max": 2
+        }
+      }
+    },
+    "History": {
+      "title": "Internal Assessment: Historical Investigation",
+      "total_marks": 25,
+      "weighting": 20,
+      "criteria": [
+        {
+          "criterion": "Identification and evaluation of sources",
+          "marks": 6,
+          "description": "Critical analysis of two sources (one primary, one secondary) using OPVL. Evaluation of origins, purpose, values, and limitations in relation to the investigation."
+        },
+        {
+          "criterion": "Investigation",
+          "marks": 15,
+          "description": "Analysis of evidence, argument development, balanced conclusion. Must demonstrate understanding of historical concepts (causation, change, continuity, significance, perspectives).",
+          "sub_criteria": {
+            "knowledge_and_understanding": 4,
+            "use_of_evidence": 4,
+            "analysis_and_argument": 4,
+            "conclusion": 3
+          }
+        },
+        {
+          "criterion": "Reflection",
+          "marks": 4,
+          "description": "Reflection on methods used and challenges faced by historians. Discussion of limitations of the investigation and how a historian might approach the topic differently."
+        }
+      ]
+    }
+  }
+}
