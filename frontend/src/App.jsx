@@ -170,12 +170,17 @@ function App() {
   // Effects to clear dependent fields
   useEffect(() => { setSelectedLevel(''); setSelectedPaper(''); setSelectedTopics([]); }, [selectedSubject]);
   useEffect(() => { setSelectedPaper(''); setSelectedTopics([]); }, [selectedLevel]);
-  useEffect(() => { setSelectedTopics([]); }, [selectedPaper]);
+  const isHistoryP2 = selectedSubject === 'History' && selectedPaper === 'Paper 2';
+  const canGenerate = selectedSubject && selectedLevel && selectedPaper &&
+    (isHistoryP2 ? selectedTopics.length === 2 : selectedTopics.length > 0);
 
   const toggleTopic = (topic) => {
-    setSelectedTopics(prev =>
-      prev.includes(topic) ? prev.filter(t => t !== topic) : [...prev, topic]
-    );
+    setSelectedTopics(prev => {
+      if (prev.includes(topic)) return prev.filter(t => t !== topic);
+      // Constraint for History P2: exactly 3
+      if (isHistoryP2 && prev.length >= 2) return prev;
+      return [...prev, topic];
+    });
   };
 
   const selectAllTopics = () => {
@@ -189,8 +194,6 @@ function App() {
   const handlePrint = () => {
     window.print();
   };
-
-  const canGenerate = selectedSubject && selectedLevel && selectedPaper && selectedTopics.length > 0;
 
   const handleGenerate = async () => {
     setIsGenerating(true);
@@ -314,6 +317,11 @@ function App() {
                     (isMathOrScience && selectedPaper === 'Paper 1B') ? 'Experimental Skills (Multi-Select)' :
                       'Focus Topics (Multi-Select)'}
                 </label>
+                {isHistoryP2 && (
+                  <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${selectedTopics.length === 3 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'}`}>
+                    Required: 2 / Selected: {selectedTopics.length}
+                  </span>
+                )}
               </div>
               {isMathOrScience && availableOptions.length > 0 && selectedPaper && (
                 <button className="text-xs text-sky-400 hover:text-sky-300 transition-colors" onClick={selectAllTopics}>
@@ -321,6 +329,12 @@ function App() {
                 </button>
               )}
             </div>
+
+            {isHistoryP2 && selectedTopics.length !== 2 && (
+              <p className="text-xs text-amber-400/80 mb-3 animate-pulse">
+                History Paper 2 requires exactly 2 world history topics to generate a balanced exam.
+              </p>
+            )}
 
             {!selectedPaper ? (
               <div className="flex items-center gap-2 p-2 text-slate-500 italic text-sm">

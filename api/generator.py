@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+import re
 from typing import Dict, Any
 from dotenv import load_dotenv
 from schemas import GenerateRequest, GenerateResponse
@@ -84,6 +85,13 @@ def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str,
     elif "History" in subject:
         if "Paper 1" in paper:
             instructions = "- Provide 4 source-based questions.\n- Include brief placeholders/descriptions for 4 sources (Source A, B, C, D).\n- Use Mermaid or SVG to provide timelines or source hierarchy diagrams."
+        elif "Paper 2" in paper:
+            instructions = (
+                "- **STRICT TOPIC STRUCTURE**: For EACH of the focus areas (topics) provided, you MUST generate EXACTLY two questions.\n"
+                "- **STRICT COMPARISON**: EVERY question MUST be comparative. Questions must require the student to compare and contrast at least two different leaders, states, or regions.\n"
+                "- **MARKS**: Each question is worth exactly 15 marks.\n"
+                "- **DEPTH**: Questions should focus on 20th-century world history themes (Authoritarian States, Cold War, etc.) as requested."
+            )
         else:
             instructions = "- Provide essay prompts following IB command terms."
     elif any(lang in subject for lang in ["French", "Spanish", "Mandarin", "Japanese", "Language"]):
@@ -111,8 +119,19 @@ def build_prompt(request: GenerateRequest) -> str:
     
     # Specific logic for choice-based papers
     structure_rule = ""
-    if specs.get("structure_type") == "essay_choice":
+    model_essay_req = ""
+    
+    # Override for History Paper 2
+    if request.subject == "History" and "Paper 2" in request.paper:
+        specs['total_marks'] = 30
+        specs['question_count'] = len(request.topic_or_type) * 2
+        specs['structure_desc'] = "Answer two questions. Each question must be selected from a different topic."
+        structure_rule = f"\n- **STRICT QUESTION COUNT**: You MUST provide EXACTLY {specs['question_count']} questions (2 questions per topic). The user will choose 2 questions, each from a different topic."
+        model_essay_req = "\n- **MODEL ESSAY**: Inside the [SECTION_MARK_SCHEME], you MUST provide ONE FULL, HIGH-LEVEL sample essay response (approx 800-1000 words in analysis) for at least one of the generated prompts."
+    
+    elif specs.get("structure_type") in ["essay_choice", "essay_based", "short_and_extended_response"]:
         structure_rule = f"\n- **STRICT QUESTION COUNT**: You MUST provide EXACTLY {specs['question_count']} essay prompts/options. The user will choose 1 of these {specs['question_count']} prompts."
+        model_essay_req = "\n- **MODEL ESSAY**: Inside the [SECTION_MARK_SCHEME], you MUST provide ONE FULL, HIGH-LEVEL sample essay response for at least one of the generated prompts. This essay should demonstrate excellent structure (intro, body, conclusion) and depth of analysis."
         if request.prescribed_texts and len(request.prescribed_texts) >= 2:
             texts_str = " and ".join([t for t in request.prescribed_texts if t.strip()])
             if texts_str:
@@ -120,6 +139,7 @@ def build_prompt(request: GenerateRequest) -> str:
     else:
         structure_rule = f"\n- **STRICT QUESTION COUNT**: The exam MUST contain EXACTLY {specs['question_count']} questions/tasks."
 
+    # Use more distinctive separators
     prompt = f"""Generate an authentic International Baccalaureate (IB) {request.subject} {request.level} {request.paper} examination.
 
 EXAM SPECIFICATIONS:
@@ -147,21 +167,17 @@ REQUIREMENTS:
    - **Language/Social Sciences**: Use SVG for situational illustrations or Mermaid for logic flows.
    - **STRICT**: Only Mermaid.js and raw SVG are supported. Keep diagrams clear and professional.
 9. **SEPARATION**: Use `***` or `---` on a new line between major questions to ensure clear visual separation.
-{subject_instr}
+{subject_instr}{model_essay_req}
 
 FORMAT:
----EXAM---
-[Full exam paper with mark allocations in square brackets at the end of each question, e.g., [4]]
+You MUST use these exact headers on their own lines to separate sections:
+[SECTION_EXAM]
+[Full exam paper paper content here]
 
-{f'---ANSWER KEY---\\n[Provide a COMPLETE and DETAILED mark scheme for EVERY question.]' if request.include_answer_key else ''}
+{f'[SECTION_MARK_SCHEME]\\n[Provide a COMPLETE and DETAILED mark scheme for EVERY question here.]' if request.include_answer_key else ''}
 
----GRADE BOUNDARIES---
-[Provide exactly ONE standard Markdown table mapping raw marks to IB Grades 1-7 based on the paper's total of {specs['total_marks']}. 
-Use this exact format:
-| Raw Mark | IB Grade |
-|----------|----------|
-| [Range]  | [Grade]  |
-Do not include any headers like "Official Grade Boundaries" or extra text outside the table.]
+[SECTION_GRADE_BOUNDARIES]
+[Provide the Markdown table mapping raw marks to IB Grades here.]
 """
     return prompt
 
@@ -174,7 +190,7 @@ async def call_qwen_api(prompt: str) -> str:
     payload = {
         "model": "qwen-turbo",
         "messages": [
-            {"role": "system", "content": "You are an expert IB Senior Examiner responsible for creating official examination papers. Your output is always complete and never truncated."},
+            {"role": "system", "content": "You are an expert IB Senior Examiner responsible for creating official examination papers. Your output is always complete and never truncated. Always use the requested [SECTION_...] tags for organization."},
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.5,
@@ -188,25 +204,35 @@ async def call_qwen_api(prompt: str) -> str:
 
 def parse_response(content: str):
     exam_text = content
-    answer_key = None
-    grade_boundaries = None
+    answer_key = ""
+    grade_boundaries = ""
 
-    boundary_seps = ["---GRADE BOUNDARIES---", "GRADE BOUNDARIES", "---OFFICIAL GRADE BOUNDARIES---"]
-    for sep in boundary_seps:
-        if sep in content:
-            parts = content.split(sep, 1)
-            content = parts[0]
-            grade_boundaries = parts[1].strip()
-            break
+    # Case-insensitive split for sections using regex
+    def split_section(text, tags):
+        for tag in tags:
+            # Escape for regex and build case-insensitive pattern
+            pattern = re.compile(re.escape(tag), re.IGNORECASE)
+            match = pattern.search(text)
+            if match:
+                return text[:match.start()], text[match.end():]
+        return text, None
 
-    key_seps = ["---ANSWER KEY---", "ANSWER KEY", "---MARK SCHEME---", "MARK SCHEME"]
-    for sep in key_seps:
-        if sep in content:
-            parts = content.split(sep, 1)
-            exam_text = parts[0].replace("---EXAM---", "").strip()
-            answer_key = parts[1].strip()
-            break
+    # Order of reversal: Split from bottom up
+    # 1. Split Grade Boundaries
+    remaining, grade_boundaries = split_section(content, ["[SECTION_GRADE_BOUNDARIES]", "---GRADE BOUNDARIES---", "GRADE BOUNDARIES"])
+    
+    # 2. Split Answer Key from the remaining top part
+    if grade_boundaries is None: grade_boundaries = ""
+    else: grade_boundaries = grade_boundaries.strip()
+
+    exam_part, answer_part = split_section(remaining, ["[SECTION_MARK_SCHEME]", "---ANSWER KEY---", "ANSWER KEY", "MARK SCHEME"])
+    
+    if answer_part:
+        exam_text = exam_part.replace("[SECTION_EXAM]", "").replace("---EXAM---", "").strip()
+        answer_key = answer_part.strip()
     else:
-        exam_text = content.replace("---EXAM---", "").strip()
+        # Fallback: if no answer key tag but found boundaries, exam_text is everything before boundaries
+        exam_text = exam_part.replace("[SECTION_EXAM]", "").replace("---EXAM---", "").strip()
+        answer_key = ""
 
     return exam_text, answer_key, grade_boundaries
