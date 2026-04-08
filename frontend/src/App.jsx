@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
-import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download, RefreshCw, Clock, Target, Trophy } from 'lucide-react';
+import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download, RefreshCw, Clock, Target, Trophy, Play, Pause, Volume2, X, Plus } from 'lucide-react';
 import 'katex/dist/katex.min.css';
 import mermaid from 'mermaid';
 import subjectData from '@data/exam_subject_structure.json';
@@ -54,6 +54,119 @@ const SVGRenderer = ({ code }) => {
       className="svg-diagram flex justify-center my-6 bg-slate-50 p-8 rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
       dangerouslySetInnerHTML={{ __html: processedCode }}
     />
+  );
+};
+
+const AudioPlayer = ({ text, language }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [showTranscript, setShowTranscript] = useState(false);
+
+  const togglePlay = () => {
+    if (isPlaying && !isPaused) {
+      window.speechSynthesis.pause();
+      setIsPaused(true);
+    } else if (isPlaying && isPaused) {
+      window.speechSynthesis.resume();
+      setIsPaused(false);
+    } else {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      const voices = window.speechSynthesis.getVoices();
+      const voice = voices.find(v => v.lang.startsWith(language));
+      if (voice) utterance.voice = voice;
+
+      utterance.lang = language;
+      utterance.rate = 0.9;
+      utterance.onend = () => {
+        setIsPlaying(false);
+        setIsPaused(false);
+      };
+      window.speechSynthesis.speak(utterance);
+      setIsPlaying(true);
+      setIsPaused(false);
+    }
+  };
+
+  const stopAudio = () => {
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+    setIsPaused(false);
+  };
+
+  useEffect(() => {
+    return () => window.speechSynthesis.cancel();
+  }, []);
+
+  return (
+    <div className="audio-card my-6 rounded-2xl border border-white/10 bg-gradient-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-sm overflow-hidden shadow-xl transition-all hover:border-sky-500/30 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)] w-full max-w-full">
+      {/* Header Section */}
+      <div className="flex items-center gap-4 p-4 border-b border-white/10">
+        <button
+          onClick={togglePlay}
+          className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-sky-500 to-sky-600 text-white rounded-xl hover:from-sky-400 hover:to-sky-500 transition-all shadow-lg hover:shadow-sky-500/25 active:scale-95"
+        >
+          {isPlaying && !isPaused ? (
+            <Pause className="w-5 h-5" />
+          ) : (
+            <Play className="w-5 h-5 ml-0.5" />
+          )}
+          {isPlaying && !isPaused && (
+            <div className="absolute inset-0 rounded-xl border-2 border-sky-400/50 animate-ping" />
+          )}
+        </button>
+
+        <div className="flex-1">
+          <div className="text-white font-semibold text-sm">
+            {isPlaying && !isPaused ? 'Playing Audio Passage' : isPaused ? 'Paused' : 'Audio Ready'}
+          </div>
+          <div className="flex items-center gap-2 text-gray-400 text-xs">
+            <Volume2 className="w-3 h-3 text-sky-400" />
+            <span>AI Voice • {language}</span>
+          </div>
+        </div>
+
+        <div className="flex gap-2">
+          {isPlaying && (
+            <button
+              onClick={stopAudio}
+              className="w-8 h-8 flex items-center justify-center bg-white/5 text-gray-400 hover:text-red-400 rounded-lg border border-white/10 transition-all hover:bg-red-500/10"
+              title="Stop"
+            >
+              <RefreshCw className="w-4 h-4" />
+            </button>
+          )}
+          <button
+            onClick={() => setShowTranscript(!showTranscript)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${showTranscript
+              ? 'bg-sky-500/20 text-sky-400 border border-sky-500/30'
+              : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10'
+            }`}
+          >
+            {showTranscript ? 'Hide Text' : 'Show Transcript'}
+          </button>
+        </div>
+      </div>
+
+      {/* Transcript Section with proper containment */}
+      {showTranscript && (
+        <div className="p-5 max-h-80 overflow-y-auto overflow-x-hidden custom-scrollbar border-t border-white/5 bg-black/20">
+          <div 
+            className="text-gray-300 text-sm leading-relaxed whitespace-pre-wrap"
+            style={{ 
+              wordBreak: 'break-all',
+              overflowWrap: 'anywhere', 
+              hyphens: 'auto',
+              display: 'block',
+              width: '100%'
+            }}
+          >
+            {text}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -195,6 +308,19 @@ function App() {
     window.print();
   };
 
+  // Keyboard shortcut for generation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter' && canGenerate && !isGenerating) {
+        // Prevent default form submission or other behaviors
+        e.preventDefault();
+        handleGenerate();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [canGenerate, isGenerating]); // Removed handleGenerate from deps to avoid unnecessary cycles
+
   const handleGenerate = async () => {
     setIsGenerating(true);
     setError(null);
@@ -210,7 +336,27 @@ function App() {
         include_answer_key: includeAnswerKey,
         prescribed_texts: prescribedTexts.filter(t => t.trim() !== '')
       });
-      setResult(response.data);
+
+      // Robust Regex Fail-safe for Audio Tags
+      // Converts [PLAYABLE_AUDIO]transcript[/PLAYABLE_AUDIO] or just [PLAYABLE_AUDIO] to code blocks
+      let processedText = response.data.exam_text;
+
+      // Pattern 1: [PLAYABLE_AUDIO]content[/PLAYABLE_AUDIO]
+      processedText = processedText.replace(/\[PLAYABLE_AUDIO\]([\s\S]*?)\[\/PLAYABLE_AUDIO\]/gi, (match, content) => {
+        return `\n\`\`\`audio\n${content.trim()}\n\`\`\`\n`;
+      });
+
+      // Pattern 2: [PLAYABLE_AUDIO] followed by content then a double newline or question
+      // This handles cases where the AI forgets the closing tag
+      processedText = processedText.replace(/\[PLAYABLE_AUDIO\]\s*([\s\S]*?)(?=\n\n|\n问题|\nQuestion|$)/gi, (match, content) => {
+        if (content.includes('```')) return match; // Already wrapped
+        return `\n\`\`\`audio\n${content.trim()}\n\`\`\`\n`;
+      });
+
+      setResult({
+        ...response.data,
+        exam_text: processedText
+      });
     } catch (err) {
       setError(err.response?.data?.detail || 'An unexpected error occurred during generation.');
     } finally {
@@ -221,6 +367,16 @@ function App() {
   const MarkdownComponents = {
     code({ node, inline, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '');
+      const langCode = {
+        'Mandarin B': 'zh-CN',
+        'French B': 'fr-FR',
+        'Spanish B': 'es-ES',
+        'English Literature A': 'en-GB'
+      }[selectedSubject] || 'en-US';
+
+      if (!inline && match && match[1] === 'audio') {
+        return <AudioPlayer text={String(children).replace(/\n$/, '')} language={langCode} />;
+      }
       if (!inline && match && match[1] === 'mermaid') {
         return <Mermaid chart={String(children).replace(/\n$/, '')} />;
       }
@@ -324,11 +480,48 @@ function App() {
                 )}
               </div>
               {isMathOrScience && availableOptions.length > 0 && selectedPaper && (
-                <button className="text-xs text-sky-400 hover:text-sky-300 transition-colors" onClick={selectAllTopics}>
-                  {selectedTopics.length === availableOptions.length ? 'Deselect All' : 'Select All Topics'}
+                <button
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.3rem',
+                    padding: '0.25rem 0.75rem', borderRadius: '8px',
+                    fontSize: '0.7rem', fontWeight: 600, cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    background: selectedTopics.length === availableOptions.length 
+                      ? 'linear-gradient(135deg,#78350f88,#d9770666)' 
+                      : 'linear-gradient(135deg,#1e40af66,#0ea5e977)',
+                    color: selectedTopics.length === availableOptions.length ? '#fcd34d' : '#93c5fd',
+                    border: selectedTopics.length === availableOptions.length 
+                      ? '1px solid #d9770688' 
+                      : '1px solid #3b82f688',
+                    boxShadow: selectedTopics.length === availableOptions.length 
+                      ? '0 0 15px rgba(217,119,6,0.2)' 
+                      : '0 0 15px rgba(14,165,233,0.2)',
+                  }}
+                  className="hover:scale-[1.05] active:scale-95 group ml-auto mt-1"
+                  onClick={selectAllTopics}
+                >
+                  {selectedTopics.length === availableOptions.length ? (
+                    <>
+                      <X className="w-3.5 h-3.5 transition-transform duration-150 group-hover:rotate-90" />
+                      Deselect all
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-3.5 h-3.5" />
+                      Auto-Select All
+                    </>
+                  )}
                 </button>
               )}
             </div>
+
+            {isMathOrScience && selectedPaper && (
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <span className="w-8 h-px bg-slate-800"></span>
+                {selectedPaper === 'paper_1B' ? 'Experimental Skills' : 'Focus Topics'}
+                <span className="w-full h-px bg-slate-800"></span>
+              </h3>
+            )}
 
             {isHistoryP2 && selectedTopics.length !== 2 && (
               <p className="text-xs text-amber-400/80 mb-3 animate-pulse">

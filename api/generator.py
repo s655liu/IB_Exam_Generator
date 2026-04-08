@@ -12,41 +12,45 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 QWEN_API_KEY = os.getenv("QWEN_API_KEY")
 QWEN_BASE_URL = os.getenv("QWEN_BASE_URL", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1")
 
-# Load exam specs — point to the root data folder
+# Path to exam specs
 SPECS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "exam_specs.json")
-try:
-    if not QWEN_API_KEY:
-        print("WARNING: QWEN_API_KEY not found in environment variables!")
-    with open(SPECS_PATH, "r", encoding="utf-8", errors="replace") as f:
-        EXAM_SPECS = json.load(f)
-except Exception as e:
-    print(f"Error loading exam_specs.json: {e}")
-    EXAM_SPECS = {}
+
+def load_specs():
+    try:
+        with open(SPECS_PATH, "r", encoding="utf-8", errors="replace") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Error loading exam_specs.json: {e}")
+        return {}
 
 def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
+    current_specs_data = load_specs()
     specs = {
-        "duration": 60,
-        "total_marks": 40,
-        "question_count_range": "5-10",
+        "duration": 120 if "HL" in level else 105 if any(l in subject for l in ["French", "Spanish", "Mandarin"]) else 60,
+        "total_marks": 65 if "HL" in level else 40,
+        "question_count": "5-10",
         "command_terms": ["Explain", "Describe", "Analyze", "Evaluate"],
         "structure_desc": "Standard IB question format"
     }
     try:
         # 1. Normalize subject/paper keys
-        subj_key = subject.replace(" ", "_")
-        if subject == "Math AA": subj_key = "Mathematics_AA"
-        if subject == "English Literature A": subj_key = "English_Literature_A"
+        subj_key = subject.replace(" ", "_").replace("-", "_")
+        if "Math AA" in subject: subj_key = "Mathematics_AA"
+        if "English Literature A" in subject: subj_key = "English_Literature_A"
+        if "Mandarin B" in subject: subj_key = "Mandarin_B"
+        if "French B" in subject: subj_key = "French_B"
+        if "Spanish B" in subject: subj_key = "Spanish_B"
         
         paper_key = paper.replace(" ", "_").lower()
         if "1a" in paper_key: paper_key = "paper_1A"
         if "1b" in paper_key: paper_key = "paper_1B"
         
         # 1. Check for subject directly (Standard)
-        subject_data = EXAM_SPECS.get(subj_key)
+        subject_data = current_specs_data.get(subj_key)
         
         # 2. Check for subject inside groups (e.g., Sciences)
         if not subject_data:
-            for group_name, group_data in EXAM_SPECS.items():
+            for group_name, group_data in current_specs_data.items():
                 if isinstance(group_data, dict) and subject in group_data.get("subjects", []):
                     subject_data = group_data
                     break
@@ -64,8 +68,8 @@ def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
                     q_count = "5-10" # Fallback
 
             specs.update({
-                "duration": data.get("duration_minutes", 60),
-                "total_marks": data.get("total_marks", 40),
+                "duration": data.get("duration_minutes", specs["duration"]),
+                "total_marks": data.get("total_marks", specs["total_marks"]),
                 "question_count": str(q_count),
                 "command_terms": data.get("command_terms", specs["command_terms"]),
                 "structure_type": data.get("structure", {}).get("type", "structured"),
@@ -77,9 +81,16 @@ def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
         print(f"Error parsing specs for {subject} {level} {paper}: {e}")
     return specs
 
-def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str, Any]) -> str:
+def get_subject_specific_instructions(subject: str, level: str, paper: str, specs: Dict[str, Any]) -> str:
     instructions = ""
     calc_str = "CALCULATOR ALLOWED (GDC)" if specs.get("calculator") else "NO CALCULATORS ALLOWED"
+    
+    # Determine target language for Language B subjects
+    target_lang = "English"
+    if any(lang in subject for lang in ["French", "Spanish", "Mandarin", "Japanese", "Language"]):
+        target_lang = subject.replace(" B", "").replace(" Ab Initio", "")
+        if "Mandarin" in target_lang: target_lang = "Chinese (Simplified)"
+    
     if "Math" in subject:
         instructions = f"- **{calc_str}**.\n- Show all working clearly.\n- Use LaTeX for all mathematical notation (e.g., $x^{{2}}$, $\\frac{{a}}{{b}}$).\n- Use SVG for coordinate graphs, geometric shapes, and statistical charts where appropriate.\n- **DIFFICULTY PROGRESSION**: \n  1. Ensure each multi-part question follows a 'low floor, high ceiling' approach—starting with accessible marks and concluding with more demanding proofs or problem-solving.\n  2. The paper should grow in complexity, moving from standard routine problems to non-routine or unfamiliar contexts (especially for Section B)."
     elif "History" in subject:
@@ -95,7 +106,37 @@ def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str,
         else:
             instructions = "- Provide essay prompts following IB command terms."
     elif any(lang in subject for lang in ["French", "Spanish", "Mandarin", "Japanese", "Language"]):
-        instructions = "- Provide contextual situational prompts.\n- Use SVG to create simple visual aids or 'Situation Scenes' (e.g., a simple shop, a family tree, or a street) to provide visual context for vocabulary/grammar questions."
+        target_lang = subject.replace(" B", "").replace(" Ab Initio", "")
+        if "Mandarin" in target_lang: target_lang = "Chinese (Simplified)"
+        
+        lang_instr = f"- **STRICT LANGUAGE REQUIREMENT**: This is a {subject} exam. EVERYTHING (Instructions, Section Headers, Questions, and Transcripts/Texts) MUST be written in {target_lang}. Do NOT use English for any part of the exam content."
+        
+        if "Paper 1" in paper:
+            instructions = f"{lang_instr}\n- Provide three specific writing prompts in {target_lang}.\n- Students must choose ONE and produce a piece of writing in {target_lang}.\n- Ensure each prompt specifies a clear text type (e.g., blog, email, report)."
+        elif "Paper 2" in paper:
+            # Language B Level-specific length requirements
+            # We use 1200 characters for Mandarin B HL to match official complexity (e.g. Zhang Xiaofeng's style)
+            if "Mandarin" in target_lang and level == "HL":
+                len_instr = "1200 characters (MUST be extremely detailed and complex, matching the length of a professional literary essay)"
+            else:
+                len_instr = "450-600 words"
+
+            instructions = (
+                f"{lang_instr}\n"
+                "- **RECEPTIVE FOCUS**: This paper tests Listening and Reading Comprehension only. NO WRITING TASKS.\n"
+                f"- **SECTION A (LISTENING - 60 min)**: Provide THREE distinct listening transcripts in {target_lang}. **STRICT**: Each transcript MUST be a minimum of {len_instr}. Do NOT summarize.\n"
+                "  - **AUDIO PLAYER**: Wrap the ENTIRE transcript within triple backtick code blocks with the language tag 'audio' (e.g., ```audio [transcript text] ```). **NEVER** use brackets like [PLAYABLE_AUDIO].\n"
+                "  - **COMPLEXITY**: Passages must be academically demanding, including nuanced arguments and varying opinions.\n"
+                "  - **QUESTIONS (25 marks)**: Include detailed questions in {target_lang} on tone, purpose, and inference.\n"
+                f"- **SECTION B (READING - 60 min)**: Provide THREE authentic-style reading texts in {target_lang}.\n"
+                f"  - **LENGTH**: Each HL text MUST be a minimum of {len_instr}. **CRITICAL**: Use high-level academic vocabulary and deep literary analysis.\n"
+                "  - **QUESTIONS (40 marks)**: Focus on higher-order thinking in {target_lang}.\n"
+                "- **STRICT**: Each section MUST sum to the following: Section A = 25 marks, Section B = 40 marks. Total = {specs.get('total_marks', 65)} marks.\n"
+                "- **NO DICTIONARY**: Instruction (in {target_lang}): 'Do not use a dictionary.'\n"
+                "- **PLAYBACK**: Instruction (in {target_lang}): 'You will hear each passage twice. You may take notes.'"
+            )
+        else:
+            instructions = f"- Provide contextual situational prompts in {target_lang}."
     elif subject == "Geography":
         instructions = "- Use SVG for simple maps, demographic cycles, climate graphs, or landform diagrams."
     elif subject in ["ITGS", "Business"]:
@@ -114,7 +155,15 @@ def build_prompt(request: GenerateRequest) -> str:
     specs = get_ib_specs(request.subject, request.level, request.paper)
     # Pass selected topics/skills into the instructions generator
     specs['selected_skills'] = request.topic_or_type
-    subject_instr = get_subject_specific_instructions(request.subject, request.paper, specs)
+    
+    subject_instr = get_subject_specific_instructions(request.subject, request.level, request.paper, specs)
+    
+    # Determine output language for requirements
+    output_lang = "English"
+    if any(lang in request.subject for lang in ["French", "Spanish", "Mandarin", "Japanese", "Language"]):
+        output_lang = request.subject.replace(" B", "").replace(" Ab Initio", "")
+        if "Mandarin" in output_lang: output_lang = "Chinese (Simplified)"
+        
     focus_areas = ", ".join(request.topic_or_type)
     
     # Specific logic for choice-based papers
@@ -128,6 +177,16 @@ def build_prompt(request: GenerateRequest) -> str:
         specs['structure_desc'] = "Answer two questions. Each question must be selected from a different topic."
         structure_rule = f"\n- **STRICT QUESTION COUNT**: You MUST provide EXACTLY {specs['question_count']} questions (2 questions per topic). The user will choose 2 questions, each from a different topic."
         model_essay_req = "\n- **MODEL ESSAY**: Inside the [SECTION_MARK_SCHEME], you MUST provide ONE FULL, HIGH-LEVEL sample essay response (approx 800-1000 words in analysis) for at least one of the generated prompts."
+    
+    elif specs.get("structure_type") == "receptive":
+        structure_rule = (
+            f"\n- **STRICT RECEPTIVE FORMAT**: This is a {specs['duration']}-minute comprehension paper. Do NOT include any writing tasks.\n"
+            "- **TRANSCRIPTS**: You MUST provide the full text transcripts for the Section A Listening passages. Wrap EACH transcript in triple backtick code blocks with the language tag 'audio'.\n"
+            "- **AUTHENTIC TEXTS**: You MUST provide the full reading texts for Section B.\n"
+            "- **NO DICTIONARY**: Instruction: 'Do not use a dictionary.'\n"
+            "- **PLAYBACK**: Instruction: 'You will hear each passage twice.'"
+        )
+        model_essay_req = "\n- **MODEL ANSWERS**: Inside the [SECTION_MARK_SCHEME], provide a complete answer key for every question. No essay is required for receptive papers."
     
     elif specs.get("structure_type") in ["essay_choice", "essay_based", "short_and_extended_response"]:
         structure_rule = f"\n- **STRICT QUESTION COUNT**: You MUST provide EXACTLY {specs['question_count']} essay prompts/options. The user will choose 1 of these {specs['question_count']} prompts."
@@ -166,7 +225,9 @@ REQUIREMENTS:
    - **SVG QUALITY**: All graphs MUST include clear X/Y axes, tick marks, labels, and units. Use a professional style with `stroke="#1e293b"` (dark blue/black) to ensure visibility on white paper.
    - **Language/Social Sciences**: Use SVG for situational illustrations or Mermaid for logic flows.
    - **STRICT**: Only Mermaid.js and raw SVG are supported. Keep diagrams clear and professional.
-9. **SEPARATION**: Use `***` or `---` on a new line between major questions to ensure clear visual separation.
+10. **STRICT LANGUAGE REQUIREMENT**: This is a {request.subject} exam. The ENTIRE exam (Instructions, Section Headers, Questions, Texts, and Mark Scheme) MUST be written in {output_lang}. Do NOT use English unless the subject name is English.
+11. **MODEL ESSAY / ANSWERS**: All sample answers must be in {output_lang}.
+
 {subject_instr}{model_essay_req}
 
 FORMAT:
@@ -188,13 +249,13 @@ async def call_qwen_api(prompt: str) -> str:
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "qwen-turbo",
+        "model": "qwen-max",
         "messages": [
-            {"role": "system", "content": "You are an expert IB Senior Examiner responsible for creating official examination papers. Your output is always complete and never truncated. Always use the requested [SECTION_...] tags for organization."},
+            {"role": "system", "content": "You are an expert IB Senior Examiner. You specialize in creating demanding, high-quality examination papers that strictly adhere to official IB length and complexity requirements. You never truncate content; you provide full, detailed reading texts and transcripts as requested."},
             {"role": "user", "content": prompt}
         ],
-        "temperature": 0.5,
-        "max_tokens": 4000
+        "temperature": 0.7,
+        "max_tokens": 6000
     }
     response = requests.post(f"{QWEN_BASE_URL}/chat/completions", headers=headers, json=payload)
     if response.status_code != 200:

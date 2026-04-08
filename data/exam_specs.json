@@ -1420,5 +1420,74 @@
         ]
       }
     }
+  },
+  "Mandarin_B": {
+      "subjects": ["Mandarin B"],
+      "SL": {
+        "paper_1": {
+          "duration_minutes": 75,
+          "total_marks": 30,
+          "question_count": 1,
+          "calculator_allowed": false,
+          "structure": {
+            "type": "essay_choice",
+            "description": "Produce one piece of writing (200–350 characters) from a choice of three prompts"
+          }
+        },
+        "paper_2": {
+          "duration_minutes": 105,
+          "total_marks": 50,
+          "question_count": "5-7",
+          "calculator_allowed": false,
+          "structure": {
+            "type": "receptive",
+            "description": "Section A: Listening (45 min, 25 marks); Section B: Reading (60 min, 25 marks)"
+          }
+        }
+      },
+      "HL": {
+        "paper_1": {
+          "duration_minutes": 90,
+          "total_marks": 30,
+          "question_count": 1,
+          "calculator_allowed": false,
+          "structure": {
+            "type": "essay_choice",
+            "description": "Produce one piece of writing (400–600 characters) from a choice of three prompts"
+          }
+        },
+        "paper_2": {
+          "duration_minutes": 120,
+          "total_marks": 65,
+          "question_count": "6-8",
+          "calculator_allowed": false,
+          "structure": {
+            "type": "receptive",
+            "description": "Section A: Listening (60 min, 25 marks); Section B: Reading (60 min, 40 marks)"
+          }
+        }
+      }
+    },
+    "French_B": {
+      "subjects": ["French B"],
+      "SL": {
+        "paper_1": { "duration_minutes": 75, "total_marks": 30, "question_count": 1, "structure": { "type": "essay_choice", "description": "Writing task (250-400 words)" } },
+        "paper_2": { "duration_minutes": 105, "total_marks": 50, "structure": { "type": "receptive", "description": "Listening and Reading Comprehension" } }
+      },
+      "HL": {
+        "paper_1": { "duration_minutes": 90, "total_marks": 30, "question_count": 1, "structure": { "type": "essay_choice", "description": "Writing task (450-600 words)" } },
+        "paper_2": { "duration_minutes": 120, "total_marks": 65, "structure": { "type": "receptive", "description": "Listening and Reading Comprehension" } }
+      }
+    },
+    "Spanish_B": {
+      "subjects": ["Spanish B"],
+      "SL": {
+        "paper_1": { "duration_minutes": 75, "total_marks": 30, "question_count": 1, "structure": { "type": "essay_choice", "description": "Writing task (250-400 words)" } },
+        "paper_2": { "duration_minutes": 105, "total_marks": 50, "structure": { "type": "receptive", "description": "Listening and Reading Comprehension" } }
+      },
+      "HL": {
+        "paper_1": { "duration_minutes": 90, "total_marks": 30, "question_count": 1, "structure": { "type": "essay_choice", "description": "Writing task (450-600 words)" } },
+        "paper_2": { "duration_minutes": 120, "total_marks": 65, "structure": { "type": "receptive", "description": "Listening and Reading Comprehension" } }
+    }
   }
 }
