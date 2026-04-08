@@ -5,8 +5,56 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download } from 'lucide-react';
 import 'katex/dist/katex.min.css';
-import subjectData from './data/exam_subject_structure.json';
-import markSchemes from './data/mark_schemes.json';
+import mermaid from 'mermaid';
+import subjectData from '@data/exam_subject_structure.json';
+import markSchemes from '@data/mark_schemes.json';
+
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  themeVariables: {
+    primaryColor: '#0ea5e9',
+    primaryTextColor: '#fff',
+    primaryBorderColor: '#3b82f6',
+    lineColor: '#94a3b8',
+    secondaryColor: '#1e293b',
+    tertiaryColor: '#0f172a',
+  },
+  securityLevel: 'loose',
+});
+
+const Mermaid = ({ chart }) => {
+  const ref = React.useRef(null);
+
+  useEffect(() => {
+    if (ref.current && chart) {
+      ref.current.removeAttribute('data-processed');
+      mermaid.render(`mermaid-${Math.random().toString(36).substr(2, 9)}`, chart).then(({ svg }) => {
+        if (ref.current) ref.current.innerHTML = svg;
+      });
+    }
+  }, [chart]);
+
+  return <div key={chart} ref={ref} className="mermaid flex justify-center my-6 bg-slate-900/50 p-6 rounded-xl border border-white/10" />;
+};
+
+const SVGRenderer = ({ code }) => {
+  const processedCode = React.useMemo(() => {
+    if (!code.includes('<svg')) return code;
+    // Ensure responsive and safe attributes
+    return code
+      .replace(/<svg/, '<svg style="max-width: 100%; height: auto;" preserveAspectRatio="xMidYMid meet"')
+      .replace(/width=".*?"/, '')
+      .replace(/height=".*?"/, '');
+  }, [code]);
+
+  return (
+    <div 
+      className="svg-diagram flex justify-center my-6 bg-slate-900/30 p-8 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-sm overflow-hidden"
+      dangerouslySetInnerHTML={{ __html: processedCode }}
+    />
+  );
+};
 
 const API_BASE_URL = '/api';
 
@@ -43,7 +91,9 @@ function App() {
     let rubricKey = subjectKey;
     
     // Sciences mapping (Physics/Chemistry/Biology use common Science rubrics)
-    if (['Physics', 'Chemistry', 'Biology'].includes(selectedSubject)) rubricKey = 'Sciences';
+    if (['Physics', 'Chemistry', 'Biology'].includes(selectedSubject)) {
+      rubricKey = 'Sciences_post2025';
+    }
     if (selectedSubject === 'Math AA') rubricKey = 'Mathematics_AA';
 
     let rubric = markSchemes.rubrics?.[rubricKey]?.[paperKey] || null;
@@ -66,7 +116,7 @@ function App() {
   }, [isGenerating]);
 
   // Derived data
-  const subjects = Object.keys(subjectData);
+  const subjects = Object.keys(subjectData).filter(key => key !== 'metadata');
   
   const currentSubject = useMemo(() => 
     selectedSubject ? subjectData[selectedSubject] : null
@@ -99,6 +149,11 @@ function App() {
     }
 
     if (isLanguageB) return currentSubject.topics.core_topics || [];
+
+    // Science Paper 1B specialized skills selection
+    if (isMathOrScience && selectedPaper === 'Paper 1B' && currentSubject.post_2025_notes?.key_skills_assessed) {
+      return currentSubject.post_2025_notes.key_skills_assessed;
+    }
 
     let options = [...(currentSubject.topics.core_topics || [])];
     if (selectedLevel === 'HL' && currentSubject.topics.hl_topics) {
@@ -157,6 +212,19 @@ function App() {
     }
   };
 
+  const MarkdownComponents = {
+    code({ node, inline, className, children, ...props }) {
+      const match = /language-(\w+)/.exec(className || '');
+      if (!inline && match && match[1] === 'mermaid') {
+        return <Mermaid chart={String(children).replace(/\n$/, '')} />;
+      }
+      if (!inline && match && match[1] === 'svg') {
+        return <SVGRenderer code={String(children).replace(/\n$/, '')} />;
+      }
+      return <code className={className} {...props}>{children}</code>;
+    }
+  };
+
   return (
     <div className="container">
       <header className="no-print">
@@ -206,7 +274,11 @@ function App() {
 
           <div className="topics-container">
             <div className="topics-header">
-              <label>{selectedSubject === 'English A' ? 'Task Type (Multi-Select)' : 'Focus Topics (Multi-Select)'}</label>
+              <label>
+                {selectedSubject === 'English A' ? 'Task Type (Multi-Select)' : 
+                 (isMathOrScience && selectedPaper === 'Paper 1B') ? 'Experimental Skills (Multi-Select)' : 
+                 'Focus Topics (Multi-Select)'}
+              </label>
               {isMathOrScience && availableOptions.length > 0 && (
                 <button className="select-all-btn" onClick={selectAllTopics}>
                   {selectedTopics.length === availableOptions.length ? 'Deselect All' : 'Select All Topics'}
@@ -242,7 +314,9 @@ function App() {
           >
             {isGenerating ? (
               <span className="flex items-center justify-center gap-2">
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <span style={{ display: 'inline-flex', transform: 'translate(-6px, 2px)' }}>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                </span>
                 Generating Official Paper{dots}
               </span>
             ) : (
@@ -326,7 +400,7 @@ function App() {
                {activeTab === 'paper' && (
                  <section className="exam-page glass animate-fade-in">
                     <div className="markdown-body">
-                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
                         {result.exam_text}
                       </ReactMarkdown>
                     </div>
@@ -370,7 +444,7 @@ function App() {
 
                      {result.answer_key ? (
                        <>
-                         <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                         <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
                            {result.answer_key}
                          </ReactMarkdown>
                          
@@ -398,7 +472,7 @@ function App() {
                                   </tbody>
                                 </table>
                               ) : (
-                                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
                                   {result.grade_boundaries}
                                 </ReactMarkdown>
                               )}
@@ -417,7 +491,7 @@ function App() {
             <div className="print-only">
                <section className="exam-page">
                  <div className="markdown-body">
-                   <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                   <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
                      {result.exam_text}
                    </ReactMarkdown>
                  </div>
@@ -443,7 +517,7 @@ function App() {
                      )}
 
                      {result.answer_key && (
-                       <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                       <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
                          {result.answer_key}
                        </ReactMarkdown>
                      )}
@@ -458,7 +532,7 @@ function App() {
                                <tbody>{Object.entries(officialData.boundaries).filter(([k]) => k.startsWith('grade_')).map(([k, v]) => <tr key={k}><td>{k.replace('grade_', '')}</td><td>{v.min}-{v.max}%</td><td>{v.description}</td></tr>)}</tbody>
                              </table>
                           ) : (
-                            <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                            <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
                               {result.grade_boundaries}
                             </ReactMarkdown>
                           )}

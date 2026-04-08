@@ -1,0 +1,1420 @@
+{
+  "metadata": {
+    "version": "post-2025",
+    "first_exams": "May 2025",
+    "description": "External exam specifications for IB Diploma Programme (first assessment 2025)",
+    "key_changes": [
+      "Sciences: Paper 3 removed entirely",
+      "Sciences: Paper 1 split into 1A (MCQ) and 1B (data analysis)",
+      "Sciences: Option topics eliminated",
+      "Other subjects: No major structural changes"
+    ]
+  },
+  "sciences": {
+    "description": "Biology, Chemistry, Physics - First exams May 2025",
+    "subjects": [
+      "Biology",
+      "Chemistry",
+      "Physics"
+    ],
+    "SL": {
+      "paper_1A": {
+        "duration_minutes": 45,
+        "total_marks": 30,
+        "question_count": 30,
+        "question_type": "multiple_choice",
+        "marks_per_question": 1,
+        "calculator_allowed": false,
+        "data_booklet": true,
+        "formula_sheet": true,
+        "weighting_percent": "varies (20-30%)",
+        "structure": {
+          "type": "multiple_choice",
+          "description": "30 multiple choice questions covering core SL content"
+        },
+        "command_terms": [
+          "State",
+          "Identify",
+          "What",
+          "Which",
+          "True/False",
+          "Calculate"
+        ]
+      },
+      "paper_1B": {
+        "duration_minutes": 75,
+        "total_marks": 25,
+        "question_count_range": {
+          "min": 4,
+          "max": 6
+        },
+        "question_type": "data_analysis_and_experimental",
+        "marks_per_question_range": {
+          "min": 4,
+          "max": 8
+        },
+        "calculator_allowed": true,
+        "data_booklet": true,
+        "formula_sheet": true,
+        "weighting_percent": "varies (16-20%)",
+        "structure": {
+          "type": "structured_response",
+          "description": "Data analysis and experimental design questions. Requires written answers, NOT multiple choice.",
+          "parts": [
+            {
+              "part": "Data-based questions",
+              "description": "Interpretation of experimental data, graphs, tables",
+              "skills": [
+                "Graph interpretation",
+                "Pattern recognition",
+                "Data extrapolation"
+              ]
+            },
+            {
+              "part": "Experimental design questions",
+              "description": "Variables, controls, methodology, error analysis",
+              "skills": [
+                "Identifying independent/dependent variables",
+                "Control variables",
+                "Method evaluation"
+              ]
+            },
+            {
+              "part": "Conclusion and evaluation",
+              "description": "Drawing conclusions, evaluating methodology, suggesting improvements",
+              "skills": [
+                "Conclusion from evidence",
+                "Error analysis",
+                "Improvement suggestions"
+              ]
+            }
+          ]
+        },
+        "command_terms": [
+          "Analyse",
+          "Evaluate",
+          "Suggest",
+          "Explain",
+          "Calculate",
+          "Determine",
+          "Describe",
+          "Compare",
+          "Deduce"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 75,
+        "total_marks": 50,
+        "question_count_range": {
+          "min": 6,
+          "max": 10
+        },
+        "calculator_allowed": true,
+        "data_booklet": true,
+        "formula_sheet": true,
+        "weighting_percent": "varies (40-50%)",
+        "structure": {
+          "type": "short_and_extended_response",
+          "description": "Short answer and extended response questions on core topics",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 25,
+              "description": "Short answer questions (2-5 marks each)",
+              "question_types": [
+                "Definitions",
+                "Explanations",
+                "Calculations",
+                "Short responses"
+              ]
+            },
+            {
+              "part": "Section B",
+              "marks": 25,
+              "description": "Extended response questions (choose 2 of 3, 12-13 marks each)",
+              "question_types": [
+                "Essays",
+                "Evaluations",
+                "Discussions",
+                "In-depth explanations"
+              ]
+            }
+          ]
+        },
+        "command_terms": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Discuss",
+          "Evaluate",
+          "Compare",
+          "Analyse",
+          "Calculate",
+          "Determine",
+          "Predict"
+        ]
+      },
+      "paper_3": {
+        "exists": false,
+        "note": "Paper 3 has been completely removed. Option topics no longer exist.",
+        "replaced_by": "Experimental and data analysis skills moved to Paper 1B"
+      }
+    },
+    "HL": {
+      "paper_1A": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "question_count": 40,
+        "question_type": "multiple_choice",
+        "marks_per_question": 1,
+        "calculator_allowed": false,
+        "data_booklet": true,
+        "formula_sheet": true,
+        "weighting_percent": "varies (20-30%)",
+        "structure": {
+          "type": "multiple_choice",
+          "description": "40 multiple choice questions covering core + HL content"
+        },
+        "command_terms": [
+          "State",
+          "Identify",
+          "What",
+          "Which",
+          "True/False",
+          "Calculate"
+        ]
+      },
+      "paper_1B": {
+        "duration_minutes": 75,
+        "total_marks": 35,
+        "question_count_range": {
+          "min": 5,
+          "max": 8
+        },
+        "question_type": "data_analysis_and_experimental",
+        "marks_per_question_range": {
+          "min": 4,
+          "max": 10
+        },
+        "calculator_allowed": true,
+        "data_booklet": true,
+        "formula_sheet": true,
+        "weighting_percent": "varies (12-20%)",
+        "structure": {
+          "type": "structured_response",
+          "description": "Advanced data analysis and experimental design questions (HL depth)",
+          "parts": [
+            {
+              "part": "Advanced data analysis",
+              "description": "Complex data interpretation, statistical analysis, error propagation",
+              "skills": [
+                "Statistical tests",
+                "Error propagation",
+                "Linearization",
+                "Graphical analysis"
+              ]
+            },
+            {
+              "part": "Experimental design and evaluation",
+              "description": "HL-level methodology evaluation and improvement",
+              "skills": [
+                "Critical evaluation",
+                "Systematic vs random errors",
+                "Methodology redesign"
+              ]
+            },
+            {
+              "part": "Synthesis and conclusion",
+              "description": "Linking theory to experimental results",
+              "skills": [
+                "Theory-experiment connection",
+                "Limitation analysis",
+                "Novel predictions"
+              ]
+            }
+          ]
+        },
+        "command_terms": [
+          "Analyse",
+          "Evaluate",
+          "Suggest",
+          "Explain",
+          "Calculate",
+          "Determine",
+          "Describe",
+          "Compare",
+          "Deduce",
+          "Justify",
+          "Design"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 135,
+        "total_marks": 95,
+        "question_count_range": {
+          "min": 10,
+          "max": 14
+        },
+        "calculator_allowed": true,
+        "data_booklet": true,
+        "formula_sheet": true,
+        "weighting_percent": "varies (40-50%)",
+        "structure": {
+          "type": "short_and_extended_response",
+          "description": "Short answer and extended response questions on core + HL topics",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 55,
+              "description": "Short answer questions (2-5 marks each)",
+              "question_types": [
+                "Definitions",
+                "Explanations",
+                "Calculations",
+                "Short responses"
+              ]
+            },
+            {
+              "part": "Section B",
+              "marks": 40,
+              "description": "Extended response questions (choose 3 of 4, 13-14 marks each)",
+              "question_types": [
+                "Essays",
+                "Evaluations",
+                "Discussions",
+                "Synthesis",
+                "Complex problem-solving"
+              ]
+            }
+          ]
+        },
+        "command_terms": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Discuss",
+          "Evaluate",
+          "Compare",
+          "Analyse",
+          "Calculate",
+          "Determine",
+          "Predict",
+          "Deduce",
+          "Derive",
+          "Prove"
+        ]
+      },
+      "paper_3": {
+        "exists": false,
+        "note": "Paper 3 has been completely removed for HL as well. Option topics no longer exist."
+      }
+    }
+  },
+  "English_A": {
+    "description": "No structural changes for 2025",
+    "SL": {
+      "paper_1": {
+        "duration_minutes": 75,
+        "total_marks": 20,
+        "question_count": 1,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "single_question_with_parts",
+          "description": "One guided textual analysis or comparative commentary",
+          "parts": [
+            {
+              "part": "A",
+              "marks": 10,
+              "description": "Guided analysis of text"
+            },
+            {
+              "part": "B",
+              "marks": 10,
+              "description": "Comparative or extended commentary"
+            }
+          ]
+        },
+        "command_terms": [
+          "Analyse",
+          "Compare",
+          "Contrast",
+          "Comment on",
+          "Examine"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 105,
+        "total_marks": 25,
+        "question_count": 3,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "essay_choice",
+          "description": "Choose 1 of 3 essay prompts",
+          "parts": [
+            {
+              "part": "essay",
+              "marks": 25,
+              "description": "Literary essay"
+            }
+          ]
+        },
+        "command_terms": [
+          "Discuss",
+          "Evaluate",
+          "To what extent",
+          "Compare and contrast"
+        ]
+      }
+    },
+    "HL": {
+      "paper_1": {
+        "duration_minutes": 135,
+        "total_marks": 40,
+        "question_count": 2,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "two_independent_questions",
+          "description": "Two guided textual analyses or comparative commentaries",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 20,
+              "description": "Analysis of first text"
+            },
+            {
+              "part": "Question 2",
+              "marks": 20,
+              "description": "Analysis of second text"
+            }
+          ]
+        },
+        "command_terms": [
+          "Analyse",
+          "Compare",
+          "Contrast",
+          "Comment on",
+          "Examine"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 105,
+        "total_marks": 25,
+        "question_count": 3,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "essay_choice",
+          "description": "Choose 1 of 3 essay prompts",
+          "parts": [
+            {
+              "part": "essay",
+              "marks": 25,
+              "description": "Literary essay"
+            }
+          ]
+        },
+        "command_terms": [
+          "Discuss",
+          "Evaluate",
+          "To what extent",
+          "Compare and contrast"
+        ]
+      }
+    }
+  },
+  "History": {
+    "description": "No structural changes for 2025",
+    "SL": {
+      "paper_1": {
+        "duration_minutes": 60,
+        "total_marks": 24,
+        "question_count": 4,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "source_based",
+          "description": "4 source-based questions on prescribed subject",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 4,
+              "sub_parts": [
+                "a) 2 marks",
+                "b) 2 marks"
+              ],
+              "description": "Source comprehension"
+            },
+            {
+              "part": "Question 2",
+              "marks": 6,
+              "sub_parts": [
+                "a) 3 marks",
+                "b) 3 marks"
+              ],
+              "description": "Source evaluation (OPVL)"
+            },
+            {
+              "part": "Question 3",
+              "marks": 6,
+              "description": "Comparative source analysis"
+            },
+            {
+              "part": "Question 4",
+              "marks": 8,
+              "description": "Mini-essay using all sources"
+            }
+          ]
+        },
+        "command_terms": [
+          "What",
+          "Why",
+          "Compare",
+          "Contrast",
+          "Evaluate",
+          "Examine",
+          "To what extent"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 90,
+        "total_marks": 30,
+        "question_count": 6,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "essay_choice",
+          "description": "Choose 2 of 6 essay questions from 12 world history topics",
+          "parts": [
+            {
+              "part": "Essay 1",
+              "marks": 15,
+              "description": "Essay on chosen topic"
+            },
+            {
+              "part": "Essay 2",
+              "marks": 15,
+              "description": "Essay on second chosen topic"
+            }
+          ]
+        },
+        "command_terms": [
+          "Compare and contrast",
+          "Discuss",
+          "Evaluate",
+          "Examine",
+          "Analyse",
+          "To what extent"
+        ]
+      }
+    },
+    "HL": {
+      "paper_1": {
+        "duration_minutes": 60,
+        "total_marks": 24,
+        "question_count": 4,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "source_based",
+          "description": "4 source-based questions on prescribed subject",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 4,
+              "sub_parts": [
+                "a) 2 marks",
+                "b) 2 marks"
+              ],
+              "description": "Source comprehension"
+            },
+            {
+              "part": "Question 2",
+              "marks": 6,
+              "sub_parts": [
+                "a) 3 marks",
+                "b) 3 marks"
+              ],
+              "description": "Source evaluation (OPVL)"
+            },
+            {
+              "part": "Question 3",
+              "marks": 6,
+              "description": "Comparative source analysis"
+            },
+            {
+              "part": "Question 4",
+              "marks": 8,
+              "description": "Mini-essay using all sources"
+            }
+          ]
+        },
+        "command_terms": [
+          "What",
+          "Why",
+          "Compare",
+          "Contrast",
+          "Evaluate",
+          "Examine",
+          "To what extent"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 90,
+        "total_marks": 30,
+        "question_count": 6,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "essay_choice",
+          "description": "Choose 2 of 6 essay questions from 12 world history topics",
+          "parts": [
+            {
+              "part": "Essay 1",
+              "marks": 15,
+              "description": "Essay on chosen topic"
+            },
+            {
+              "part": "Essay 2",
+              "marks": 15,
+              "description": "Essay on second chosen topic"
+            }
+          ]
+        },
+        "command_terms": [
+          "Compare and contrast",
+          "Discuss",
+          "Evaluate",
+          "Examine",
+          "Analyse",
+          "To what extent"
+        ]
+      },
+      "paper_3": {
+        "duration_minutes": 150,
+        "total_marks": 45,
+        "question_count": 6,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "essay_choice",
+          "description": "Choose 3 of 6 essay questions from HL regional option",
+          "parts": [
+            {
+              "part": "Essay 1",
+              "marks": 15,
+              "description": "Essay on HL topic"
+            },
+            {
+              "part": "Essay 2",
+              "marks": 15,
+              "description": "Essay on HL topic"
+            },
+            {
+              "part": "Essay 3",
+              "marks": 15,
+              "description": "Essay on HL topic"
+            }
+          ]
+        },
+        "command_terms": [
+          "Compare and contrast",
+          "Discuss",
+          "Evaluate",
+          "Examine",
+          "Analyse",
+          "To what extent"
+        ]
+      }
+    }
+  },
+  "Mathematics_AA": {
+    "description": "No structural changes for 2025",
+    "SL": {
+      "paper_1": {
+        "duration_minutes": 90,
+        "total_marks": 80,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "short_and_extended_no_calculator",
+          "description": "Short and extended response without calculator",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 50,
+              "sub_parts": [
+                "8-10 questions, 4-6 marks each",
+                "2-4 sub-parts per question"
+              ],
+              "description": "Short response"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": [
+                "2-3 questions, 10-15 marks each",
+                "3-5 sub-parts per question"
+              ],
+              "description": "Extended response"
+            }
+          ]
+        },
+        "command_terms": [
+          "Find",
+          "Calculate",
+          "Show that",
+          "Solve",
+          "Determine",
+          "Prove",
+          "Hence",
+          "State",
+          "Sketch"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 90,
+        "total_marks": 80,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "short_and_extended_with_calculator",
+          "description": "Short and extended response with GDC allowed",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 50,
+              "sub_parts": [
+                "8-10 questions, 4-6 marks each",
+                "2-4 sub-parts per question"
+              ],
+              "description": "Short response"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": [
+                "2-3 questions, 10-15 marks each",
+                "3-5 sub-parts per question"
+              ],
+              "description": "Extended response"
+            }
+          ]
+        },
+        "command_terms": [
+          "Find",
+          "Calculate",
+          "Show that",
+          "Solve",
+          "Determine",
+          "Prove",
+          "Hence",
+          "State",
+          "Sketch",
+          "Plot",
+          "Use your GDC to"
+        ]
+      }
+    },
+    "HL": {
+      "paper_1": {
+        "duration_minutes": 120,
+        "total_marks": 110,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "short_and_extended_no_calculator",
+          "description": "Short and extended response without calculator",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 60,
+              "sub_parts": [
+                "8-10 questions, 5-8 marks each",
+                "2-4 sub-parts per question"
+              ],
+              "description": "Short response"
+            },
+            {
+              "part": "Section B",
+              "marks": 50,
+              "sub_parts": [
+                "3-4 questions, 12-18 marks each",
+                "4-6 sub-parts per question"
+              ],
+              "description": "Extended response"
+            }
+          ]
+        },
+        "command_terms": [
+          "Find",
+          "Calculate",
+          "Show that",
+          "Solve",
+          "Determine",
+          "Prove",
+          "Hence",
+          "State",
+          "Sketch",
+          "Deduce",
+          "Justify"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 120,
+        "total_marks": 110,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "short_and_extended_with_calculator",
+          "description": "Short and extended response with GDC allowed",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 60,
+              "sub_parts": [
+                "8-10 questions, 5-8 marks each",
+                "2-4 sub-parts per question"
+              ],
+              "description": "Short response"
+            },
+            {
+              "part": "Section B",
+              "marks": 50,
+              "sub_parts": [
+                "3-4 questions, 12-18 marks each",
+                "4-6 sub-parts per question"
+              ],
+              "description": "Extended response"
+            }
+          ]
+        },
+        "command_terms": [
+          "Find",
+          "Calculate",
+          "Show that",
+          "Solve",
+          "Determine",
+          "Prove",
+          "Hence",
+          "State",
+          "Sketch",
+          "Plot",
+          "Deduce",
+          "Justify",
+          "Use your GDC to"
+        ]
+      },
+      "paper_3": {
+        "duration_minutes": 60,
+        "total_marks": 55,
+        "question_count": 2,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "extended_problem_solving",
+          "description": "Two extended problem-solving questions",
+          "parts": [
+            {
+              "part": "Question 1",
+              "marks": 27,
+              "sub_parts": [
+                "5-7 sub-parts",
+                "Increasing difficulty"
+              ],
+              "description": "In-depth exploration"
+            },
+            {
+              "part": "Question 2",
+              "marks": 28,
+              "sub_parts": [
+                "5-7 sub-parts",
+                "Increasing difficulty"
+              ],
+              "description": "In-depth exploration"
+            }
+          ]
+        },
+        "command_terms": [
+          "Find",
+          "Calculate",
+          "Show that",
+          "Solve",
+          "Determine",
+          "Prove",
+          "Hence",
+          "Deduce",
+          "Justify",
+          "Interpret",
+          "Suggest"
+        ]
+      }
+    }
+  },
+  "Business": {
+    "description": "No structural changes for 2025",
+    "SL": {
+      "paper_1": {
+        "duration_minutes": 75,
+        "total_marks": 40,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 40,
+              "sub_parts": [
+                "4-6 questions",
+                "2-4 sub-parts each"
+              ],
+              "description": "All questions based on a single case study"
+            }
+          ]
+        },
+        "command_terms": [
+          "Define",
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Calculate",
+          "Analyse",
+          "Recommend",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 105,
+        "total_marks": 60,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "structured_and_extended",
+          "description": "Structured and extended response questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 40,
+              "sub_parts": [
+                "3-4 structured questions",
+                "3-5 sub-parts each"
+              ],
+              "description": "Quantitative and qualitative skills"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": [
+                "2 extended response (choose 1)",
+                "2-3 sub-parts each"
+              ],
+              "description": "Essay-style questions"
+            }
+          ]
+        },
+        "command_terms": [
+          "Define",
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Calculate",
+          "Analyse",
+          "Recommend",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast",
+          "Examine",
+          "To what extent"
+        ]
+      }
+    },
+    "HL": {
+      "paper_1": {
+        "duration_minutes": 105,
+        "total_marks": 60,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions (HL depth)",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 60,
+              "sub_parts": [
+                "5-7 questions",
+                "2-4 sub-parts each"
+              ],
+              "description": "All questions based on a single case study"
+            }
+          ]
+        },
+        "command_terms": [
+          "Define",
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Calculate",
+          "Analyse",
+          "Recommend",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast",
+          "Examine",
+          "To what extent",
+          "Justify"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 105,
+        "total_marks": 60,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "structured_and_extended",
+          "description": "Structured and extended response questions (HL focus)",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 40,
+              "sub_parts": [
+                "3-4 structured questions",
+                "3-5 sub-parts each"
+              ],
+              "description": "Quantitative and qualitative skills"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": [
+                "2 extended response (choose 1)",
+                "2-3 sub-parts each"
+              ],
+              "description": "Essay-style questions with HL concepts"
+            }
+          ]
+        },
+        "command_terms": [
+          "Define",
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Calculate",
+          "Analyse",
+          "Recommend",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast",
+          "Examine",
+          "To what extent",
+          "Justify",
+          "Synthesize"
+        ]
+      },
+      "paper_3": {
+        "duration_minutes": 75,
+        "total_marks": 40,
+        "calculator_allowed": true,
+        "structure": {
+          "type": "decision_making",
+          "description": "Quantitative and qualitative decision-making",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": [
+                "2-3 questions",
+                "4-6 sub-parts each",
+                "Cumulative case study"
+              ],
+              "description": "Strategic decision-making"
+            }
+          ]
+        },
+        "command_terms": [
+          "Calculate",
+          "Analyse",
+          "Recommend",
+          "Evaluate",
+          "Justify",
+          "Compare",
+          "Contrast",
+          "Discuss",
+          "Examine",
+          "To what extent",
+          "Synthesize",
+          "Propose"
+        ]
+      }
+    }
+  },
+  "ITGS": {
+    "description": "No structural changes for 2025",
+    "SL": {
+      "paper_1": {
+        "duration_minutes": 60,
+        "total_marks": 60,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "multiple_choice_and_short_answer",
+          "description": "Multiple choice and short answer questions",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": [
+                "30 multiple choice",
+                "1 mark each"
+              ],
+              "description": "Core ITGS concepts"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": [
+                "5-6 short answer",
+                "5-6 marks each"
+              ],
+              "description": "Social and ethical impacts"
+            }
+          ]
+        },
+        "command_terms": [
+          "Define",
+          "State",
+          "Identify",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 90,
+        "total_marks": 40,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": [
+                "4-5 questions",
+                "3-5 sub-parts each"
+              ],
+              "description": "Based on pre-released case study"
+            }
+          ]
+        },
+        "command_terms": [
+          "Identify",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate",
+          "Recommend",
+          "Discuss",
+          "Compare",
+          "Contrast"
+        ]
+      }
+    },
+    "HL": {
+      "paper_1": {
+        "duration_minutes": 60,
+        "total_marks": 60,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "multiple_choice_and_short_answer",
+          "description": "Multiple choice and short answer questions (HL depth)",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": [
+                "30 multiple choice",
+                "1 mark each"
+              ],
+              "description": "Core + HL concepts"
+            },
+            {
+              "part": "Section B",
+              "marks": 30,
+              "sub_parts": [
+                "5-6 short answer",
+                "5-6 marks each"
+              ],
+              "description": "Social and ethical impacts (HL depth)"
+            }
+          ]
+        },
+        "command_terms": [
+          "Define",
+          "State",
+          "Identify",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate",
+          "Synthesize"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 90,
+        "total_marks": 40,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "case_study_based",
+          "description": "Case study with structured questions (HL focus)",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": [
+                "4-5 questions",
+                "3-5 sub-parts each"
+              ],
+              "description": "Based on pre-released case study"
+            }
+          ]
+        },
+        "command_terms": [
+          "Identify",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate",
+          "Recommend",
+          "Discuss",
+          "Compare",
+          "Contrast",
+          "Justify"
+        ]
+      },
+      "paper_3": {
+        "duration_minutes": 60,
+        "total_marks": 30,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "extended_response",
+          "description": "Extended response questions on social and ethical issues",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 30,
+              "sub_parts": [
+                "2-3 extended response",
+                "10-15 marks each",
+                "2-3 sub-parts each"
+              ],
+              "description": "In-depth analysis of complex ITGS scenarios"
+            }
+          ]
+        },
+        "command_terms": [
+          "Analyse",
+          "Evaluate",
+          "Discuss",
+          "To what extent",
+          "Justify",
+          "Synthesize",
+          "Critically evaluate"
+        ]
+      }
+    }
+  },
+  "Geography": {
+    "description": "No structural changes for 2025",
+    "SL": {
+      "paper_1": {
+        "duration_minutes": 90,
+        "total_marks": 50,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "short_answer_and_essay",
+          "description": "Short answer and essay questions on core topics",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 30,
+              "sub_parts": [
+                "3-4 structured questions",
+                "8-10 marks each",
+                "3-5 sub-parts each"
+              ],
+              "description": "Short answer and data response"
+            },
+            {
+              "part": "Section B",
+              "marks": 20,
+              "sub_parts": [
+                "2 essay questions (choose 1)",
+                "20 marks each",
+                "2-3 sub-parts each"
+              ],
+              "description": "Extended writing on core topics"
+            }
+          ]
+        },
+        "command_terms": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast",
+          "Examine",
+          "To what extent"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "structured_questions",
+          "description": "Structured questions on optional themes",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": [
+                "2 optional themes",
+                "20 marks each",
+                "4-6 sub-parts each"
+              ],
+              "description": "Choose 2 of 7 optional themes"
+            }
+          ]
+        },
+        "command_terms": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast"
+        ]
+      }
+    },
+    "HL": {
+      "paper_1": {
+        "duration_minutes": 135,
+        "total_marks": 80,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "short_answer_and_essay",
+          "description": "Short answer and essay questions (HL depth)",
+          "parts": [
+            {
+              "part": "Section A",
+              "marks": 45,
+              "sub_parts": [
+                "4-5 structured questions",
+                "9-12 marks each",
+                "3-5 sub-parts each"
+              ],
+              "description": "Short answer and data response"
+            },
+            {
+              "part": "Section B",
+              "marks": 35,
+              "sub_parts": [
+                "2-3 essay questions (choose 2)",
+                "17-18 marks each",
+                "2-3 sub-parts each"
+              ],
+              "description": "Extended writing (HL depth)"
+            }
+          ]
+        },
+        "command_terms": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast",
+          "Examine",
+          "To what extent",
+          "Critically evaluate"
+        ]
+      },
+      "paper_2": {
+        "duration_minutes": 60,
+        "total_marks": 40,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "structured_questions",
+          "description": "Structured questions on optional themes",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 40,
+              "sub_parts": [
+                "2 optional themes",
+                "20 marks each",
+                "4-6 sub-parts each"
+              ],
+              "description": "Choose 2 of 7 optional themes"
+            }
+          ]
+        },
+        "command_terms": [
+          "State",
+          "Outline",
+          "Describe",
+          "Explain",
+          "Analyse",
+          "Evaluate",
+          "Discuss",
+          "Compare",
+          "Contrast"
+        ]
+      },
+      "paper_3": {
+        "duration_minutes": 60,
+        "total_marks": 30,
+        "calculator_allowed": false,
+        "structure": {
+          "type": "essay_based",
+          "description": "Essay questions on HL extension topics",
+          "parts": [
+            {
+              "part": "Compulsory",
+              "marks": 30,
+              "sub_parts": [
+                "3 essay questions (choose 2)",
+                "15 marks each",
+                "2-3 sub-parts each"
+              ],
+              "description": "HL extension: Global interactions"
+            }
+          ]
+        },
+        "command_terms": [
+          "Analyse",
+          "Evaluate",
+          "Discuss",
+          "Examine",
+          "To what extent",
+          "Critically evaluate",
+          "Synthesize"
+        ]
+      }
+    }
+  }
+}

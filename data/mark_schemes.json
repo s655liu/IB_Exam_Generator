@@ -1,9 +1,25 @@
 {
+  "metadata": {
+    "version": "post-2025",
+    "first_exams": "May 2025",
+    "key_changes_for_sciences": [
+      "Paper 3 completely removed from grade boundaries",
+      "Paper 1 split into Paper 1A and Paper 1B",
+      "Component breakdowns updated to reflect new structure",
+      "Options removed from Sciences rubrics"
+    ],
+    "unchanged_subjects": [
+      "Mathematics_AA",
+      "English_A",
+      "History",
+      "Business"
+    ]
+  },
   "grade_boundaries": {
     "explanation": "Grade boundaries vary slightly each session based on exam difficulty. These are May 2025 official boundaries or typical ranges based on recent trends. Boundaries are for the final scaled total out of 100 (combining all papers + IA).",
     "notes": {
       "ia_weighting": "Internal Assessment typically worth 20% of final grade",
-      "paper_3": "HL only subjects have Paper 3",
+      "paper_3": "Only exists for History, Business, Geography, ITGS, Math AA HL. REMOVED for Sciences.",
       "variation": "±2-3 marks possible between sessions"
     },
     "Mathematics_AA": {
@@ -131,11 +147,12 @@
           "description": "Very poor performance"
         },
         "component_breakdown": {
-          "paper_1_weighting": 20,
+          "paper_1A_weighting": 20,
+          "paper_1B_weighting": 20,
           "paper_2_weighting": 40,
-          "paper_3_weighting": 20,
           "ia_weighting": 20
-        }
+        },
+        "post_2025_note": "Paper 3 removed. Paper 1 split into 1A (MCQ) and 1B (Data analysis). Weightings adjusted."
       },
       "SL": {
         "grade_7": {
@@ -174,11 +191,12 @@
           "description": "Very poor performance"
         },
         "component_breakdown": {
-          "paper_1_weighting": 20,
+          "paper_1A_weighting": 20,
+          "paper_1B_weighting": 20,
           "paper_2_weighting": 40,
-          "paper_3_weighting": 20,
           "ia_weighting": 20
-        }
+        },
+        "post_2025_note": "Paper 3 removed. Paper 1 split into 1A (MCQ) and 1B (Data analysis). Weightings adjusted."
       }
     },
     "Chemistry": {
@@ -219,11 +237,12 @@
           "description": "Very poor performance"
         },
         "component_breakdown": {
-          "paper_1_weighting": 20,
+          "paper_1A_weighting": 20,
+          "paper_1B_weighting": 20,
           "paper_2_weighting": 40,
-          "paper_3_weighting": 20,
           "ia_weighting": 20
-        }
+        },
+        "post_2025_note": "Paper 3 removed. Paper 1 split into 1A (MCQ) and 1B (Data analysis). Weightings adjusted."
       },
       "SL": {
         "grade_7": {
@@ -262,11 +281,12 @@
           "description": "Very poor performance"
         },
         "component_breakdown": {
-          "paper_1_weighting": 20,
+          "paper_1A_weighting": 20,
+          "paper_1B_weighting": 20,
           "paper_2_weighting": 40,
-          "paper_3_weighting": 20,
           "ia_weighting": 20
-        }
+        },
+        "post_2025_note": "Paper 3 removed. Paper 1 split into 1A (MCQ) and 1B (Data analysis). Weightings adjusted."
       }
     },
     "Biology": {
@@ -307,11 +327,12 @@
           "description": "Very poor performance"
         },
         "component_breakdown": {
-          "paper_1_weighting": 20,
+          "paper_1A_weighting": 20,
+          "paper_1B_weighting": 20,
           "paper_2_weighting": 40,
-          "paper_3_weighting": 20,
           "ia_weighting": 20
-        }
+        },
+        "post_2025_note": "Paper 3 removed. Paper 1 split into 1A (MCQ) and 1B (Data analysis). Weightings adjusted."
       },
       "SL": {
         "grade_7": {
@@ -350,11 +371,12 @@
           "description": "Very poor performance"
         },
         "component_breakdown": {
-          "paper_1_weighting": 20,
+          "paper_1A_weighting": 20,
+          "paper_1B_weighting": 20,
           "paper_2_weighting": 40,
-          "paper_3_weighting": 20,
           "ia_weighting": 20
-        }
+        },
+        "post_2025_note": "Paper 3 removed. Paper 1 split into 1A (MCQ) and 1B (Data analysis). Weightings adjusted."
       }
     },
     "English_A": {
@@ -736,64 +758,6 @@
             "what_is_assessed": "An ability to write with clarity, accuracy, and variety. An ability to write in an appropriate academic register. An ability to include relevant terminology where appropriate."
           }
         ]
-      },
-      "individual_oral": {
-        "title": "Individual Oral",
-        "total_marks": 40,
-        "criteria": [
-          {
-            "criterion": "A: Knowledge, understanding and interpretation",
-            "max_marks": 10,
-            "descriptors": {
-              "0": "Does not meet standards described below",
-              "1-2": "Little knowledge of extracts/texts/works in context of global issue; limited/inappropriate evidence",
-              "3-4": "Limited knowledge; evidence sometimes appropriate",
-              "5-6": "Satisfactory knowledge; interpretation in context of global issue; evidence mainly appropriate",
-              "7-8": "Good knowledge; constant interpretation in context of global issue; evidence appropriate",
-              "9-10": "Excellent knowledge; compelling interpretation in context of global issue; evidence carefully selected"
-            },
-            "what_is_assessed": "A knowledge and understanding of the extracts, and the wider works and texts from which they are taken. An application of this knowledge to the global issue chosen, drawing conclusions that are underpinned by reference to works and texts."
-          },
-          {
-            "criterion": "B: Analysis and evaluation",
-            "max_marks": 10,
-            "descriptors": {
-              "0": "Does not meet standards described below",
-              "1-2": "Descriptive or irrelevant analysis; little discussion of language/structure/style",
-              "3-4": "Some relevant analysis but largely descriptive; aspects highlighted but partially understood",
-              "5-6": "Analysis revealing appropriate and evaluative commentary; reasonable understanding",
-              "7-8": "Analysis revealing appropriate/evaluative commentary, sometimes insightful; good understanding",
-              "9-10": "Analysis revealing appropriate/evaluative/insightful commentary; excellent and nuanced understanding"
-            },
-            "what_is_assessed": "A knowledge and understanding of the extracts, and the wider works and texts from which they are taken, showing how writers' choices of language, structure, and style construct and establish a perspective on the global issue chosen."
-          },
-          {
-            "criterion": "C: Focus and organization",
-            "max_marks": 10,
-            "descriptors": {
-              "0": "Does not meet standards described below",
-              "1-2": "Little focus; ideas rarely connected",
-              "3-4": "Some focus but may lack balance",
-              "5-6": "Focus but may lapse; connections established but not always coherent",
-              "7-8": "Mainly clear and sustained; balance; ideas develop consistently and coherently",
-              "9-10": "Clear and sustained; good balance; ideas develop compellingly"
-            },
-            "what_is_assessed": "Structure, focus, and balance. The ability to connect ideas coherently."
-          },
-          {
-            "criterion": "D: Language",
-            "max_marks": 10,
-            "descriptors": {
-              "0": "Does not meet standards described below",
-              "1-2": "Little clarity/accuracy; limited register",
-              "3-4": "Some clarity/accuracy; register sometimes appropriate",
-              "5-6": "Adequate clarity/accuracy; register mainly appropriate",
-              "7-8": "Good clarity/accuracy; register appropriate",
-              "9-10": "Very good clarity/accuracy and precision; register appropriate and effective"
-            },
-            "what_is_assessed": "An ability to use spoken language with clarity, accuracy, and variety. An ability to use an appropriate register and relevant terminology."
-          }
-        ]
       }
     },
     "History": {
@@ -879,13 +843,13 @@
         ]
       }
     },
-    "Sciences": {
-      "paper_1": {
-        "title": "Paper 1: Multiple Choice",
+    "Sciences_post2025": {
+      "paper_1A": {
+        "title": "Paper 1A: Multiple Choice",
         "total_marks_SL": 30,
         "total_marks_HL": 40,
         "marking": "1 mark per correct answer. No penalty for incorrect answers.",
-        "notes": "Questions test knowledge, understanding, and application of concepts across the syllabus. SL: 30 questions, HL: 40 questions.",
+        "notes": "Questions test knowledge, understanding, and application of concepts across the core syllabus. SL: 30 questions (45 min), HL: 40 questions (60 min).",
         "command_terms": [
           "State",
           "Identify",
@@ -893,16 +857,53 @@
           "Which",
           "True/False",
           "Calculate"
-        ]
+        ],
+        "weighting": "20% of final grade"
+      },
+      "paper_1B": {
+        "title": "Paper 1B: Data Analysis and Experimental Design",
+        "total_marks_SL": 25,
+        "total_marks_HL": 35,
+        "duration_minutes": 75,
+        "marking_approach": "Award marks for accurate data interpretation, correct application of experimental design principles, clear explanations, and appropriate use of scientific terminology. Written answers required - NOT multiple choice.",
+        "structure": {
+          "section": {
+            "description": "Data analysis and experimental design questions (4-6 questions)",
+            "marking": "Award marks for: graph interpretation, variable identification, error analysis, method evaluation, conclusion drawing."
+          }
+        },
+        "skills_assessed": [
+          "Experimental design (hypothesis, variables, controls, method)",
+          "Data interpretation (tables, graphs, charts, patterns)",
+          "Error and uncertainty analysis (random, systematic, precision, accuracy)",
+          "Drawing conclusions from experimental data",
+          "Evaluating methodology and suggesting improvements"
+        ],
+        "command_terms": [
+          "Analyse",
+          "Evaluate",
+          "Suggest",
+          "Explain",
+          "Calculate",
+          "Determine",
+          "Describe",
+          "Compare",
+          "Deduce",
+          "Justify"
+        ],
+        "weighting": "20% of final grade",
+        "post_2025_note": "NEW section replacing old Paper 3 experimental skills. Requires written answers, not multiple choice."
       },
       "paper_2": {
-        "title": "Paper 2: Data-Based, Short Answer, and Extended Response",
+        "title": "Paper 2: Short Answer and Extended Response",
         "total_marks_SL": 50,
         "total_marks_HL": 72,
-        "marking_approach": "Award marks for: accurate data interpretation, correct application of concepts, clear explanations, and appropriate use of scientific terminology.",
+        "duration_minutes_SL": 75,
+        "duration_minutes_HL": 135,
+        "marking_approach": "Award marks for: accurate knowledge recall, correct application of concepts, clear explanations, structured arguments, and appropriate use of scientific terminology.",
         "section_a": {
-          "description": "Data-based and short answer questions (2-5 marks each)",
-          "marking": "Award marks for specific correct points. Data-based questions typically have 5-8 sub-questions. Short answer questions typically have 8-12 sub-questions total."
+          "description": "Short answer questions (2-5 marks each)",
+          "marking": "Award marks for specific correct points. Typically 6-10 questions."
         },
         "section_b": {
           "description": "Extended response questions (10-15 marks each)",
@@ -942,50 +943,12 @@
           "Calculate",
           "Predict",
           "Deduce"
-        ]
+        ],
+        "weighting": "40% of final grade"
       },
       "paper_3": {
-        "title": "Paper 3: Practical Skills and Option Topic",
-        "total_marks_SL": 35,
-        "total_marks_HL": 45,
-        "marking_approach": "Award marks for experimental design, data analysis, evaluation of methods, and understanding of option topic content.",
-        "section_a": {
-          "description": "Practical-based questions",
-          "marking": "Assesses skills in: designing experiments (variables, controls, method), data collection and processing (tables, graphs, uncertainties), conclusion and evaluation (patterns, errors, improvements). SL: 4-6 sub-questions (15 marks), HL: 5-8 sub-questions (20 marks)."
-        },
-        "section_b": {
-          "description": "Option topic questions",
-          "marking": "Choice of 1 of 4 options. Questions require knowledge and understanding of the chosen option topic. SL: 3-5 sub-questions (20 marks), HL: 4-6 sub-questions (25 marks)."
-        },
-        "options": [
-          "Neurobiology and behaviour",
-          "Biotechnology and bioinformatics",
-          "Ecology and conservation",
-          "Human physiology"
-        ],
-        "command_terms_SL": [
-          "State",
-          "Outline",
-          "Describe",
-          "Explain",
-          "Discuss",
-          "Calculate",
-          "Suggest",
-          "Deduce"
-        ],
-        "command_terms_HL": [
-          "State",
-          "Outline",
-          "Describe",
-          "Explain",
-          "Discuss",
-          "Calculate",
-          "Suggest",
-          "Deduce",
-          "Evaluate",
-          "Design",
-          "Justify"
-        ]
+        "exists": false,
+        "note": "Paper 3 has been completely removed in the 2025 syllabus. Option topics no longer exist. Experimental skills previously in Paper 3 Section A are now assessed in Paper 1B."
       }
     },
     "Mathematics_AA": {
@@ -1047,10 +1010,13 @@
     }
   },
   "ia_rubrics": {
-    "Sciences": {
+    "Sciences_post2025": {
       "title": "Internal Assessment: Scientific Investigation",
       "total_marks": 24,
       "weighting": 20,
+      "word_limit": "3000 characters (not words!)",
+      "group_work_allowed": true,
+      "group_rule": "Students can work in groups with similar methods, but independent variables must differ",
       "criteria": [
         {
           "criterion": "Personal engagement",
@@ -1105,7 +1071,8 @@
             "3-4": "Clear, focused, well-structured, precise terminology"
           }
         }
-      ]
+      ],
+      "post_2025_note": "IA now has 3000 character limit (not 3000 words). Group work permitted with different independent variables."
     },
     "Mathematics": {
       "title": "Internal Assessment: Mathematical Exploration",

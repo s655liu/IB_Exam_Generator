@@ -11,8 +11,8 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 QWEN_API_KEY = os.getenv("QWEN_API_KEY")
 QWEN_BASE_URL = os.getenv("QWEN_BASE_URL", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1")
 
-# Load exam specs — same directory as this file
-SPECS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "exam_specs.json")
+# Load exam specs — point to the root data folder
+SPECS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "exam_specs.json")
 try:
     if not QWEN_API_KEY:
         print("WARNING: QWEN_API_KEY not found in environment variables!")
@@ -31,15 +31,34 @@ def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
         "structure_desc": "Standard IB question format"
     }
     try:
-        if subject in EXAM_SPECS and level in EXAM_SPECS[subject] and paper in EXAM_SPECS[subject][level]:
-            data = EXAM_SPECS[subject][level][paper]
+        # Normalize paper name for JSON keys (e.g., "Paper 1A" -> "paper_1A")
+        paper_key = paper.replace(" ", "_").replace("paper", "paper").replace("Paper", "paper")
+        if "1A" in paper: paper_key = "paper_1A"
+        if "1B" in paper: paper_key = "paper_1B"
+        if "Paper 1" == paper: paper_key = "paper_1"
+        if "Paper 2" == paper: paper_key = "paper_2"
+        if "Paper 3" == paper: paper_key = "paper_3"
+        
+        # 1. Check for subject directly (Standard)
+        subject_data = EXAM_SPECS.get(subject)
+        
+        # 2. Check for subject inside groups (e.g., Sciences)
+        if not subject_data:
+            for group_name, group_data in EXAM_SPECS.items():
+                if isinstance(group_data, dict) and subject in group_data.get("subjects", []):
+                    subject_data = group_data
+                    break
+        
+        if subject_data and level in subject_data and paper_key in subject_data[level]:
+            data = subject_data[level][paper_key]
             specs.update({
                 "duration": data.get("duration_minutes", 60),
                 "total_marks": data.get("total_marks", 40),
-                "question_count_range": str(data.get("typical_question_count", "5-10")),
+                "question_count_range": str(data.get("typical_question_count", data.get("question_count", "5-10"))),
                 "command_terms": data.get("command_terms", specs["command_terms"]),
-                "structure_desc": data.get("question_structure", {}).get("description", specs["structure_desc"]),
-                "calculator": data.get("calculator", False)
+                "structure_desc": data.get("question_structure", {}).get("description", 
+                                  data.get("structure", {}).get("description", specs["structure_desc"])),
+                "calculator": data.get("calculator_allowed", data.get("calculator", False))
             })
     except Exception as e:
         print(f"Error parsing specs for {subject} {level} {paper}: {e}")
@@ -49,20 +68,32 @@ def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str,
     instructions = ""
     calc_str = "CALCULATOR ALLOWED (GDC)" if specs.get("calculator") else "NO CALCULATORS ALLOWED"
     if "Math" in subject:
-        instructions = f"- **{calc_str}**.\n- Show all working clearly.\n- Use LaTeX for all mathematical notation (e.g., $x^{{2}}$, $\\frac{{a}}{{b}}$).\n- **DIFFICULTY PROGRESSION**: \n  1. Ensure each multi-part question follows a 'low floor, high ceiling' approach—starting with accessible marks and concluding with more demanding proofs or problem-solving.\n  2. The paper should grow in complexity, moving from standard routine problems to non-routine or unfamiliar contexts (especially for Section B)."
+        instructions = f"- **{calc_str}**.\n- Show all working clearly.\n- Use LaTeX for all mathematical notation (e.g., $x^{{2}}$, $\\frac{{a}}{{b}}$).\n- Use SVG for coordinate graphs, geometric shapes, and statistical charts where appropriate.\n- **DIFFICULTY PROGRESSION**: \n  1. Ensure each multi-part question follows a 'low floor, high ceiling' approach—starting with accessible marks and concluding with more demanding proofs or problem-solving.\n  2. The paper should grow in complexity, moving from standard routine problems to non-routine or unfamiliar contexts (especially for Section B)."
     elif "History" in subject:
         if "Paper 1" in paper:
-            instructions = "- Provide 4 source-based questions.\n- Include brief placeholders/descriptions for 4 sources (Source A, B, C, D)."
+            instructions = "- Provide 4 source-based questions.\n- Include brief placeholders/descriptions for 4 sources (Source A, B, C, D).\n- Use Mermaid or SVG to provide timelines or source hierarchy diagrams."
         else:
             instructions = "- Provide essay prompts following IB command terms."
-    elif "English" in subject:
-        instructions = "- Provide a short unseen literary passage description followed by guiding questions."
+    elif any(lang in subject for lang in ["French", "Spanish", "Mandarin", "Japanese", "Language"]):
+        instructions = "- Provide contextual situational prompts.\n- Use SVG to create simple visual aids or 'Situation Scenes' (e.g., a simple shop, a family tree, or a street) to provide visual context for vocabulary/grammar questions."
+    elif subject == "Geography":
+        instructions = "- Use SVG for simple maps, demographic cycles, climate graphs, or landform diagrams."
+    elif subject in ["ITGS", "Business"]:
+        instructions = "- Use Mermaid for network diagrams, flowcharts, or organizational charts.\n- For Business, use SVG for supply/demand curves or break-even charts where appropriate."
     elif subject in ["Physics", "Chemistry", "Biology"]:
-        instructions = f"- **{calc_str}**.\n- Reference relevant data from the IB {subject} Data Booklet.\n- **DIFFICULTY GRADIENT (SCALING)**: \n  1. Within each multi-part question, parts (a), (b), (c), etc., must strictly increase in difficulty and cognitive demand (e.g., recall → application → complex evaluation).\n  2. The overall paper should be structured so that earlier questions are more accessible, while later questions increasingly require synthesis of multiple topics and higher-order thinking."
+        instructions = f"- **{calc_str}**.\n- Reference relevant data from the IB {subject} Data Booklet."
+        if "Paper 1A" in paper:
+            instructions += "\n- **FORMAT**: Multiple Choice Questions only.\n- Provide 4 options (A, B, C, D) for each question.\n- Focus on core conceptual understanding and quick calculations."
+        elif "Paper 1B" in paper:
+            instructions += f"\n- **FORMAT**: Data analysis and experimental design questions.\n- **STRICT**: This is NOT multiple choice. Provide structured questions requiring written analysis.\n- **SKILLS FOCUS**: Focus heavily on the following selected skills: {', '.join(specs.get('selected_skills', [])) if 'selected_skills' in specs else 'general experimental design'}.\n- Include questions on: error analysis, graph interpretation, variable identification, and methodology evaluation.\n- Use SVG for experimental setups or data plots."
+        
+        instructions += f"\n- **DIFFICULTY GRADIENT (SCALING)**: \n  1. Within each multi-part question, parts (a), (b), (c), etc., must strictly increase in difficulty and cognitive demand (e.g., recall → application → complex evaluation).\n  2. The overall paper should be structured so that earlier questions are more accessible, while later questions increasingly require synthesis of multiple topics and higher-order thinking."
     return instructions
 
 def build_prompt(request: GenerateRequest) -> str:
     specs = get_ib_specs(request.subject, request.level, request.paper)
+    # Pass selected topics/skills into the instructions generator
+    specs['selected_skills'] = request.topic_or_type
     subject_instr = get_subject_specific_instructions(request.subject, request.paper, specs)
     focus_areas = ", ".join(request.topic_or_type)
     prompt = f"""Generate an authentic International Baccalaureate (IB) {request.subject} {request.level} {request.paper} examination.
@@ -80,7 +111,11 @@ REQUIREMENTS:
 3. Ensure total marks sum exactly to {specs['total_marks']}.
 4. Use clear, concise language appropriate for Grade 11-12 students.
 5. If multiple focus areas are provided, create a balanced exam covering all of them.
-6. **STRICT CONSTRAINT**: Do not generate any questions that require the student to draw a diagram, graph, or sketch. All questions must be answerable using only text and mathematical notation.
+6. **DIAGRAMS**: Use visual aids for **ALL** subjects inside ```mermaid ``` or ```svg ``` blocks.
+   - **History/Business/ITGS**: Use Mermaid for timelines, network diagrams, or organizational charts.
+   - **Math/Sci/Geography**: Use SVG for coordinate graphs, maps, circuits, or chemical structures.
+   - **Language/Social Sciences**: Use SVG for situational illustrations or Mermaid for logic flows.
+   - **STRICT**: Only Mermaid.js and raw SVG are supported. Keep diagrams clear and professional.
 {subject_instr}
 
 FORMAT:
@@ -90,9 +125,12 @@ FORMAT:
 {f'---ANSWER KEY---\\n[Provide a COMPLETE and DETAILED mark scheme for EVERY question.]' if request.include_answer_key else ''}
 
 ---GRADE BOUNDARIES---
-[Provide a table or list mapping raw marks to IB Grades 1-7 based on the paper's total of {specs['total_marks']}. 
-Suggested standard thresholds: 7 (80%+), 6 (70%+), 5 (60%+), 4 (50%+), 3 (40%+). 
-Label this section clearly as "Official Grade Boundaries".]
+[Provide exactly ONE standard Markdown table mapping raw marks to IB Grades 1-7 based on the paper's total of {specs['total_marks']}. 
+Use this exact format:
+| Raw Mark | IB Grade |
+|----------|----------|
+| [Range]  | [Grade]  |
+Do not include any headers like "Official Grade Boundaries" or extra text outside the table.]
 """
     return prompt
 
