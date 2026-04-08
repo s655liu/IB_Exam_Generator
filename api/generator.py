@@ -131,7 +131,7 @@ def build_prompt(request: GenerateRequest) -> str:
     
     elif specs.get("structure_type") in ["essay_choice", "essay_based", "short_and_extended_response"]:
         structure_rule = f"\n- **STRICT QUESTION COUNT**: You MUST provide EXACTLY {specs['question_count']} essay prompts/options. The user will choose 1 of these {specs['question_count']} prompts."
-        model_essay_req = "\n- **MODEL ESSAY**: Inside the [SECTION_MARK_SCHEME], you MUST provide ONE FULL, HIGH-LEVEL sample essay response for at least one of the generated prompts. This essay should demonstrate excellent structure (intro, body, conclusion) and depth of analysis."
+        model_essay_req = "\n- **MODEL ESSAY & GRADING**: Inside the [SECTION_MARK_SCHEME], you MUST provide ONE FULL, HIGH-LEVEL sample essay response for at least one of the generated prompts. IMMEDIATELY FOLLOWING the essay, provide a detailed **EXAMINER COMMENTARY AND GRADE**. Break down the marks for each IB Criterion (e.g., Criterion A, B, C, D) and provide a 2-3 sentence justification for the marks in each category."
         if request.prescribed_texts and len(request.prescribed_texts) >= 2:
             texts_str = " and ".join([t for t in request.prescribed_texts if t.strip()])
             if texts_str:
