@@ -49,7 +49,7 @@ def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str,
     instructions = ""
     calc_str = "CALCULATOR ALLOWED (GDC)" if specs.get("calculator") else "NO CALCULATORS ALLOWED"
     if "Math" in subject:
-        instructions = f"- **{calc_str}**.\n- Show all working clearly.\n- Use LaTeX for all mathematical notation (e.g., $x^{{2}}$, $\\frac{{a}}{{b}}$)."
+        instructions = f"- **{calc_str}**.\n- Show all working clearly.\n- Use LaTeX for all mathematical notation (e.g., $x^{{2}}$, $\\frac{{a}}{{b}}$).\n- **DIFFICULTY PROGRESSION**: \n  1. Ensure each multi-part question follows a 'low floor, high ceiling' approach—starting with accessible marks and concluding with more demanding proofs or problem-solving.\n  2. The paper should grow in complexity, moving from standard routine problems to non-routine or unfamiliar contexts (especially for Section B)."
     elif "History" in subject:
         if "Paper 1" in paper:
             instructions = "- Provide 4 source-based questions.\n- Include brief placeholders/descriptions for 4 sources (Source A, B, C, D)."
@@ -58,7 +58,7 @@ def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str,
     elif "English" in subject:
         instructions = "- Provide a short unseen literary passage description followed by guiding questions."
     elif subject in ["Physics", "Chemistry", "Biology"]:
-        instructions = f"- **{calc_str}**.\n- Reference relevant data from the IB {subject} Data Booklet.\n- Include sub-questions (a, b, c) for extended response questions."
+        instructions = f"- **{calc_str}**.\n- Reference relevant data from the IB {subject} Data Booklet.\n- **DIFFICULTY GRADIENT (SCALING)**: \n  1. Within each multi-part question, parts (a), (b), (c), etc., must strictly increase in difficulty and cognitive demand (e.g., recall → application → complex evaluation).\n  2. The overall paper should be structured so that earlier questions are more accessible, while later questions increasingly require synthesis of multiple topics and higher-order thinking."
     return instructions
 
 def build_prompt(request: GenerateRequest) -> str:
