@@ -100,68 +100,40 @@ const AudioPlayer = ({ text, language }) => {
   }, []);
 
   return (
-    <div className="audio-card my-6 rounded-2xl border border-white/10 bg-gradient-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-sm overflow-hidden shadow-xl transition-all hover:border-sky-500/30 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)] w-full max-w-full">
-      {/* Header Section */}
-      <div className="flex items-center gap-4 p-4 border-b border-white/10">
-        <button
-          onClick={togglePlay}
-          className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-sky-500 to-sky-600 text-white rounded-xl hover:from-sky-400 hover:to-sky-500 transition-all shadow-lg hover:shadow-sky-500/25 active:scale-95"
-        >
-          {isPlaying && !isPaused ? (
-            <Pause className="w-5 h-5" />
-          ) : (
-            <Play className="w-5 h-5 ml-0.5" />
-          )}
-          {isPlaying && !isPaused && (
-            <div className="absolute inset-0 rounded-xl border-2 border-sky-400/50 animate-ping" />
-          )}
+    <div className="audio-card">
+      <div className="audio-header">
+        <button onClick={togglePlay} className="audio-play-btn">
+          {isPlaying && !isPaused ? <Pause size={20} /> : <Play size={20} style={{ marginLeft: '2px' }} />}
         </button>
 
-        <div className="flex-1">
-          <div className="text-white font-semibold text-sm">
+        <div className="audio-info">
+          <div className="audio-status">
             {isPlaying && !isPaused ? 'Playing Audio Passage' : isPaused ? 'Paused' : 'Audio Ready'}
           </div>
-          <div className="flex items-center gap-2 text-gray-400 text-xs">
-            <Volume2 className="w-3 h-3 text-sky-400" />
+          <div className="audio-meta">
+            <Volume2 size={12} style={{ color: '#38bdf8' }} />
             <span>AI Voice • {language}</span>
           </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="audio-controls">
           {isPlaying && (
-            <button
-              onClick={stopAudio}
-              className="w-8 h-8 flex items-center justify-center bg-white/5 text-gray-400 hover:text-red-400 rounded-lg border border-white/10 transition-all hover:bg-red-500/10"
-              title="Stop"
-            >
-              <RefreshCw className="w-4 h-4" />
+            <button onClick={stopAudio} className="audio-btn-secondary" title="Stop">
+              <RefreshCw size={16} />
             </button>
           )}
           <button
             onClick={() => setShowTranscript(!showTranscript)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${showTranscript
-              ? 'bg-sky-500/20 text-sky-400 border border-sky-500/30'
-              : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10'
-            }`}
+            className={`audio-btn-secondary ${showTranscript ? 'audio-btn-active' : ''}`}
           >
             {showTranscript ? 'Hide Text' : 'Show Transcript'}
           </button>
         </div>
       </div>
 
-      {/* Transcript Section with proper containment */}
       {showTranscript && (
-        <div className="p-5 max-h-80 overflow-y-auto overflow-x-hidden custom-scrollbar border-t border-white/5 bg-black/20">
-          <div 
-            className="text-gray-300 text-sm leading-relaxed whitespace-pre-wrap"
-            style={{ 
-              wordBreak: 'break-all',
-              overflowWrap: 'anywhere', 
-              hyphens: 'auto',
-              display: 'block',
-              width: '100%'
-            }}
-          >
+        <div className="audio-transcript">
+          <div className="audio-transcript-content">
             {text}
           </div>
         </div>
