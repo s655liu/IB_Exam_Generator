@@ -10,7 +10,7 @@
     ],
     "unchanged_subjects": [
       "Mathematics_AA",
-      "English_A",
+      "English_Literature_A",
       "History",
       "Business"
     ]
@@ -379,7 +379,7 @@
         "post_2025_note": "Paper 3 removed. Paper 1 split into 1A (MCQ) and 1B (Data analysis). Weightings adjusted."
       }
     },
-    "English_A": {
+    "English_Literature_A": {
       "HL": {
         "grade_7": {
           "min": 82,
@@ -642,7 +642,7 @@
     }
   },
   "rubrics": {
-    "English_A": {
+    "English_Literature_A": {
       "paper_1": {
         "title": "Paper 1: Guided Textual Analysis",
         "total_marks": 20,

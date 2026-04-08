@@ -7,6 +7,7 @@ class GenerateRequest(BaseModel):
     paper: str
     topic_or_type: List[str]
     include_answer_key: bool = True
+    prescribed_texts: Optional[List[str]] = None
 
 class GenerateResponse(BaseModel):
     exam_text: str

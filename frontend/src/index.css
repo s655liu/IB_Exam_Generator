@@ -219,12 +219,48 @@ select:focus, input:focus {
 }
 
 .exam-page {
-  background: var(--bg-card);
-  padding: 3rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  background: white;
+  color: #1e293b;
+  padding: 4rem;
+  border-radius: 4px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
   position: relative;
-  min-height: 800px;
+  min-height: 1000px;
+}
+
+/* Override markdown-body for white background */
+.exam-page .markdown-body {
+  color: #1e293b;
+}
+
+.exam-page .markdown-body h1, 
+.exam-page .markdown-body h2, 
+.exam-page .markdown-body h3 {
+  color: #0f172a;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Markdown Table Styling (GFM) */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border: 1px solid #e2e8f0;
+}
+
+.markdown-body th, .markdown-body td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.markdown-body th {
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.markdown-body tr:nth-child(even) {
+  background: #f1f5f9;
 }
 
 .exam-page-header {

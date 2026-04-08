@@ -2,8 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
-import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download } from 'lucide-react';
+import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download, RefreshCw, Clock, Target, Trophy } from 'lucide-react';
 import 'katex/dist/katex.min.css';
 import mermaid from 'mermaid';
 import subjectData from '@data/exam_subject_structure.json';
@@ -35,7 +36,7 @@ const Mermaid = ({ chart }) => {
     }
   }, [chart]);
 
-  return <div key={chart} ref={ref} className="mermaid flex justify-center my-6 bg-slate-900/50 p-6 rounded-xl border border-white/10" />;
+  return <div key={chart} ref={ref} className="mermaid flex justify-center my-6 bg-slate-50 p-6 rounded-xl border border-slate-200" />;
 };
 
 const SVGRenderer = ({ code }) => {
@@ -49,8 +50,8 @@ const SVGRenderer = ({ code }) => {
   }, [code]);
 
   return (
-    <div 
-      className="svg-diagram flex justify-center my-6 bg-slate-900/30 p-8 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-sm overflow-hidden"
+    <div
+      className="svg-diagram flex justify-center my-6 bg-slate-50 p-8 rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
       dangerouslySetInnerHTML={{ __html: processedCode }}
     />
   );
@@ -66,6 +67,7 @@ function App() {
   const [selectedPaper, setSelectedPaper] = useState('');
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [includeAnswerKey, setIncludeAnswerKey] = useState(true);
+  const [prescribedTexts, setPrescribedTexts] = useState(['', '']);
 
   // UI State
   const [isGenerating, setIsGenerating] = useState(false);
@@ -77,19 +79,19 @@ function App() {
   // Derived official data (Boundaries & Rubrics)
   const officialData = useMemo(() => {
     if (!selectedSubject) return null;
-    
+
     // 1. Determine Subject Key for Boundaries (Physics, Mathematics_AA, etc.)
     let subjectKey = selectedSubject.replace(' ', '_');
     if (selectedSubject === 'Math AA') subjectKey = 'Mathematics_AA';
     if (selectedSubject === 'Business Management') subjectKey = 'Business';
-    if (selectedSubject === 'English A') subjectKey = 'English_A';
+    if (selectedSubject === 'English Literature A') subjectKey = 'English_Literature_A';
 
     const boundaries = markSchemes.grade_boundaries?.[subjectKey]?.[selectedLevel] || null;
-    
-    // 2. Determine Rubric Key (English_A, History, Sciences, etc.)
+
+    // 2. Determine Rubric Key (English_Literature_A, History, Sciences, etc.)
     let paperKey = selectedPaper?.toLowerCase().replace(' ', '_');
     let rubricKey = subjectKey;
-    
+
     // Sciences mapping (Physics/Chemistry/Biology use common Science rubrics)
     if (['Physics', 'Chemistry', 'Biology'].includes(selectedSubject)) {
       rubricKey = 'Sciences_post2025';
@@ -117,10 +119,10 @@ function App() {
 
   // Derived data
   const subjects = Object.keys(subjectData).filter(key => key !== 'metadata');
-  
-  const currentSubject = useMemo(() => 
+
+  const currentSubject = useMemo(() =>
     selectedSubject ? subjectData[selectedSubject] : null
-  , [selectedSubject]);
+    , [selectedSubject]);
 
   const isMathOrScience = useMemo(() => {
     const scienceMathKeywords = ['Math', 'Biology', 'Chemistry', 'Physics'];
@@ -135,11 +137,11 @@ function App() {
   const availableOptions = useMemo(() => {
     if (!currentSubject || !selectedPaper) return [];
 
-    const isEnglishA = selectedSubject === 'English A';
+    const isEnglishLiteratureA = selectedSubject === 'English Literature A';
     const isHistory = selectedSubject === 'History';
     const isLanguageB = selectedSubject.endsWith(' B');
 
-    if (isEnglishA) return currentSubject.types_by_paper[selectedPaper] || [];
+    if (isEnglishLiteratureA) return currentSubject.types_by_paper[selectedPaper] || [];
 
     if (isHistory) {
       if (selectedPaper === 'Paper 1') return currentSubject.topics.core_topics['Paper 1 Prescribed Subjects'] || [];
@@ -171,7 +173,7 @@ function App() {
   useEffect(() => { setSelectedTopics([]); }, [selectedPaper]);
 
   const toggleTopic = (topic) => {
-    setSelectedTopics(prev => 
+    setSelectedTopics(prev =>
       prev.includes(topic) ? prev.filter(t => t !== topic) : [...prev, topic]
     );
   };
@@ -202,7 +204,8 @@ function App() {
         level: selectedLevel,
         paper: selectedPaper,
         topic_or_type: selectedTopics,
-        include_answer_key: includeAnswerKey
+        include_answer_key: includeAnswerKey,
+        prescribed_texts: prescribedTexts.filter(t => t.trim() !== '')
       });
       setResult(response.data);
     } catch (err) {
@@ -260,10 +263,10 @@ function App() {
                 {papers.map(p => <option key={p} value={p}>{p}</option>)}
               </select>
             </div>
-            
+
             <div className="form-group">
               <label>Answer Key</label>
-              <div className="toggle-group" style={{marginTop: '0.25rem'}}>
+              <div className="toggle-group" style={{ marginTop: '0.25rem' }}>
                 <label className="switch">
                   <input type="checkbox" checked={includeAnswerKey} onChange={(e) => setIncludeAnswerKey(e.target.checked)} />
                   <span className="slider"></span>
@@ -272,20 +275,53 @@ function App() {
             </div>
           </div>
 
-          <div className="topics-container">
-            <div className="topics-header">
-              <label>
-                {selectedSubject === 'English A' ? 'Task Type (Multi-Select)' : 
-                 (isMathOrScience && selectedPaper === 'Paper 1B') ? 'Experimental Skills (Multi-Select)' : 
-                 'Focus Topics (Multi-Select)'}
-              </label>
-              {isMathOrScience && availableOptions.length > 0 && (
-                <button className="select-all-btn" onClick={selectAllTopics}>
+          {/* English Paper 2 Prescribed Works */}
+          {(selectedSubject === 'English Literature A' || selectedSubject === 'English A') && selectedPaper === 'Paper 2' && (
+            <div className="prescribed-works-section mt-8 pt-8 border-t border-slate-200/50">
+              <div className="flex items-center gap-2 mb-4 text-sky-400">
+                <BookOpen className="w-5 h-5" />
+                <h3 className="text-lg font-semibold text-slate-100">Prescribed Works (Comparison)</h3>
+              </div>
+              <p className="text-sm text-slate-400 mb-6">
+                Enter the two literary works studied for comparison. The AI will tailor prompts to these texts.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                {[0, 1].map((index) => (
+                  <div key={index} className="form-group">
+                    <label>Work {index + 1} (Title & Author)</label>
+                    <input
+                      type="text"
+                      placeholder={index === 0 ? "e.g. 1984 by George Orwell" : "e.g. Brave New World by Aldous Huxley"}
+                      value={prescribedTexts[index]}
+                      onChange={(e) => {
+                        const newTexts = [...prescribedTexts];
+                        newTexts[index] = e.target.value;
+                        setPrescribedTexts(newTexts);
+                      }}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="topics-container mt-8">
+            <div className="flex justify-between items-center mb-4">
+              <div className="topics-header">
+                <label className="text-sm font-medium text-slate-400">
+                  {selectedSubject === 'English Literature A' ? 'Task Type (Multi-Select)' :
+                    (isMathOrScience && selectedPaper === 'Paper 1B') ? 'Experimental Skills (Multi-Select)' :
+                      'Focus Topics (Multi-Select)'}
+                </label>
+              </div>
+              {isMathOrScience && availableOptions.length > 0 && selectedPaper && (
+                <button className="text-xs text-sky-400 hover:text-sky-300 transition-colors" onClick={selectAllTopics}>
                   {selectedTopics.length === availableOptions.length ? 'Deselect All' : 'Select All Topics'}
                 </button>
               )}
             </div>
-            
+
             {!selectedPaper ? (
               <div className="flex items-center gap-2 p-2 text-slate-500 italic text-sm">
                 <div className="w-1.5 h-1.5 rounded-full bg-slate-500 animate-pulse"></div>
@@ -295,10 +331,10 @@ function App() {
               <div className="topics-grid">
                 {availableOptions.map(t => (
                   <label key={t} className={`topic-checkbox ${selectedTopics.includes(t) ? 'selected' : ''}`}>
-                    <input 
-                      type="checkbox" 
-                      checked={selectedTopics.includes(t)} 
-                      onChange={() => toggleTopic(t)} 
+                    <input
+                      type="checkbox"
+                      checked={selectedTopics.includes(t)}
+                      onChange={() => toggleTopic(t)}
                     />
                     {t}
                   </label>
@@ -307,7 +343,7 @@ function App() {
             )}
           </div>
 
-          <button 
+          <button
             className="btn-generate"
             disabled={!canGenerate || isGenerating}
             onClick={handleGenerate}
@@ -337,58 +373,58 @@ function App() {
         {result && (
           <div className="exam-layout relative">
             {/* Tab Bar + Export PDF on same row */}
-            <div className="no-print" style={{display:'flex', alignItems:'center', gap:'1rem', marginBottom:'2rem'}}>
-              <button 
+            <div className="no-print" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+              <button
                 onClick={() => setActiveTab('paper')}
                 style={{
-                  display:'flex', alignItems:'center', gap:'0.5rem',
-                  padding:'0.65rem 1.4rem', borderRadius:'12px',
-                  fontSize:'0.875rem', fontWeight:600, cursor:'pointer',
-                  transition:'all 0.2s',
+                  display: 'flex', alignItems: 'center', gap: '0.5rem',
+                  padding: '0.65rem 1.4rem', borderRadius: '12px',
+                  fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
+                  transition: 'all 0.2s',
                   background: activeTab === 'paper' ? 'linear-gradient(135deg,#1e40af55,#0ea5e966)' : 'rgba(255,255,255,0.05)',
                   color: activeTab === 'paper' ? '#93c5fd' : '#9ca3af',
                   border: activeTab === 'paper' ? '1px solid #3b82f660' : '1px solid rgba(255,255,255,0.08)',
                   boxShadow: activeTab === 'paper' ? '0 0 20px #3b82f620' : 'none',
                 }}
               >
-                <FileText style={{width:'16px',height:'16px'}} />
+                <FileText style={{ width: '16px', height: '16px' }} />
                 Question Paper
               </button>
-              
+
               {result.answer_key && (
-                <button 
+                <button
                   onClick={() => setActiveTab('key')}
                   style={{
-                    display:'flex', alignItems:'center', gap:'0.5rem',
-                    padding:'0.65rem 1.4rem', borderRadius:'12px',
-                    fontSize:'0.875rem', fontWeight:600, cursor:'pointer',
-                    transition:'all 0.2s',
+                    display: 'flex', alignItems: 'center', gap: '0.5rem',
+                    padding: '0.65rem 1.4rem', borderRadius: '12px',
+                    fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
+                    transition: 'all 0.2s',
                     background: activeTab === 'key' ? 'linear-gradient(135deg,#06442a88,#10b98166)' : 'rgba(255,255,255,0.05)',
                     color: activeTab === 'key' ? '#6ee7b7' : '#9ca3af',
                     border: activeTab === 'key' ? '1px solid #10b98160' : '1px solid rgba(255,255,255,0.08)',
                     boxShadow: activeTab === 'key' ? '0 0 20px #10b98120' : 'none',
                   }}
                 >
-                  <CheckCircle style={{width:'16px',height:'16px'}} />
+                  <CheckCircle style={{ width: '16px', height: '16px' }} />
                   Mark Scheme & Boundaries
                 </button>
               )}
 
               {/* Export PDF — same row, pushed to the right */}
-              <button 
+              <button
                 onClick={handlePrint}
                 style={{
-                  marginLeft:'auto',
-                  display:'flex', alignItems:'center', gap:'0.5rem',
-                  padding:'0.65rem 1.4rem', borderRadius:'12px',
-                  fontSize:'0.875rem', fontWeight:600, cursor:'pointer',
-                  transition:'all 0.2s',
-                  background:'rgba(255,255,255,0.06)',
-                  color:'#cbd5e1',
-                  border:'1px solid rgba(255,255,255,0.12)',
+                  marginLeft: 'auto',
+                  display: 'flex', alignItems: 'center', gap: '0.5rem',
+                  padding: '0.65rem 1.4rem', borderRadius: '12px',
+                  fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  background: 'rgba(255,255,255,0.06)',
+                  color: '#cbd5e1',
+                  border: '1px solid rgba(255,255,255,0.12)',
                 }}
               >
-                <Download style={{width:'16px',height:'16px'}} />
+                <Download style={{ width: '16px', height: '16px' }} />
                 Download PDF
               </button>
             </div>
@@ -396,151 +432,151 @@ function App() {
 
             {/* UI View */}
             <div className="no-print mt-8">
-               {/* Question Paper Container */}
-               {activeTab === 'paper' && (
-                 <section className="exam-page glass animate-fade-in">
-                    <div className="markdown-body">
-                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                        {result.exam_text}
-                      </ReactMarkdown>
-                    </div>
-                 </section>
-               )}
+              {/* Question Paper Container */}
+              {activeTab === 'paper' && (
+                <section className="exam-page glass animate-fade-in">
+                  <div className="markdown-body">
+                    <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
+                      {result.exam_text}
+                    </ReactMarkdown>
+                  </div>
+                </section>
+              )}
 
-               {/* Mark Scheme Container */}
-               {activeTab === 'key' && (
-                 <section className="exam-page glass mark-scheme-page animate-fade-in relative">
-                   <div className="markdown-body">
-                     {/* Official Rubric Section */}
-                     {officialData?.rubric && (
-                        <div className="rubric-box mb-12">
-                          <h2 className="flex items-center gap-3 text-emerald-400 mb-6 font-bold text-2xl border-b border-emerald-500/20 pb-4">
-                            <BookOpen className="w-7 h-7" /> {officialData.rubric.title} (Official Rubric)
-                          </h2>
-                          {officialData.rubric.marking_bands ? (
-                             <table className="grade-table">
-                               <thead><tr><th>Marks</th><th>Descriptor</th></tr></thead>
-                               <tbody>{Object.entries(officialData.rubric.marking_bands).map(([marks, desc]) => <tr key={marks}><td>{marks}</td><td>{desc}</td></tr>)}</tbody>
-                             </table>
-                          ) : officialData.rubric.criteria ? (
-                            <div className="grid gap-6">
-                               {officialData.rubric.criteria.map((c, i) => (
-                                 <div key={i} className="p-4 bg-white/5 rounded-xl border border-white/10">
-                                   <div className="font-bold text-emerald-400 mb-2">{c.criterion}</div>
-                                   <p className="text-sm text-slate-400 mb-3">{c.what_is_assessed}</p>
-                                   <div className="text-xs space-y-1 pl-4 border-l-2 border-emerald-500/30">
-                                      {Object.entries(c.descriptors).map(([m, d]) => <div key={m}><strong>{m}:</strong> {d}</div>)}
-                                   </div>
-                                 </div>
-                               ))}
-                            </div>
-                          ) : (
-                             <div className="p-4 bg-white/5 rounded-xl">
-                               <p className="text-sm">{officialData.rubric.marking_approach || officialData.rubric.marking_notes}</p>
-                             </div>
-                          )}
-                        </div>
-                     )}
+              {/* Mark Scheme Container */}
+              {activeTab === 'key' && (
+                <section className="exam-page glass mark-scheme-page animate-fade-in relative">
+                  <div className="markdown-body">
+                    {/* Official Rubric Section */}
+                    {officialData?.rubric && (
+                      <div className="rubric-box mb-12">
+                        <h2 className="flex items-center gap-3 text-emerald-400 mb-6 font-bold text-2xl border-b border-emerald-500/20 pb-4">
+                          <BookOpen className="w-7 h-7" /> {officialData.rubric.title} (Official Rubric)
+                        </h2>
+                        {officialData.rubric.marking_bands ? (
+                          <table className="grade-table">
+                            <thead><tr><th>Marks</th><th>Descriptor</th></tr></thead>
+                            <tbody>{Object.entries(officialData.rubric.marking_bands).map(([marks, desc]) => <tr key={marks}><td>{marks}</td><td>{desc}</td></tr>)}</tbody>
+                          </table>
+                        ) : officialData.rubric.criteria ? (
+                          <div className="grid gap-6">
+                            {officialData.rubric.criteria.map((c, i) => (
+                              <div key={i} className="p-4 bg-white/5 rounded-xl border border-white/10">
+                                <div className="font-bold text-emerald-400 mb-2">{c.criterion}</div>
+                                <p className="text-sm text-slate-400 mb-3">{c.what_is_assessed}</p>
+                                <div className="text-xs space-y-1 pl-4 border-l-2 border-emerald-500/30">
+                                  {Object.entries(c.descriptors).map(([m, d]) => <div key={m}><strong>{m}:</strong> {d}</div>)}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="p-4 bg-white/5 rounded-xl">
+                            <p className="text-sm">{officialData.rubric.marking_approach || officialData.rubric.marking_notes}</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
 
-                     {result.answer_key ? (
-                       <>
-                         <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                           {result.answer_key}
-                         </ReactMarkdown>
-                         
-                         {/* Priority: Local JSON Boundaries then AI Boundaries */}
-                         {(officialData?.boundaries || result.grade_boundaries) && (
-                            <div className="mt-12 p-8 bg-emerald-500/5 border border-emerald-500/20 rounded-2xl grade-boundaries-box">
-                              <h3 className="flex items-center gap-3 text-emerald-400 mb-2 font-bold text-xl">
-                                <Award className="w-6 h-6" /> Official Grade Boundaries
-                              </h3>
-                              <p className="text-xs text-slate-500 mb-6">{markSchemes.grade_boundaries.explanation}</p>
-                              
-                              {officialData?.boundaries ? (
-                                <table className="grade-table">
-                                  <thead><tr><th>Grade</th><th>Percentage Range</th><th>Description</th></tr></thead>
-                                  <tbody>
-                                    {Object.entries(officialData.boundaries)
-                                      .filter(([k]) => k.startsWith('grade_'))
-                                      .map(([k, v]) => (
+                    {result.answer_key ? (
+                      <>
+                        <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
+                          {result.answer_key}
+                        </ReactMarkdown>
+
+                        {/* Priority: Local JSON Boundaries then AI Boundaries */}
+                        {(officialData?.boundaries || result.grade_boundaries) && (
+                          <div className="mt-12 p-8 bg-emerald-500/5 border border-emerald-500/20 rounded-2xl grade-boundaries-box">
+                            <h3 className="flex items-center gap-3 text-emerald-400 mb-2 font-bold text-xl">
+                              <Award className="w-6 h-6" /> Official Grade Boundaries
+                            </h3>
+                            <p className="text-xs text-slate-500 mb-6">{markSchemes.grade_boundaries.explanation}</p>
+
+                            {officialData?.boundaries ? (
+                              <table className="grade-table">
+                                <thead><tr><th>Grade</th><th>Percentage Range</th><th>Description</th></tr></thead>
+                                <tbody>
+                                  {Object.entries(officialData.boundaries)
+                                    .filter(([k]) => k.startsWith('grade_'))
+                                    .map(([k, v]) => (
                                       <tr key={k}>
                                         <td className="font-bold text-lg">{k.replace('grade_', '')}</td>
                                         <td>{v.min}% - {v.max}%</td>
                                         <td className="text-slate-400">{v.description}</td>
                                       </tr>
                                     ))}
-                                  </tbody>
-                                </table>
-                              ) : (
-                                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                                  {result.grade_boundaries}
-                                </ReactMarkdown>
-                              )}
-                            </div>
-                         )}
-                       </>
-                     ) : (
-                       <div className="p-12 text-center text-slate-500 italic">Mark Scheme not available.</div>
-                     )}
-                   </div>
-                 </section>
-               )}
+                                </tbody>
+                              </table>
+                            ) : (
+                              <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
+                                {result.grade_boundaries}
+                              </ReactMarkdown>
+                            )}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="p-12 text-center text-slate-500 italic">Mark Scheme not available.</div>
+                    )}
+                  </div>
+                </section>
+              )}
             </div>
 
             {/* Print Only View (PDF) */}
             <div className="print-only">
-               <section className="exam-page">
-                 <div className="markdown-body">
-                   <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                     {result.exam_text}
-                   </ReactMarkdown>
-                 </div>
-               </section>
-               {(result.answer_key || result.grade_boundaries || officialData) && (
-                 <section className="exam-page mark-scheme-page">
-                   <div className="markdown-body">
-                     {/* Official Rubric in Print */}
-                     {officialData?.rubric && (
-                        <div className="rubric-print-section mb-8">
-                          <h2 className="text-xl font-bold border-b-2 border-black pb-2 mb-4">
-                            {officialData.rubric.title} (Official Rubric)
-                          </h2>
-                          {officialData.rubric.marking_bands ? (
-                             <table className="grade-table-print">
-                               <thead><tr><th>Marks</th><th>Descriptor</th></tr></thead>
-                               <tbody>{Object.entries(officialData.rubric.marking_bands).map(([marks, desc]) => <tr key={marks}><td>{marks}</td><td>{desc}</td></tr>)}</tbody>
-                             </table>
-                          ) : (
-                             <p className="italic text-sm mb-4">Official marking criteria applied based on IB standards.</p>
-                          )}
-                        </div>
-                     )}
+              <section className="exam-page">
+                <div className="markdown-body">
+                  <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
+                    {result.exam_text}
+                  </ReactMarkdown>
+                </div>
+              </section>
+              {(result.answer_key || result.grade_boundaries || officialData) && (
+                <section className="exam-page mark-scheme-page">
+                  <div className="markdown-body">
+                    {/* Official Rubric in Print */}
+                    {officialData?.rubric && (
+                      <div className="rubric-print-section mb-8">
+                        <h2 className="text-xl font-bold border-b-2 border-black pb-2 mb-4">
+                          {officialData.rubric.title} (Official Rubric)
+                        </h2>
+                        {officialData.rubric.marking_bands ? (
+                          <table className="grade-table-print">
+                            <thead><tr><th>Marks</th><th>Descriptor</th></tr></thead>
+                            <tbody>{Object.entries(officialData.rubric.marking_bands).map(([marks, desc]) => <tr key={marks}><td>{marks}</td><td>{desc}</td></tr>)}</tbody>
+                          </table>
+                        ) : (
+                          <p className="italic text-sm mb-4">Official marking criteria applied based on IB standards.</p>
+                        )}
+                      </div>
+                    )}
 
-                     {result.answer_key && (
-                       <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                         {result.answer_key}
-                       </ReactMarkdown>
-                     )}
-                     
-                     {/* Official Boundaries in Print */}
-                     {(officialData?.boundaries || result.grade_boundaries) && (
-                        <div className="mt-12 pt-8 border-t border-slate-200">
-                          <h3 className="text-xl font-bold mb-4">Official Grade Boundaries</h3>
-                          {officialData?.boundaries ? (
-                             <table className="grade-table-print">
-                               <thead><tr><th>Grade</th><th>Range (%)</th><th>Descriptor</th></tr></thead>
-                               <tbody>{Object.entries(officialData.boundaries).filter(([k]) => k.startsWith('grade_')).map(([k, v]) => <tr key={k}><td>{k.replace('grade_', '')}</td><td>{v.min}-{v.max}%</td><td>{v.description}</td></tr>)}</tbody>
-                             </table>
-                          ) : (
-                            <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                              {result.grade_boundaries}
-                            </ReactMarkdown>
-                          )}
-                        </div>
-                     )}
-                   </div>
-                 </section>
-               )}
+                    {result.answer_key && (
+                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
+                        {result.answer_key}
+                      </ReactMarkdown>
+                    )}
+
+                    {/* Official Boundaries in Print */}
+                    {(officialData?.boundaries || result.grade_boundaries) && (
+                      <div className="mt-12 pt-8 border-t border-slate-200">
+                        <h3 className="text-xl font-bold mb-4">Official Grade Boundaries</h3>
+                        {officialData?.boundaries ? (
+                          <table className="grade-table-print">
+                            <thead><tr><th>Grade</th><th>Range (%)</th><th>Descriptor</th></tr></thead>
+                            <tbody>{Object.entries(officialData.boundaries).filter(([k]) => k.startsWith('grade_')).map(([k, v]) => <tr key={k}><td>{k.replace('grade_', '')}</td><td>{v.min}-{v.max}%</td><td>{v.description}</td></tr>)}</tbody>
+                          </table>
+                        ) : (
+                          <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
+                            {result.grade_boundaries}
+                          </ReactMarkdown>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )}
             </div>
           </div>
         )}

@@ -31,16 +31,17 @@ def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
         "structure_desc": "Standard IB question format"
     }
     try:
-        # Normalize paper name for JSON keys (e.g., "Paper 1A" -> "paper_1A")
-        paper_key = paper.replace(" ", "_").replace("paper", "paper").replace("Paper", "paper")
-        if "1A" in paper: paper_key = "paper_1A"
-        if "1B" in paper: paper_key = "paper_1B"
-        if "Paper 1" == paper: paper_key = "paper_1"
-        if "Paper 2" == paper: paper_key = "paper_2"
-        if "Paper 3" == paper: paper_key = "paper_3"
+        # 1. Normalize subject/paper keys
+        subj_key = subject.replace(" ", "_")
+        if subject == "Math AA": subj_key = "Mathematics_AA"
+        if subject == "English Literature A": subj_key = "English_Literature_A"
+        
+        paper_key = paper.replace(" ", "_").lower()
+        if "1a" in paper_key: paper_key = "paper_1A"
+        if "1b" in paper_key: paper_key = "paper_1B"
         
         # 1. Check for subject directly (Standard)
-        subject_data = EXAM_SPECS.get(subject)
+        subject_data = EXAM_SPECS.get(subj_key)
         
         # 2. Check for subject inside groups (e.g., Sciences)
         if not subject_data:
@@ -51,11 +52,22 @@ def get_ib_specs(subject: str, level: str, paper: str) -> Dict[str, Any]:
         
         if subject_data and level in subject_data and paper_key in subject_data[level]:
             data = subject_data[level][paper_key]
+            
+            # Extract question count (handle integer or range)
+            q_count = data.get("question_count")
+            if not q_count:
+                q_range = data.get("question_count_range")
+                if isinstance(q_range, dict):
+                    q_count = f"{q_range.get('min')}-{q_range.get('max')}"
+                else:
+                    q_count = "5-10" # Fallback
+
             specs.update({
                 "duration": data.get("duration_minutes", 60),
                 "total_marks": data.get("total_marks", 40),
-                "question_count_range": str(data.get("typical_question_count", data.get("question_count", "5-10"))),
+                "question_count": str(q_count),
                 "command_terms": data.get("command_terms", specs["command_terms"]),
+                "structure_type": data.get("structure", {}).get("type", "structured"),
                 "structure_desc": data.get("question_structure", {}).get("description", 
                                   data.get("structure", {}).get("description", specs["structure_desc"])),
                 "calculator": data.get("calculator_allowed", data.get("calculator", False))
@@ -85,7 +97,7 @@ def get_subject_specific_instructions(subject: str, paper: str, specs: Dict[str,
         if "Paper 1A" in paper:
             instructions += "\n- **FORMAT**: Multiple Choice Questions only.\n- Provide 4 options (A, B, C, D) for each question.\n- Focus on core conceptual understanding and quick calculations."
         elif "Paper 1B" in paper:
-            instructions += f"\n- **FORMAT**: Data analysis and experimental design questions.\n- **STRICT**: This is NOT multiple choice. Provide structured questions requiring written analysis.\n- **SKILLS FOCUS**: Focus heavily on the following selected skills: {', '.join(specs.get('selected_skills', [])) if 'selected_skills' in specs else 'general experimental design'}.\n- Include questions on: error analysis, graph interpretation, variable identification, and methodology evaluation.\n- Use SVG for experimental setups or data plots."
+            instructions += f"\n- **FORMAT**: Data analysis and experimental design questions.\n- **STRICT**: This is NOT multiple choice. Provide structured questions requiring written analysis.\n- **TABLES**: Present experimental data in standard Markdown tables (properly formatted with newlines).\n- **SKILLS FOCUS**: Focus heavily on the following selected skills: {', '.join(specs.get('selected_skills', [])) if 'selected_skills' in specs else 'general experimental design'}.\n- Include questions on: error analysis, graph interpretation, variable identification, and methodology evaluation.\n- Use SVG for experimental setups or data plots."
         
         instructions += f"\n- **DIFFICULTY GRADIENT (SCALING)**: \n  1. Within each multi-part question, parts (a), (b), (c), etc., must strictly increase in difficulty and cognitive demand (e.g., recall → application → complex evaluation).\n  2. The overall paper should be structured so that earlier questions are more accessible, while later questions increasingly require synthesis of multiple topics and higher-order thinking."
     return instructions
@@ -96,12 +108,24 @@ def build_prompt(request: GenerateRequest) -> str:
     specs['selected_skills'] = request.topic_or_type
     subject_instr = get_subject_specific_instructions(request.subject, request.paper, specs)
     focus_areas = ", ".join(request.topic_or_type)
+    
+    # Specific logic for choice-based papers
+    structure_rule = ""
+    if specs.get("structure_type") == "essay_choice":
+        structure_rule = f"\n- **STRICT QUESTION COUNT**: You MUST provide EXACTLY {specs['question_count']} essay prompts/options. The user will choose 1 of these {specs['question_count']} prompts."
+        if request.prescribed_texts and len(request.prescribed_texts) >= 2:
+            texts_str = " and ".join([t for t in request.prescribed_texts if t.strip()])
+            if texts_str:
+                structure_rule += f"\n- **CUSTOM CONTEXT**: The student has specifically studied: {texts_str}. Tailor the essay prompts to be highly relevant to exploring themes, techniques, or contexts found in these works."
+    else:
+        structure_rule = f"\n- **STRICT QUESTION COUNT**: The exam MUST contain EXACTLY {specs['question_count']} questions/tasks."
+
     prompt = f"""Generate an authentic International Baccalaureate (IB) {request.subject} {request.level} {request.paper} examination.
 
 EXAM SPECIFICATIONS:
 - Duration: {specs['duration']} minutes
 - Total marks: {specs['total_marks']}
-- Typical structure: {specs['structure_desc']}
+- Typical structure: {specs['structure_desc']}{structure_rule}
 - Command terms to prioritize: {', '.join(specs['command_terms'])}
 - Focus areas: {focus_areas}
 
@@ -111,11 +135,18 @@ REQUIREMENTS:
 3. Ensure total marks sum exactly to {specs['total_marks']}.
 4. Use clear, concise language appropriate for Grade 11-12 students.
 5. If multiple focus areas are provided, create a balanced exam covering all of them.
-6. **DIAGRAMS**: Use visual aids for **ALL** subjects inside ```mermaid ``` or ```svg ``` blocks.
-   - **History/Business/ITGS**: Use Mermaid for timelines, network diagrams, or organizational charts.
+6. **STRICT QUESTION LIMIT**: Do NOT exceed {specs['question_count']} questions/options. If the spec says {specs['question_count']}, you MUST provide exactly that many. 
+7. **TABLES**: Use standard Markdown tables for data.
+   - **STRICT**: Each row MUST be on a new line.
+   - **STRICT**: You MUST include the separator row (e.g., `|---|---|`).
+   - **STRICT**: Do NOT use double pipes `||` inside tables.
+8. **DIAGRAMS**: Use visual aids for **ALL** subjects inside ```mermaid ``` or ```svg ``` blocks.
+   - **History/Business/ITGS**: Use Mermaid for timelines, network diagrams, or organizational charts. Use `theme: base` with high contrast.
    - **Math/Sci/Geography**: Use SVG for coordinate graphs, maps, circuits, or chemical structures.
+   - **SVG QUALITY**: All graphs MUST include clear X/Y axes, tick marks, labels, and units. Use a professional style with `stroke="#1e293b"` (dark blue/black) to ensure visibility on white paper.
    - **Language/Social Sciences**: Use SVG for situational illustrations or Mermaid for logic flows.
    - **STRICT**: Only Mermaid.js and raw SVG are supported. Keep diagrams clear and professional.
+9. **SEPARATION**: Use `***` or `---` on a new line between major questions to ensure clear visual separation.
 {subject_instr}
 
 FORMAT:

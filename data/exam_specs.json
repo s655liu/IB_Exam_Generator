@@ -312,7 +312,7 @@
       }
     }
   },
-  "English_A": {
+  "English_Literature_A": {
     "description": "No structural changes for 2025",
     "SL": {
       "paper_1": {
@@ -349,14 +349,16 @@
         "total_marks": 25,
         "question_count": 3,
         "calculator_allowed": false,
+        "requires_comparison": true,
+        "minimum_works": 2,
         "structure": {
           "type": "essay_choice",
-          "description": "Choose 1 of 3 essay prompts",
+          "description": "Choose 1 of 3 essay prompts. Response must compare at least two literary works studied in class.",
           "parts": [
             {
               "part": "essay",
               "marks": 25,
-              "description": "Literary essay"
+              "description": "Comparative literary essay"
             }
           ]
         },
@@ -403,14 +405,16 @@
         "total_marks": 25,
         "question_count": 3,
         "calculator_allowed": false,
+        "requires_comparison": true,
+        "minimum_works": 2,
         "structure": {
           "type": "essay_choice",
-          "description": "Choose 1 of 3 essay prompts",
+          "description": "Choose 1 of 3 essay prompts. Response must compare at least two literary works studied in class.",
           "parts": [
             {
               "part": "essay",
               "marks": 25,
-              "description": "Literary essay"
+              "description": "Comparative literary essay"
             }
           ]
         },

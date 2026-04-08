@@ -6,7 +6,7 @@ An AI-powered tool for generating official-style IB examination papers with mark
 
 ## Features
 
-- **AI-Generated Exam Papers** — produces realistic IB-style questions for Math AA, Physics, Chemistry, Biology, History, English A, Business, and more
+- **AI-Generated Exam Papers** — produces realistic IB-style questions for Math AA, Physics, Chemistry, Biology, History, English Literature A, Business, and more
 - **Official Mark Schemes** — displays subject-specific rubrics and marking criteria
 - **Grade Boundaries** — shows official percentage bands (Grades 1–7) per subject and level
 - **Student / Teacher Views** — separate tabs for question paper and mark scheme

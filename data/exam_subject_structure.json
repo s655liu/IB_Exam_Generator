@@ -9,7 +9,7 @@
       "Paper 1B requires written answers, not multiple choice"
     ],
     "unchanged_subjects": [
-      "English A",
+      "English Literature A",
       "French B",
       "Mandarin B",
       "Spanish B",
@@ -21,7 +21,7 @@
       "Math AA"
     ]
   },
-  "English A": {
+  "English Literature A": {
     "levels": [
       "SL",
       "HL"
@@ -54,12 +54,73 @@
         "Comparative commentary"
       ],
       "Paper 2": [
-        "Essay on literary works"
+        "Comparative essay on 2+ literary works"
       ]
     },
     "question_numbers": {
-      "Paper 1": 2,
-      "Paper 2": 1
+      "Paper 1": {
+        "SL": 1,
+        "HL": 2
+      },
+      "Paper 2": {
+        "prompt_count": 3,
+        "essays_written": 1,
+        "description": "Choose 1 of 3 prompts"
+      }
+    },
+    "duration_minutes": {
+      "SL": {
+        "Paper 1": 75,
+        "Paper 2": 105
+      },
+      "HL": {
+        "Paper 1": 135,
+        "Paper 2": 105
+      }
+    },
+    "total_marks": {
+      "SL": {
+        "Paper 1": 20,
+        "Paper 2": 25
+      },
+      "HL": {
+        "Paper 1": 40,
+        "Paper 2": 25
+      }
+    },
+    "marks_breakdown": {
+      "SL": {
+        "Paper 1": {
+          "Part A": 10,
+          "Part B": 10
+        }
+      },
+      "HL": {
+        "Paper 1": {
+          "Question 1": 20,
+          "Question 2": 20
+        }
+      }
+    },
+    "requires_comparison": {
+      "Paper 2": true,
+      "minimum_works": 2
+    },
+    "command_terms": {
+      "Paper 1": [
+        "Analyse",
+        "Compare",
+        "Contrast",
+        "Comment on",
+        "Examine"
+      ],
+      "Paper 2": [
+        "Discuss",
+        "Evaluate",
+        "To what extent",
+        "Compare and contrast",
+        "Analyse"
+      ]
     },
     "has_answer_key": false
   },
@@ -593,8 +654,8 @@
           "max_questions": 10
         },
         "HL": {
-          "min_questions": 8,
-          "max_questions": 12
+          "min_questions": 10,
+          "max_questions": 14
         }
       }
     },
