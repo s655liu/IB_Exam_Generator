@@ -12,7 +12,8 @@ from dotenv import load_dotenv
 load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 from generator import build_prompt, call_qwen_api, parse_response
-from schemas import GenerateRequest, GenerateResponse
+from evaluator import build_evaluation_prompt, call_qwen_evaluation
+from schemas import GenerateRequest, GenerateResponse, EvaluateRequest, EvaluateResponse
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -53,3 +54,23 @@ async def generate_exam(request: GenerateRequest):
     except Exception as e:
         logger.error(f"Error generating exam: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/evaluate-essay", response_model=EvaluateResponse)
+async def evaluate_essay(request: EvaluateRequest):
+    logger.info(f"Evaluating essay — {request.subject} {request.level} {request.paper}")
+    try:
+        prompt = build_evaluation_prompt(request)
+        evaluation = await call_qwen_evaluation(prompt)
+        return EvaluateResponse(
+            evaluation=evaluation,
+            metadata={
+                "subject": request.subject,
+                "level": request.level,
+                "paper": request.paper,
+            }
+        )
+    except Exception as e:
+        logger.error(f"Error evaluating essay: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+

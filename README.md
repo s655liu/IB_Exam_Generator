@@ -55,29 +55,40 @@ IB_Exam_Generator/
 - Node.js 18+
 - A [Qwen API key](https://dashscope.aliyuncs.com/)
 
-### Backend (runs on port 8000)
-
-```bash
-cd api
-pip install -r ../requirements.txt
-uvicorn index:app --reload --port 8000
-```
-
-Create `api/.env`:
+### 1. Create `api/.env`
 ```
 QWEN_API_KEY=your_key_here
 QWEN_BASE_URL=https://dashscope-intl.aliyuncs.com/compatible-mode/v1
 ```
 
-### Frontend (runs on port 5173)
-
+### 2. Install dependencies
 ```bash
-cd frontend
+# Python (backend)
+pip install -r requirements.txt
+
+# Node (frontend + dev tooling)
 npm install
+cd frontend && npm install && cd ..
+```
+
+### 3. Start both servers with one command
+```bash
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) — the Vite dev proxy automatically forwards `/api` requests to port 8000.
+This runs the FastAPI backend (port 8000) and the Vite frontend (port 5173) in the same terminal with colour-coded output:
+```
+[API] INFO:     Uvicorn running on http://127.0.0.1:8000
+[UI]  VITE v5.x  ready in 300ms  ➜  http://localhost:5173
+```
+
+Open [http://localhost:5173](http://localhost:5173). The Vite dev proxy automatically forwards `/api` requests to port 8000 — no CORS issues.
+
+> **Run servers individually** (optional):
+> ```bash
+> npm run dev:api   # backend only
+> npm run dev:ui    # frontend only
+> ```
 
 ---
 

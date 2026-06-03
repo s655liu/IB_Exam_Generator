@@ -1,0 +1,12 @@
+{
+  "name": "ib-exam-generator",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail --names \"API,UI\" --prefix-colors \"cyan.bold,magenta.bold\" \"npm run dev:api\" \"npm run dev:ui\"",
+    "dev:api": "cd api && python -m uvicorn index:app --reload --port 8000",
+    "dev:ui": "cd frontend && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

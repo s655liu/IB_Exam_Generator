@@ -1,14 +1,23 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import rehypeKatex from 'rehype-katex';
-import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download, RefreshCw, Clock, Target, Trophy, Play, Pause, Volume2, X, Plus } from 'lucide-react';
-import 'katex/dist/katex.min.css';
+import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download, RefreshCw, Clock, Target, Trophy, Play, Pause, Volume2, X, Plus, PenLine } from 'lucide-react';
+import { MarkdownRenderer } from './components/MarkdownRenderer';
+import { EssayEvaluator } from './components/EssayEvaluator';
 import mermaid from 'mermaid';
 import subjectData from '@data/exam_subject_structure.json';
 import markSchemes from '@data/mark_schemes.json';
+
+// Subjects where essay evaluation makes sense (excludes pure MCQ / calculation subjects)
+const ESSAY_SUBJECTS = new Set([
+  'History', 'English Literature A',
+  'French B', 'Spanish B', 'Mandarin B',
+  'Geography', 'Business Management', 'ITGS',
+]);
+function isEssayCapable(subject, paper) {
+  if (!ESSAY_SUBJECTS.has(subject)) return false;
+  if (paper && paper.includes('1A')) return false; // Paper 1A is always MCQ
+  return true;
+}
 
 mermaid.initialize({
   startOnLoad: true,
@@ -455,7 +464,7 @@ function App() {
                 <button
                   style={{
                     display: 'flex', alignItems: 'center', gap: '0.3rem',
-                    padding: '0.25rem 0.75rem', borderRadius: '8px',
+                    padding: '0.25rem 0.75rem', borderRadius: '0',
                     fontSize: '0.7rem', fontWeight: 600, cursor: 'pointer',
                     transition: 'all 0.2s',
                     background: selectedTopics.length === availableOptions.length 
@@ -557,7 +566,7 @@ function App() {
                 onClick={() => setActiveTab('paper')}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.65rem 1.4rem', borderRadius: '12px',
+                  padding: '0.65rem 1.4rem', borderRadius: '0',
                   fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
                   transition: 'all 0.2s',
                   background: activeTab === 'paper' ? 'linear-gradient(135deg,#1e40af55,#0ea5e966)' : 'rgba(255,255,255,0.05)',
@@ -575,7 +584,7 @@ function App() {
                   onClick={() => setActiveTab('key')}
                   style={{
                     display: 'flex', alignItems: 'center', gap: '0.5rem',
-                    padding: '0.65rem 1.4rem', borderRadius: '12px',
+                    padding: '0.65rem 1.4rem', borderRadius: '0',
                     fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
                     transition: 'all 0.2s',
                     background: activeTab === 'key' ? 'linear-gradient(135deg,#06442a88,#10b98166)' : 'rgba(255,255,255,0.05)',
@@ -585,7 +594,27 @@ function App() {
                   }}
                 >
                   <CheckCircle style={{ width: '16px', height: '16px' }} />
-                  Mark Scheme & Boundaries
+                  Mark Scheme &amp; Boundaries
+                </button>
+              )}
+
+              {/* Evaluate Essay tab — only for essay-capable subjects */}
+              {isEssayCapable(result.metadata?.subject, result.metadata?.paper) && (
+                <button
+                  onClick={() => setActiveTab('evaluate')}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.5rem',
+                    padding: '0.65rem 1.4rem', borderRadius: '0',
+                    fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    background: activeTab === 'evaluate' ? 'linear-gradient(135deg,#3730a388,#6366f166)' : 'rgba(255,255,255,0.05)',
+                    color: activeTab === 'evaluate' ? '#a5b4fc' : '#9ca3af',
+                    border: activeTab === 'evaluate' ? '1px solid #6366f160' : '1px solid rgba(255,255,255,0.08)',
+                    boxShadow: activeTab === 'evaluate' ? '0 0 20px #6366f120' : 'none',
+                  }}
+                >
+                  <PenLine style={{ width: '16px', height: '16px' }} />
+                  Evaluate Essay
                 </button>
               )}
 
@@ -595,7 +624,7 @@ function App() {
                 style={{
                   marginLeft: 'auto',
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.65rem 1.4rem', borderRadius: '12px',
+                  padding: '0.65rem 1.4rem', borderRadius: '0',
                   fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
                   transition: 'all 0.2s',
                   background: 'rgba(255,255,255,0.06)',
@@ -615,9 +644,7 @@ function App() {
               {activeTab === 'paper' && (
                 <section className="exam-page glass animate-fade-in">
                   <div className="markdown-body">
-                    <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                      {result.exam_text}
-                    </ReactMarkdown>
+                    <MarkdownRenderer content={result.exam_text} components={MarkdownComponents} />
                   </div>
                 </section>
               )}
@@ -659,9 +686,7 @@ function App() {
 
                     {result.answer_key ? (
                       <>
-                        <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                          {result.answer_key}
-                        </ReactMarkdown>
+                        <MarkdownRenderer content={result.answer_key} components={MarkdownComponents} />
 
                         {/* Priority: Local JSON Boundaries then AI Boundaries */}
                         {(officialData?.boundaries || result.grade_boundaries) && (
@@ -687,9 +712,7 @@ function App() {
                                 </tbody>
                               </table>
                             ) : (
-                              <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                                {result.grade_boundaries}
-                              </ReactMarkdown>
+                              <MarkdownRenderer content={result.grade_boundaries} components={MarkdownComponents} />
                             )}
                           </div>
                         )}
@@ -700,15 +723,25 @@ function App() {
                   </div>
                 </section>
               )}
+
+              {/* Essay Evaluator panel */}
+              {activeTab === 'evaluate' && (
+                <EssayEvaluator
+                  subject={result.metadata?.subject || selectedSubject}
+                  level={result.metadata?.level || selectedLevel}
+                  paper={result.metadata?.paper || selectedPaper}
+                  examText={result.exam_text}
+                  markScheme={result.answer_key || ''}
+                  prescribedTexts={prescribedTexts}
+                />
+              )}
             </div>
 
             {/* Print Only View (PDF) */}
             <div className="print-only">
               <section className="exam-page">
                 <div className="markdown-body">
-                  <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                    {result.exam_text}
-                  </ReactMarkdown>
+                  <MarkdownRenderer content={result.exam_text} components={MarkdownComponents} />
                 </div>
               </section>
               {(result.answer_key || result.grade_boundaries || officialData) && (
@@ -732,9 +765,7 @@ function App() {
                     )}
 
                     {result.answer_key && (
-                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                        {result.answer_key}
-                      </ReactMarkdown>
+                      <MarkdownRenderer content={result.answer_key} components={MarkdownComponents} />
                     )}
 
                     {/* Official Boundaries in Print */}
@@ -747,9 +778,7 @@ function App() {
                             <tbody>{Object.entries(officialData.boundaries).filter(([k]) => k.startsWith('grade_')).map(([k, v]) => <tr key={k}><td>{k.replace('grade_', '')}</td><td>{v.min}-{v.max}%</td><td>{v.description}</td></tr>)}</tbody>
                           </table>
                         ) : (
-                          <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={MarkdownComponents}>
-                            {result.grade_boundaries}
-                          </ReactMarkdown>
+                          <MarkdownRenderer content={result.grade_boundaries} components={MarkdownComponents} />
                         )}
                       </div>
                     )}

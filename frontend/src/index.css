@@ -41,7 +41,7 @@ h3 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: 0;
 }
 
 .container {
@@ -100,7 +100,7 @@ select,
 input {
   background: rgba(15, 23, 42, 0.8);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0.75rem 1rem;
   color: var(--text-main);
   font-size: 1rem;
@@ -118,7 +118,7 @@ input:focus {
   background: linear-gradient(135deg, var(--accent), #0284c7);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 1rem 2rem;
   font-weight: 600;
   cursor: pointer;
@@ -166,7 +166,7 @@ button {
   gap: 1rem;
   background: rgba(15, 23, 42, 0.5);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 1rem;
 }
 
@@ -182,7 +182,7 @@ button {
   padding: 1rem;
   background: rgba(15, 23, 42, 0.4);
   border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 8px;
+  border-radius: 0;
   transition: all 0.2s;
   font-weight: 600;
   line-height: 1.4;
@@ -211,7 +211,7 @@ button {
   border: 1px solid var(--accent);
   color: var(--accent);
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.2s;
@@ -234,7 +234,7 @@ button {
   background: white;
   color: #1e293b;
   padding: 4rem;
-  border-radius: 4px;
+  border-radius: 0;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   position: relative;
   min-height: 1000px;
@@ -375,7 +375,7 @@ button {
 .rubric-box {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -390,7 +390,7 @@ button {
 .tab-btn-scheme {
   padding: 0.75rem 2rem;
   font-size: 1rem;
-  border-radius: 12px;
+  border-radius: 0;
   min-width: 180px;
   font-weight: 500;
   cursor: pointer;
@@ -444,7 +444,7 @@ button {
   background: white !important;
   color: #0f172a !important;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
@@ -651,7 +651,7 @@ input:checked+.slider:before {
 /* Audio Player */
 .audio-card {
   margin: 1.5rem 0;
-  border-radius: 1rem;
+  border-radius: 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.95));
   overflow: hidden;
@@ -673,7 +673,7 @@ input:checked+.slider:before {
   background: var(--accent);
   color: white;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -715,7 +715,7 @@ input:checked+.slider:before {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #94a3b8;
   padding: 0.4rem 0.8rem;
-  border-radius: 0.5rem;
+  border-radius: 0;
   font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
