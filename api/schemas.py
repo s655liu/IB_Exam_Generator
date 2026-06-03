@@ -28,3 +28,16 @@ class EvaluateRequest(BaseModel):
 class EvaluateResponse(BaseModel):
     evaluation: str                        # Full markdown evaluation from LLM
     metadata: Dict[str, Any]
+
+
+class SampleEssayRequest(BaseModel):
+    subject: str
+    level: str
+    paper: str
+    question: str                          # The essay prompt to respond to
+    mark_scheme: Optional[str] = ""       # For context (not shown in output)
+    prescribed_texts: Optional[List[str]] = []  # For English Lit A
+
+class SampleEssayResponse(BaseModel):
+    essay: str                             # The full model essay from the LLM
+    metadata: Dict[str, Any]

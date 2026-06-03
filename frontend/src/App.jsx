@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BookOpen, Award, FileText, CheckCircle, Send, Loader2, Sparkles, Languages, Download, RefreshCw, Clock, Target, Trophy, Play, Pause, Volume2, X, Plus, PenLine } from 'lucide-react';
 import { MarkdownRenderer } from './components/MarkdownRenderer';
 import { EssayEvaluator } from './components/EssayEvaluator';
+import { SampleEssayGenerator } from './components/SampleEssayGenerator';
 import mermaid from 'mermaid';
 import subjectData from '@data/exam_subject_structure.json';
 import markSchemes from '@data/mark_schemes.json';
@@ -618,6 +619,26 @@ function App() {
                 </button>
               )}
 
+              {/* Sample Essay tab */}
+              {isEssayCapable(result.metadata?.subject, result.metadata?.paper) && (
+                <button
+                  onClick={() => setActiveTab('sample')}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.5rem',
+                    padding: '0.65rem 1.4rem', borderRadius: '0',
+                    fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    background: activeTab === 'sample' ? 'linear-gradient(135deg,#2d1d6e88,#818cf866)' : 'rgba(255,255,255,0.05)',
+                    color: activeTab === 'sample' ? '#c7d2fe' : '#9ca3af',
+                    border: activeTab === 'sample' ? '1px solid #818cf860' : '1px solid rgba(255,255,255,0.08)',
+                    boxShadow: activeTab === 'sample' ? '0 0 20px #818cf820' : 'none',
+                  }}
+                >
+                  <Sparkles style={{ width: '16px', height: '16px' }} />
+                  Sample Essay
+                </button>
+              )}
+
               {/* Export PDF — same row, pushed to the right */}
               <button
                 onClick={handlePrint}
@@ -727,6 +748,18 @@ function App() {
               {/* Essay Evaluator panel */}
               {activeTab === 'evaluate' && (
                 <EssayEvaluator
+                  subject={result.metadata?.subject || selectedSubject}
+                  level={result.metadata?.level || selectedLevel}
+                  paper={result.metadata?.paper || selectedPaper}
+                  examText={result.exam_text}
+                  markScheme={result.answer_key || ''}
+                  prescribedTexts={prescribedTexts}
+                />
+              )}
+
+              {/* Sample Essay panel */}
+              {activeTab === 'sample' && (
+                <SampleEssayGenerator
                   subject={result.metadata?.subject || selectedSubject}
                   level={result.metadata?.level || selectedLevel}
                   paper={result.metadata?.paper || selectedPaper}

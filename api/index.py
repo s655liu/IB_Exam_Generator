@@ -13,7 +13,8 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 from generator import build_prompt, call_qwen_api, parse_response
 from evaluator import build_evaluation_prompt, call_qwen_evaluation
-from schemas import GenerateRequest, GenerateResponse, EvaluateRequest, EvaluateResponse
+from sample_essay import build_sample_essay_prompt, call_qwen_sample_essay
+from schemas import GenerateRequest, GenerateResponse, EvaluateRequest, EvaluateResponse, SampleEssayRequest, SampleEssayResponse
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -74,3 +75,21 @@ async def evaluate_essay(request: EvaluateRequest):
         logger.error(f"Error evaluating essay: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+
+@app.post("/api/generate-sample-essay", response_model=SampleEssayResponse)
+async def generate_sample_essay(request: SampleEssayRequest):
+    logger.info(f"Generating sample essay — {request.subject} {request.level} {request.paper}")
+    try:
+        prompt = build_sample_essay_prompt(request)
+        essay = await call_qwen_sample_essay(prompt)
+        return SampleEssayResponse(
+            essay=essay,
+            metadata={
+                "subject": request.subject,
+                "level": request.level,
+                "paper": request.paper,
+            }
+        )
+    except Exception as e:
+        logger.error(f"Error generating sample essay: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
